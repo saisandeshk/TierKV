@@ -1,0 +1,15 @@
+{
+  "_comment": "Choices tracker. PROPOSED -> FROZEN (with hash+date). Core arms/metrics are LOCKED, do not edit here.",
+  "model": {"value": "Qwen2.5-0.5B-Instruct", "revision": "TBD", "status": "PROPOSED"},
+  "precision": {"value": "BF16", "status": "PROPOSED"},
+  "context_limit": {"value": 4096, "status": "PROPOSED"},
+  "kv_token_pool": {"value": null, "status": "OPEN", "note": "set by T1.1 admission probe, identical all arms"},
+  "prefix_lengths": {"value": [2048, 4096, 8192], "status": "PROPOSED"},
+  "output_budget": {"value": 128, "sampling": "greedy, ignore_eos=true, verify actual counts", "status": "PROPOSED"},
+  "concurrency": {"pilot": [1, 4], "main": [1, 2, 4, 8], "status": "PROPOSED"},
+  "pause": {"value": "back-to-back; sleep 1s/5s only if idle-energy arm added", "status": "PROPOSED"},
+  "sglang_flags": {"chunked_prefill_size": "TBD", "mixed_chunk": "TBD", "radix_cache": "TBD", "graph_bs": "TBD", "attention": "TBD", "mem_fraction": "TBD", "status": "OPEN"},
+  "orin_power": {"value": "MAXN, no clock changes", "status": "PROPOSED"},
+  "nvme": {"path": "TBD under /media/ssd", "mode": "O_DIRECT", "status": "OPEN"},
+  "reps": {"pilot_blocks": 1, "main_blocks": 5, "ci": "paired-block 95%", "margin": "10%", "status": "PROPOSED"}
+}

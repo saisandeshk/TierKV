@@ -1,0 +1,15 @@
+# Python / editor
+__pycache__/
+*.pyc
+.venv/
+# local overrides
+config/local*.json
+*.local
+# raw evidence (see runs/.gitkeep)
+runs/*
+!runs/.gitkeep
+*.log
+# paper build
+paper/build/
+# OS
+.DS_Store

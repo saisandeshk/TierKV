@@ -1,0 +1,8 @@
+[project]
+name = "tierkv"
+version = "0.0.1"
+description = "Tiered KV-cache offload study: GPU retain vs host vs recompute vs NVMe (Orin-32GB vs A5000)"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,4 @@
+# runs/ holds device-local raw logs, telemetry, controller evidence.
+# Never commit raw runs. Curated summaries go in results/.
+* 
+!.gitkeep

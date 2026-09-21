@@ -1,0 +1,11 @@
+{
+  "_comment": "Template only. Freeze a copy as config/campaign-<name>.json with code+config hashes before claim runs.",
+  "platform": "orin-32gb",
+  "arms": ["retain", "host_d2h_h2d", "recompute", "nvme_direct"],
+  "prefix_lengths": [2048, 4096, 8192],
+  "concurrency": [1, 4],
+  "blocks": 5,
+  "randomize_within_block": true,
+  "warmups_per_cell": 1,
+  "repeats_per_cell": 1
+}
