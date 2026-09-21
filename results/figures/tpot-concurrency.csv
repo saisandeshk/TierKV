@@ -1,0 +1,17 @@
+source,bg_n,arrival,arm,mean_tpot_s,extra
+sweepB-base,2,none,retain-noload,0.029147,rep0
+sweepB-loaded,2,hit-6K,retain,0.030504,rep0 infl=4.7% gapmax=0.086
+sweepB-base,2,none,retain-noload,0.029147,rep1
+sweepB-loaded,2,hit-6K,retain,0.03051,rep1 infl=4.7% gapmax=0.087
+sweepB-base,8,none,retain-noload,0.029333,rep0
+sweepB-loaded,8,hit-6K,retain,0.029552,rep0 infl=0.7% gapmax=0.052
+sweepB-base,8,none,retain-noload,0.029333,rep1
+sweepB-loaded,8,hit-6K,retain,0.029551,rep1 infl=0.7% gapmax=0.056
+matrix,4,hit-6K,retain,0.030622,n=5
+matrix,4,hit-6K,host_d2h,0.030618,n=5
+matrix,4,cold-6K,recompute,0.040004,n=5
+matrix,4,host-restore-6K,host_h2d_direct,0.145076,n=5
+phase1-base,4,none,retain,0.029254,bgonly
+phase1-loaded,4,cold-6K,retain,0.040023,gapmax=1.250
+phase1-base,4,none,host,0.029893,bgonly
+phase1-loaded,4,cold-6K,host,0.041111,gapmax=1.297

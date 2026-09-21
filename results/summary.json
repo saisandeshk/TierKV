@@ -1,0 +1,5202 @@
+{
+ "frozen_contract": {
+  "reps": "blocks (n=5 per arm x length)",
+  "ci": "paired-block 95pct percentile bootstrap, B=10000, seed=20260921",
+  "margin": "10% of reference mean",
+  "warmups": "excluded from all stats"
+ },
+ "coverage": {
+  "meas_cells_complete_non_nvme": [
+   60,
+   60
+  ],
+  "pct": 100.0,
+  "planned_cells": 75,
+  "nvme_meas_cells": [
+   0,
+   15
+  ]
+ },
+ "claim_scope": {
+  "may_claim": "meas phases of retain/host_d2h/host_h2d_direct/recompute (60/60 arm x length x block meas cells PASS incl. h2d spill+fill+reload sub-phases)",
+  "must_exclude": "nvme_spill meas (0/15, reload crash every block); warmups as reps; kernel/page_first H2D (excluded by design; crash-probe 3/3 fatal)"
+ },
+ "aggregates": {
+  "retain_L2048_reload_arrival_ttft_s": {
+   "mean": 0.12001789838541299,
+   "lo": 0.11662221900187433,
+   "hi": 0.12381742175202817,
+   "n": 5,
+   "width": 0.00719520275015384,
+   "label": "retain L2048 reload arrival_ttft_s",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "retain_L2048_reload_bg_tpot_mean": {
+   "mean": 0.03007404745151252,
+   "lo": 0.030068060790929267,
+   "hi": 0.030079368627483512,
+   "n": 5,
+   "width": 1.130783655424461e-05,
+   "label": "retain L2048 reload bg_tpot_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "retain_L2048_reload_bg_gap_p95_mean": {
+   "mean": 0.03055317932739854,
+   "lo": 0.030457336729159578,
+   "hi": 0.03068152430932969,
+   "n": 5,
+   "width": 0.00022418758017011056,
+   "label": "retain L2048 reload bg_gap_p95_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "retain_L2048_reload_bg_gap_max": {
+   "mean": 0.08710597879253328,
+   "lo": 0.08654327418189496,
+   "hi": 0.0876686834031716,
+   "n": 5,
+   "width": 0.0011254092212766437,
+   "label": "retain L2048 reload bg_gap_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "retain_L2048_reload_mem_dip_mb": {
+   "mean": 4.285218750000058,
+   "lo": 1.8087890625007277,
+   "hi": 6.972968749999564,
+   "n": 5,
+   "width": 5.1641796874988355,
+   "label": "retain L2048 reload mem_dip_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "retain_L2048_reload_mem_baseline_mb": {
+   "mean": 18327.19459375,
+   "lo": 18301.0866875,
+   "hi": 18370.8483828125,
+   "n": 5,
+   "width": 69.7616953124998,
+   "label": "retain L2048 reload mem_baseline_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "retain_L2048_reload_emc_rate_mean": {
+   "mean": 590354.1966993415,
+   "lo": 587800.6113653963,
+   "hi": 593290.1275565587,
+   "n": 5,
+   "width": 5489.516191162402,
+   "label": "retain L2048 reload emc_rate_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "retain_L2048_reload_emc_rate_max": {
+   "mean": 1624305.7228299766,
+   "lo": 1602993.2976114796,
+   "hi": 1664867.6109916698,
+   "n": 5,
+   "width": 61874.31338019017,
+   "label": "retain L2048 reload emc_rate_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "retain_L2048_reload_cached": {
+   "dev": [
+    2052,
+    2052,
+    2052,
+    2052,
+    2052
+   ],
+   "host": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b4_meas_reload.json"
+   ]
+  },
+  "retain_L4096_reload_arrival_ttft_s": {
+   "mean": 0.14778596982359887,
+   "lo": 0.14582550362683833,
+   "hi": 0.1495737318182364,
+   "n": 5,
+   "width": 0.003748228191398084,
+   "label": "retain L4096 reload arrival_ttft_s",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "retain_L4096_reload_bg_tpot_mean": {
+   "mean": 0.03036850746702696,
+   "lo": 0.030364199581200357,
+   "hi": 0.03037286889340589,
+   "n": 5,
+   "width": 8.669312205535074e-06,
+   "label": "retain L4096 reload bg_tpot_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "retain_L4096_reload_bg_gap_p95_mean": {
+   "mean": 0.031145869300235062,
+   "lo": 0.03104943884536624,
+   "hi": 0.031242299755103887,
+   "n": 5,
+   "width": 0.00019286090973764589,
+   "label": "retain L4096 reload bg_gap_p95_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "retain_L4096_reload_bg_gap_max": {
+   "mean": 0.08759165219962597,
+   "lo": 0.08662205003201962,
+   "hi": 0.08838515058159828,
+   "n": 5,
+   "width": 0.001763100549578664,
+   "label": "retain L4096 reload bg_gap_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "retain_L4096_reload_mem_dip_mb": {
+   "mean": 3.32983593750032,
+   "lo": 1.928796875000262,
+   "hi": 5.3386484374997965,
+   "n": 5,
+   "width": 3.4098515624995347,
+   "label": "retain L4096 reload mem_dip_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "retain_L4096_reload_mem_baseline_mb": {
+   "mean": 18324.320460937503,
+   "lo": 18297.765156250003,
+   "hi": 18367.2527109375,
+   "n": 5,
+   "width": 69.48755468749732,
+   "label": "retain L4096 reload mem_baseline_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "retain_L4096_reload_emc_rate_mean": {
+   "mean": 582426.2347099807,
+   "lo": 580371.6113474162,
+   "hi": 585079.9009194635,
+   "n": 5,
+   "width": 4708.2895720473025,
+   "label": "retain L4096 reload emc_rate_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "retain_L4096_reload_emc_rate_max": {
+   "mean": 1593588.529408047,
+   "lo": 1589134.3756692654,
+   "hi": 1598861.329389388,
+   "n": 5,
+   "width": 9726.953720122576,
+   "label": "retain L4096 reload emc_rate_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "retain_L4096_reload_cached": {
+   "dev": [
+    4104,
+    4104,
+    4104,
+    4104,
+    4104
+   ],
+   "host": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b4_meas_reload.json"
+   ]
+  },
+  "retain_L6011_reload_arrival_ttft_s": {
+   "mean": 0.14783089379779996,
+   "lo": 0.14534473738167436,
+   "hi": 0.1493540822295472,
+   "n": 5,
+   "width": 0.004009344847872853,
+   "label": "retain L6011 reload arrival_ttft_s",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "retain_L6011_reload_bg_tpot_mean": {
+   "mean": 0.030622044967773453,
+   "lo": 0.030616157724591718,
+   "hi": 0.03062751739580133,
+   "n": 5,
+   "width": 1.1359671209611177e-05,
+   "label": "retain L6011 reload bg_tpot_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "retain_L6011_reload_bg_gap_p95_mean": {
+   "mean": 0.03176282625645399,
+   "lo": 0.031643576110946016,
+   "hi": 0.0319284560973756,
+   "n": 5,
+   "width": 0.0002848799864295856,
+   "label": "retain L6011 reload bg_gap_p95_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "retain_L6011_reload_bg_gap_max": {
+   "mean": 0.08761370682623237,
+   "lo": 0.0865693190600723,
+   "hi": 0.0883127688197419,
+   "n": 5,
+   "width": 0.0017434497596695991,
+   "label": "retain L6011 reload bg_gap_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "retain_L6011_reload_mem_dip_mb": {
+   "mean": 3.3807109374996798,
+   "lo": 2.197453124999447,
+   "hi": 4.522125000000233,
+   "n": 5,
+   "width": 2.3246718750007855,
+   "label": "retain L6011 reload mem_dip_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "retain_L6011_reload_mem_baseline_mb": {
+   "mean": 18322.9174296875,
+   "lo": 18297.891421875,
+   "hi": 18367.358812500002,
+   "n": 5,
+   "width": 69.46739062500274,
+   "label": "retain L6011 reload mem_baseline_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "retain_L6011_reload_emc_rate_mean": {
+   "mean": 590561.7055841277,
+   "lo": 588594.2929087518,
+   "hi": 592659.8324341346,
+   "n": 5,
+   "width": 4065.539525382803,
+   "label": "retain L6011 reload emc_rate_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "retain_L6011_reload_emc_rate_max": {
+   "mean": 1608030.1795935738,
+   "lo": 1605786.3664978973,
+   "hi": 1610555.111226644,
+   "n": 5,
+   "width": 4768.744728746591,
+   "label": "retain L6011 reload emc_rate_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "retain_L6011_reload_cached": {
+   "dev": [
+    6010,
+    6010,
+    6010,
+    6010,
+    6010
+   ],
+   "host": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b4_meas_reload.json"
+   ]
+  },
+  "host_d2h_L2048_reload_arrival_ttft_s": {
+   "mean": 0.11737982959020883,
+   "lo": 0.11523721520788968,
+   "hi": 0.12076351472642273,
+   "n": 5,
+   "width": 0.005526299518533048,
+   "label": "host_d2h L2048 reload arrival_ttft_s",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_d2h_L2048_reload_bg_tpot_mean": {
+   "mean": 0.03006632527846139,
+   "lo": 0.030058637127696398,
+   "hi": 0.030075913788769098,
+   "n": 5,
+   "width": 1.727666107270015e-05,
+   "label": "host_d2h L2048 reload bg_tpot_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_d2h_L2048_reload_bg_gap_p95_mean": {
+   "mean": 0.03065759688615799,
+   "lo": 0.030512487178202718,
+   "hi": 0.030806539580225945,
+   "n": 5,
+   "width": 0.0002940524020232267,
+   "label": "host_d2h L2048 reload bg_gap_p95_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_d2h_L2048_reload_bg_gap_max": {
+   "mean": 0.0863660226110369,
+   "lo": 0.08579867500811815,
+   "hi": 0.08718736642040312,
+   "n": 5,
+   "width": 0.0013886914122849675,
+   "label": "host_d2h L2048 reload bg_gap_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_d2h_L2048_reload_mem_dip_mb": {
+   "mean": 4.86518750000032,
+   "lo": 3.668523437499971,
+   "hi": 6.061851562500669,
+   "n": 5,
+   "width": 2.393328125000698,
+   "label": "host_d2h L2048 reload mem_dip_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_d2h_L2048_reload_mem_baseline_mb": {
+   "mean": 17645.451125,
+   "lo": 17621.588390625002,
+   "hi": 17686.233703125,
+   "n": 5,
+   "width": 64.64531249999709,
+   "label": "host_d2h L2048 reload mem_baseline_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_d2h_L2048_reload_emc_rate_mean": {
+   "mean": 588899.5009115555,
+   "lo": 587419.6705292386,
+   "hi": 590201.8416074824,
+   "n": 5,
+   "width": 2782.1710782437585,
+   "label": "host_d2h L2048 reload emc_rate_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_d2h_L2048_reload_emc_rate_max": {
+   "mean": 1605370.2165615857,
+   "lo": 1603343.448439198,
+   "hi": 1608132.6498579993,
+   "n": 5,
+   "width": 4789.201418801211,
+   "label": "host_d2h L2048 reload emc_rate_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_d2h_L2048_reload_cached": {
+   "dev": [
+    2052,
+    2052,
+    2052,
+    2052,
+    2052
+   ],
+   "host": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b4_meas_reload.json"
+   ]
+  },
+  "host_d2h_L4096_reload_arrival_ttft_s": {
+   "mean": 0.1466874304227531,
+   "lo": 0.1450101680122316,
+   "hi": 0.1491574374260381,
+   "n": 5,
+   "width": 0.004147269413806498,
+   "label": "host_d2h L4096 reload arrival_ttft_s",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_d2h_L4096_reload_bg_tpot_mean": {
+   "mean": 0.030362280288813853,
+   "lo": 0.030353961626615918,
+   "hi": 0.030370344366698603,
+   "n": 5,
+   "width": 1.638274008268492e-05,
+   "label": "host_d2h L4096 reload bg_tpot_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_d2h_L4096_reload_bg_gap_p95_mean": {
+   "mean": 0.0313899107510224,
+   "lo": 0.03131340621621348,
+   "hi": 0.031461512600071725,
+   "n": 5,
+   "width": 0.00014810638385824582,
+   "label": "host_d2h L4096 reload bg_gap_p95_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_d2h_L4096_reload_bg_gap_max": {
+   "mean": 0.08683385476469993,
+   "lo": 0.08603420974686742,
+   "hi": 0.08797961759846658,
+   "n": 5,
+   "width": 0.0019454078515991624,
+   "label": "host_d2h L4096 reload bg_gap_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_d2h_L4096_reload_mem_dip_mb": {
+   "mean": 4.813898437499302,
+   "lo": 3.5800234374997673,
+   "hi": 6.0391640624984575,
+   "n": 5,
+   "width": 2.4591406249986902,
+   "label": "host_d2h L4096 reload mem_dip_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_d2h_L4096_reload_mem_baseline_mb": {
+   "mean": 17653.4670234375,
+   "lo": 17629.206507812498,
+   "hi": 17694.940804687496,
+   "n": 5,
+   "width": 65.73429687499811,
+   "label": "host_d2h L4096 reload mem_baseline_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_d2h_L4096_reload_emc_rate_mean": {
+   "mean": 582207.0477339614,
+   "lo": 581426.9567202686,
+   "hi": 583211.5838715382,
+   "n": 5,
+   "width": 1784.627151269582,
+   "label": "host_d2h L4096 reload emc_rate_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_d2h_L4096_reload_emc_rate_max": {
+   "mean": 1591358.893063203,
+   "lo": 1587924.9928741774,
+   "hi": 1594792.7932522283,
+   "n": 5,
+   "width": 6867.800378050888,
+   "label": "host_d2h L4096 reload emc_rate_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_d2h_L4096_reload_cached": {
+   "dev": [
+    4104,
+    4104,
+    4104,
+    4104,
+    4104
+   ],
+   "host": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b4_meas_reload.json"
+   ]
+  },
+  "host_d2h_L6011_reload_arrival_ttft_s": {
+   "mean": 0.14679908582475037,
+   "lo": 0.14551121243275703,
+   "hi": 0.14882960582617671,
+   "n": 5,
+   "width": 0.0033183933934196885,
+   "label": "host_d2h L6011 reload arrival_ttft_s",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_d2h_L6011_reload_bg_tpot_mean": {
+   "mean": 0.030617805788161485,
+   "lo": 0.03060566478621537,
+   "hi": 0.030632998491729076,
+   "n": 5,
+   "width": 2.7333705513707396e-05,
+   "label": "host_d2h L6011 reload bg_tpot_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_d2h_L6011_reload_bg_gap_p95_mean": {
+   "mean": 0.031869717949302864,
+   "lo": 0.03179266619263217,
+   "hi": 0.03191794354934245,
+   "n": 5,
+   "width": 0.0001252773567102794,
+   "label": "host_d2h L6011 reload bg_gap_p95_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_d2h_L6011_reload_bg_gap_max": {
+   "mean": 0.08700426139403135,
+   "lo": 0.0865349855972454,
+   "hi": 0.08754014000296592,
+   "n": 5,
+   "width": 0.0010051544057205208,
+   "label": "host_d2h L6011 reload bg_gap_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_d2h_L6011_reload_mem_dip_mb": {
+   "mean": 3.305851562499447,
+   "lo": 1.744695312499971,
+   "hi": 4.962148437498399,
+   "n": 5,
+   "width": 3.2174531249984284,
+   "label": "host_d2h L6011 reload mem_dip_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_d2h_L6011_reload_mem_baseline_mb": {
+   "mean": 17646.133976562498,
+   "lo": 17621.629703125,
+   "hi": 17683.863312499998,
+   "n": 5,
+   "width": 62.233609374998196,
+   "label": "host_d2h L6011 reload mem_baseline_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_d2h_L6011_reload_emc_rate_mean": {
+   "mean": 588853.7835744353,
+   "lo": 585689.9305010262,
+   "hi": 592469.716001489,
+   "n": 5,
+   "width": 6779.785500462749,
+   "label": "host_d2h L6011 reload emc_rate_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_d2h_L6011_reload_emc_rate_max": {
+   "mean": 1630137.832298156,
+   "lo": 1605381.4954534178,
+   "hi": 1673765.4270438042,
+   "n": 5,
+   "width": 68383.93159038643,
+   "label": "host_d2h L6011 reload emc_rate_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_d2h_L6011_reload_cached": {
+   "dev": [
+    6010,
+    6010,
+    6010,
+    6010,
+    6010
+   ],
+   "host": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b4_meas_reload.json"
+   ]
+  },
+  "recompute_L2048_recompute_arrival_ttft_s": {
+   "mean": 0.46869053861591964,
+   "lo": 0.46805609760340305,
+   "hi": 0.4697829918237403,
+   "n": 5,
+   "width": 0.0017268942203372273,
+   "label": "recompute L2048 recompute arrival_ttft_s",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b4_meas_recompute.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "recompute_L2048_recompute_bg_tpot_mean": {
+   "mean": 0.032884870728846334,
+   "lo": 0.03288148377910183,
+   "hi": 0.03288880077105448,
+   "n": 5,
+   "width": 7.31699195265223e-06,
+   "label": "recompute L2048 recompute bg_tpot_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b4_meas_recompute.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "recompute_L2048_recompute_bg_gap_p95_mean": {
+   "mean": 0.030702910851687193,
+   "lo": 0.03066971191437915,
+   "hi": 0.03073291709879413,
+   "n": 5,
+   "width": 6.320518441498002e-05,
+   "label": "recompute L2048 recompute bg_gap_p95_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b4_meas_recompute.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "recompute_L2048_recompute_bg_gap_max": {
+   "mean": 0.4067583976080641,
+   "lo": 0.4063162037869915,
+   "hi": 0.40720059142913667,
+   "n": 5,
+   "width": 0.0008843876421451569,
+   "label": "recompute L2048 recompute bg_gap_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b4_meas_recompute.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "recompute_L2048_recompute_mem_dip_mb": {
+   "mean": 5.047640624998894,
+   "lo": 1.3296249999992142,
+   "hi": 9.017414062498574,
+   "n": 5,
+   "width": 7.68778906249936,
+   "label": "recompute L2048 recompute mem_dip_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b4_meas_recompute.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "recompute_L2048_recompute_mem_baseline_mb": {
+   "mean": 18153.175765624997,
+   "lo": 18100.865046875,
+   "hi": 18246.932554687497,
+   "n": 5,
+   "width": 146.06750781249866,
+   "label": "recompute L2048 recompute mem_baseline_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b4_meas_recompute.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "recompute_L2048_recompute_emc_rate_mean": {
+   "mean": 539954.9310522426,
+   "lo": 536988.4300124638,
+   "hi": 543034.6136663683,
+   "n": 5,
+   "width": 6046.183653904474,
+   "label": "recompute L2048 recompute emc_rate_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b4_meas_recompute.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "recompute_L2048_recompute_emc_rate_max": {
+   "mean": 1588879.7809168939,
+   "lo": 1581243.4826432962,
+   "hi": 1596516.0791904915,
+   "n": 5,
+   "width": 15272.596547195222,
+   "label": "recompute L2048 recompute emc_rate_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b4_meas_recompute.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "recompute_L2048_recompute_cached": {
+   "dev": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "host": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b4_meas_recompute.json"
+   ]
+  },
+  "recompute_L4096_recompute_arrival_ttft_s": {
+   "mean": 0.9120320393936708,
+   "lo": 0.9107303459895775,
+   "hi": 0.9132298531942069,
+   "n": 5,
+   "width": 0.0024995072046294364,
+   "label": "recompute L4096 recompute arrival_ttft_s",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b4_meas_recompute.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "recompute_L4096_recompute_bg_tpot_mean": {
+   "mean": 0.0364458101131957,
+   "lo": 0.03644057668559436,
+   "hi": 0.03645213627156537,
+   "n": 5,
+   "width": 1.155958597100909e-05,
+   "label": "recompute L4096 recompute bg_tpot_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b4_meas_recompute.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "recompute_L4096_recompute_bg_gap_p95_mean": {
+   "mean": 0.03135365920024924,
+   "lo": 0.03125075554708019,
+   "hi": 0.031441915588220584,
+   "n": 5,
+   "width": 0.00019116004114039242,
+   "label": "recompute L4096 recompute bg_gap_p95_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b4_meas_recompute.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "recompute_L4096_recompute_bg_gap_max": {
+   "mean": 0.8231120259733871,
+   "lo": 0.8224890621844679,
+   "hi": 0.8236838229931891,
+   "n": 5,
+   "width": 0.0011947608087211625,
+   "label": "recompute L4096 recompute bg_gap_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b4_meas_recompute.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "recompute_L4096_recompute_mem_dip_mb": {
+   "mean": 8.003257812500669,
+   "lo": 3.7211015625012807,
+   "hi": 14.047554687500815,
+   "n": 5,
+   "width": 10.326453124999535,
+   "label": "recompute L4096 recompute mem_dip_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b4_meas_recompute.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "recompute_L4096_recompute_mem_baseline_mb": {
+   "mean": 18149.0134140625,
+   "lo": 18096.5326171875,
+   "hi": 18239.4776796875,
+   "n": 5,
+   "width": 142.94506250000268,
+   "label": "recompute L4096 recompute mem_baseline_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b4_meas_recompute.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "recompute_L4096_recompute_emc_rate_mean": {
+   "mean": 480321.58541805204,
+   "lo": 478018.7879147947,
+   "hi": 482624.3829213093,
+   "n": 5,
+   "width": 4605.595006514632,
+   "label": "recompute L4096 recompute emc_rate_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b4_meas_recompute.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "recompute_L4096_recompute_emc_rate_max": {
+   "mean": 1631746.4589015078,
+   "lo": 1580083.155010496,
+   "hi": 1683409.7627925195,
+   "n": 5,
+   "width": 103326.6077820235,
+   "label": "recompute L4096 recompute emc_rate_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b4_meas_recompute.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "recompute_L4096_recompute_cached": {
+   "dev": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "host": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b4_meas_recompute.json"
+   ]
+  },
+  "recompute_L6011_recompute_arrival_ttft_s": {
+   "mean": 1.3317704962100834,
+   "lo": 1.3313024606090038,
+   "hi": 1.332318758405745,
+   "n": 5,
+   "width": 0.0010162977967411724,
+   "label": "recompute L6011 recompute arrival_ttft_s",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b4_meas_recompute.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "recompute_L6011_recompute_bg_tpot_mean": {
+   "mean": 0.04000433416492636,
+   "lo": 0.03999853395237257,
+   "hi": 0.04000851457748804,
+   "n": 5,
+   "width": 9.980625115466046e-06,
+   "label": "recompute L6011 recompute bg_tpot_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b4_meas_recompute.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "recompute_L6011_recompute_bg_gap_p95_mean": {
+   "mean": 0.03173088874318637,
+   "lo": 0.031631220399867745,
+   "hi": 0.03184132862370461,
+   "n": 5,
+   "width": 0.00021010822383686623,
+   "label": "recompute L6011 recompute bg_gap_p95_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b4_meas_recompute.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "recompute_L6011_recompute_bg_gap_max": {
+   "mean": 1.2422913123853505,
+   "lo": 1.241820752574131,
+   "hi": 1.2428034591954202,
+   "n": 5,
+   "width": 0.0009827066212892976,
+   "label": "recompute L6011 recompute bg_gap_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b4_meas_recompute.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "recompute_L6011_recompute_mem_dip_mb": {
+   "mean": 5.154375000000437,
+   "lo": 3.767296875000466,
+   "hi": 6.151281250000466,
+   "n": 5,
+   "width": 2.383984375,
+   "label": "recompute L6011 recompute mem_dip_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b4_meas_recompute.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "recompute_L6011_recompute_mem_baseline_mb": {
+   "mean": 18152.44890625,
+   "lo": 18101.00090625,
+   "hi": 18246.9937421875,
+   "n": 5,
+   "width": 145.9928359375008,
+   "label": "recompute L6011 recompute mem_baseline_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b4_meas_recompute.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "recompute_L6011_recompute_emc_rate_mean": {
+   "mean": 434158.2844616071,
+   "lo": 433069.4811886634,
+   "hi": 435009.5932662527,
+   "n": 5,
+   "width": 1940.1120775893214,
+   "label": "recompute L6011 recompute emc_rate_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b4_meas_recompute.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "recompute_L6011_recompute_emc_rate_max": {
+   "mean": 1596096.9638336499,
+   "lo": 1592392.9862752564,
+   "hi": 1599950.9803991367,
+   "n": 5,
+   "width": 7557.994123880286,
+   "label": "recompute L6011 recompute emc_rate_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b4_meas_recompute.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "recompute_L6011_recompute_cached": {
+   "dev": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "host": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b4_meas_recompute.json"
+   ]
+  },
+  "host_h2d_direct_L2048_reload_arrival_ttft_s": {
+   "mean": 5.043158948794007,
+   "lo": 4.896691652201116,
+   "hi": 5.149409473408014,
+   "n": 5,
+   "width": 0.2527178212068977,
+   "label": "host_h2d_direct L2048 reload arrival_ttft_s",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L2048_reload_bg_tpot_mean": {
+   "mean": 0.06887472562311311,
+   "lo": 0.06772108996400653,
+   "hi": 0.06971333571728025,
+   "n": 5,
+   "width": 0.0019922457532737248,
+   "label": "host_h2d_direct L2048 reload bg_tpot_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L2048_reload_bg_gap_p95_mean": {
+   "mean": 0.03073178603663109,
+   "lo": 0.030566484946757556,
+   "hi": 0.03089708712650463,
+   "n": 5,
+   "width": 0.00033060217974707415,
+   "label": "host_h2d_direct L2048 reload bg_gap_p95_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L2048_reload_bg_gap_max": {
+   "mean": 5.0140325163723904,
+   "lo": 4.867526312777772,
+   "hi": 5.120384288392961,
+   "n": 5,
+   "width": 0.2528579756151883,
+   "label": "host_h2d_direct L2048 reload bg_gap_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L2048_reload_mem_dip_mb": {
+   "mean": 6.638906249999854,
+   "lo": 3.3931171874995925,
+   "hi": 11.846273437499622,
+   "n": 5,
+   "width": 8.45315625000003,
+   "label": "host_h2d_direct L2048 reload mem_dip_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L2048_reload_mem_baseline_mb": {
+   "mean": 17538.14046875,
+   "lo": 17471.196226562497,
+   "hi": 17616.525273437503,
+   "n": 5,
+   "width": 145.3290468750056,
+   "label": "host_h2d_direct L2048 reload mem_baseline_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L2048_reload_emc_rate_mean": {
+   "mean": 241744.2176351104,
+   "lo": 238653.2717403057,
+   "hi": 244916.67937580784,
+   "n": 5,
+   "width": 6263.407635502139,
+   "label": "host_h2d_direct L2048 reload emc_rate_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L2048_reload_emc_rate_max": {
+   "mean": 1664661.1941678803,
+   "lo": 1623184.1492494121,
+   "hi": 1706138.2390863486,
+   "n": 5,
+   "width": 82954.08983693644,
+   "label": "host_h2d_direct L2048 reload emc_rate_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L2048_reload_cached": {
+   "dev": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "host": [
+    2051,
+    2051,
+    2051,
+    2051,
+    2051
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b4_meas_reload.json"
+   ]
+  },
+  "host_h2d_direct_L4096_reload_arrival_ttft_s": {
+   "mean": 9.986902306997218,
+   "lo": 9.572377425362356,
+   "hi": 10.229896562825889,
+   "n": 5,
+   "width": 0.6575191374635327,
+   "label": "host_h2d_direct L4096 reload arrival_ttft_s",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L4096_reload_bg_tpot_mean": {
+   "mean": 0.10785258290633801,
+   "lo": 0.10459648485476056,
+   "hi": 0.10975903340108421,
+   "n": 5,
+   "width": 0.005162548546323656,
+   "label": "host_h2d_direct L4096 reload bg_tpot_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L4096_reload_bg_gap_p95_mean": {
+   "mean": 0.0313180512515828,
+   "lo": 0.031209367356495932,
+   "hi": 0.031439606344792995,
+   "n": 5,
+   "width": 0.0002302389882970629,
+   "label": "host_h2d_direct L4096 reload bg_gap_p95_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L4096_reload_bg_gap_max": {
+   "mean": 9.928595015150496,
+   "lo": 9.515102735115216,
+   "hi": 10.170961790368892,
+   "n": 5,
+   "width": 0.6558590552536767,
+   "label": "host_h2d_direct L4096 reload bg_gap_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L4096_reload_mem_dip_mb": {
+   "mean": 3.8459687499998836,
+   "lo": 2.694468749999942,
+   "hi": 4.997468749999825,
+   "n": 5,
+   "width": 2.3029999999998836,
+   "label": "host_h2d_direct L4096 reload mem_dip_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L4096_reload_mem_baseline_mb": {
+   "mean": 17533.56784375,
+   "lo": 17466.8376015625,
+   "hi": 17611.197125,
+   "n": 5,
+   "width": 144.35952343749886,
+   "label": "host_h2d_direct L4096 reload mem_baseline_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L4096_reload_emc_rate_mean": {
+   "mean": 153637.79678510394,
+   "lo": 150698.9356862228,
+   "hi": 158409.84596469015,
+   "n": 5,
+   "width": 7710.910278467345,
+   "label": "host_h2d_direct L4096 reload emc_rate_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L4096_reload_emc_rate_max": {
+   "mean": 1673840.9798355263,
+   "lo": 1640403.720220109,
+   "hi": 1707374.3776640152,
+   "n": 5,
+   "width": 66970.65744390618,
+   "label": "host_h2d_direct L4096 reload emc_rate_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L4096_reload_cached": {
+   "dev": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "host": [
+    4103,
+    4103,
+    4103,
+    4103,
+    4103
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b4_meas_reload.json"
+   ]
+  },
+  "host_h2d_direct_L6011_reload_arrival_ttft_s": {
+   "mean": 14.682331346184947,
+   "lo": 14.25486183038447,
+   "hi": 14.96236525280401,
+   "n": 5,
+   "width": 0.7075034224195402,
+   "label": "host_h2d_direct L6011 reload arrival_ttft_s",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L6011_reload_bg_tpot_mean": {
+   "mean": 0.14507597113338916,
+   "lo": 0.14171016673029466,
+   "hi": 0.14728519648614186,
+   "n": 5,
+   "width": 0.0055750297558471995,
+   "label": "host_h2d_direct L6011 reload bg_tpot_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L6011_reload_bg_gap_p95_mean": {
+   "mean": 0.03186923690955155,
+   "lo": 0.0317800645600073,
+   "hi": 0.031956483906833456,
+   "n": 5,
+   "width": 0.00017641934682615518,
+   "label": "host_h2d_direct L6011 reload bg_gap_p95_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L6011_reload_bg_gap_max": {
+   "mean": 14.623186872550287,
+   "lo": 14.195413336809725,
+   "hi": 14.903544078720733,
+   "n": 5,
+   "width": 0.7081307419110079,
+   "label": "host_h2d_direct L6011 reload bg_gap_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L6011_reload_mem_dip_mb": {
+   "mean": 7.415054687500378,
+   "lo": 3.7627109375003784,
+   "hi": 10.992382812500727,
+   "n": 5,
+   "width": 7.229671875000349,
+   "label": "host_h2d_direct L6011 reload mem_dip_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L6011_reload_mem_baseline_mb": {
+   "mean": 17530.9884921875,
+   "lo": 17465.7028125,
+   "hi": 17611.6685703125,
+   "n": 5,
+   "width": 145.96575781250067,
+   "label": "host_h2d_direct L6011 reload mem_baseline_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L6011_reload_emc_rate_mean": {
+   "mean": 113971.10206958705,
+   "lo": 111388.13276890441,
+   "hi": 117084.44728218453,
+   "n": 5,
+   "width": 5696.314513280115,
+   "label": "host_h2d_direct L6011 reload emc_rate_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L6011_reload_emc_rate_max": {
+   "mean": 1671435.7990967077,
+   "lo": 1631125.383683677,
+   "hi": 1704034.6470156729,
+   "n": 5,
+   "width": 72909.26333199581,
+   "label": "host_h2d_direct L6011 reload emc_rate_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L6011_reload_cached": {
+   "dev": [
+    6,
+    6,
+    6,
+    6,
+    6
+   ],
+   "host": [
+    6004,
+    6004,
+    6004,
+    6004,
+    6004
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_reload.json"
+   ]
+  },
+  "host_h2d_direct_L2048_spill_mem_dip_mb": {
+   "mean": 7.4744140625,
+   "lo": 3.771757812499709,
+   "hi": 11.825507812500291,
+   "n": 5,
+   "width": 8.053750000000582,
+   "label": "host_h2d_direct L2048 spill mem_dip_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b2_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b3_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b4_meas_spill.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L2048_spill_mem_baseline_mb": {
+   "mean": 17545.6931640625,
+   "lo": 17478.4242890625,
+   "hi": 17627.128789062503,
+   "n": 5,
+   "width": 148.70450000000346,
+   "label": "host_h2d_direct L2048 spill mem_baseline_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b2_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b3_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b4_meas_spill.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L2048_spill_arrival_ttft_s": {
+   "mean": 5.167692594416439,
+   "lo": 5.005039548221975,
+   "hi": 5.297747644991614,
+   "n": 5,
+   "width": 0.2927080967696387,
+   "label": "host_h2d_direct L2048 spill arrival_ttft_s",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b2_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b3_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b4_meas_spill.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L2048_spill_bg_tpot_mean": {
+   "mean": 0.08043970784913074,
+   "lo": 0.07876976168642047,
+   "hi": 0.08165049023200266,
+   "n": 5,
+   "width": 0.0028807285455821896,
+   "label": "host_h2d_direct L2048 spill bg_tpot_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b2_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b3_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b4_meas_spill.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L2048_fill0_mem_dip_mb": {
+   "mean": 5.057281250000233,
+   "lo": 3.147882812500029,
+   "hi": 6.8407890624999705,
+   "n": 5,
+   "width": 3.6929062499999414,
+   "label": "host_h2d_direct L2048 fill0 mem_dip_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b2_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b3_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b4_meas_fill0.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L2048_fill0_mem_baseline_mb": {
+   "mean": 17539.00259375,
+   "lo": 17467.838234375,
+   "hi": 17624.8615546875,
+   "n": 5,
+   "width": 157.02332031249898,
+   "label": "host_h2d_direct L2048 fill0 mem_baseline_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b2_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b3_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b4_meas_fill0.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L2048_fill0_arrival_ttft_s": {
+   "mean": 5.160318848420866,
+   "lo": 5.01974339701701,
+   "hi": 5.266293271421455,
+   "n": 5,
+   "width": 0.24654987440444565,
+   "label": "host_h2d_direct L2048 fill0 arrival_ttft_s",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b2_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b3_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b4_meas_fill0.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L2048_fill0_bg_tpot_mean": {
+   "mean": 0.07159293094021085,
+   "lo": 0.0698498166454076,
+   "hi": 0.07315408270416496,
+   "n": 5,
+   "width": 0.0033042660587573602,
+   "label": "host_h2d_direct L2048 fill0 bg_tpot_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b2_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b3_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b4_meas_fill0.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L4096_spill_mem_dip_mb": {
+   "mean": 6.973750000000291,
+   "lo": 3.0121562500004075,
+   "hi": 11.987015624999913,
+   "n": 5,
+   "width": 8.974859374999506,
+   "label": "host_h2d_direct L4096 spill mem_dip_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b2_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b3_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b4_meas_spill.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L4096_spill_mem_baseline_mb": {
+   "mean": 17537.76046875,
+   "lo": 17471.0449375,
+   "hi": 17609.568609375,
+   "n": 5,
+   "width": 138.52367187500204,
+   "label": "host_h2d_direct L4096 spill mem_baseline_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b2_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b3_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b4_meas_spill.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L4096_spill_arrival_ttft_s": {
+   "mean": 10.243592491582968,
+   "lo": 10.032283478602768,
+   "hi": 10.37223529976327,
+   "n": 5,
+   "width": 0.3399518211605024,
+   "label": "host_h2d_direct L4096 spill arrival_ttft_s",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b2_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b3_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b4_meas_spill.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L4096_spill_bg_tpot_mean": {
+   "mean": 0.12066576366471385,
+   "lo": 0.11879599112393995,
+   "hi": 0.12179854734132514,
+   "n": 5,
+   "width": 0.0030025562173851966,
+   "label": "host_h2d_direct L4096 spill bg_tpot_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b2_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b3_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b4_meas_spill.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L4096_fill0_mem_dip_mb": {
+   "mean": 6.265343749999738,
+   "lo": 4.4263515624996215,
+   "hi": 7.782687499999883,
+   "n": 5,
+   "width": 3.356335937500262,
+   "label": "host_h2d_direct L4096 fill0 mem_dip_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b2_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b3_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b4_meas_fill0.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L4096_fill0_mem_baseline_mb": {
+   "mean": 17536.520031250002,
+   "lo": 17471.045953125,
+   "hi": 17612.241421875,
+   "n": 5,
+   "width": 141.1954687499965,
+   "label": "host_h2d_direct L4096 fill0 mem_baseline_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b2_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b3_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b4_meas_fill0.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L4096_fill0_arrival_ttft_s": {
+   "mean": 10.277670848020353,
+   "lo": 10.03891675961204,
+   "hi": 10.447768893255851,
+   "n": 5,
+   "width": 0.408852133643812,
+   "label": "host_h2d_direct L4096 fill0 arrival_ttft_s",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b2_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b3_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b4_meas_fill0.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L4096_fill0_bg_tpot_mean": {
+   "mean": 0.11198783776256271,
+   "lo": 0.10936191680146323,
+   "hi": 0.11402318289959035,
+   "n": 5,
+   "width": 0.004661266098127115,
+   "label": "host_h2d_direct L4096 fill0 bg_tpot_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b2_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b3_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b4_meas_fill0.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L6011_spill_mem_dip_mb": {
+   "mean": 9.447031250000146,
+   "lo": 6.79661718750067,
+   "hi": 12.097445312499621,
+   "n": 5,
+   "width": 5.300828124998952,
+   "label": "host_h2d_direct L6011 spill mem_dip_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_spill.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L6011_spill_mem_baseline_mb": {
+   "mean": 17538.618906249998,
+   "lo": 17472.57503125,
+   "hi": 17623.0892109375,
+   "n": 5,
+   "width": 150.5141796875032,
+   "label": "host_h2d_direct L6011 spill mem_baseline_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_spill.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L6011_spill_arrival_ttft_s": {
+   "mean": 14.863864548201672,
+   "lo": 14.455973365623503,
+   "hi": 15.088421630393714,
+   "n": 5,
+   "width": 0.6324482647702112,
+   "label": "host_h2d_direct L6011 spill arrival_ttft_s",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_spill.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L6011_spill_bg_tpot_mean": {
+   "mean": 0.1570442168334935,
+   "lo": 0.15338481829696934,
+   "hi": 0.15905022186251894,
+   "n": 5,
+   "width": 0.005665403565549593,
+   "label": "host_h2d_direct L6011 spill bg_tpot_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_spill.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L6011_fill0_mem_dip_mb": {
+   "mean": 6.448945312499563,
+   "lo": 3.941546874999767,
+   "hi": 8.54024999999965,
+   "n": 5,
+   "width": 4.598703124999883,
+   "label": "host_h2d_direct L6011 fill0 mem_dip_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_fill0.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L6011_fill0_mem_baseline_mb": {
+   "mean": 17534.9153515625,
+   "lo": 17469.371453125,
+   "hi": 17619.291859375,
+   "n": 5,
+   "width": 149.92040624999936,
+   "label": "host_h2d_direct L6011 fill0 mem_baseline_mb",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_fill0.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L6011_fill0_arrival_ttft_s": {
+   "mean": 14.878318894817493,
+   "lo": 14.483167275018058,
+   "hi": 15.123027803027071,
+   "n": 5,
+   "width": 0.639860528009013,
+   "label": "host_h2d_direct L6011 fill0 arrival_ttft_s",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_fill0.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L6011_fill0_bg_tpot_mean": {
+   "mean": 0.14883369119539053,
+   "lo": 0.1460914296611381,
+   "hi": 0.15112583529186713,
+   "n": 5,
+   "width": 0.005034405630729016,
+   "label": "host_h2d_direct L6011 fill0 bg_tpot_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_fill0.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  }
+ },
+ "contrasts": {
+  "resume_ttft_host_d2h-retain_L2048": {
+   "x": "host_d2h L2048",
+   "y": "retain L2048",
+   "metric": "arrival_ttft_s",
+   "paired_diff": {
+    "mean": -0.0026380687952041624,
+    "lo": -0.007939025736413896,
+    "hi": 0.004010639525949955,
+    "n": 5,
+    "width": 0.011949665262363851,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 0.12001789838541299,
+   "margin_10pct": {
+    "verdict": "practically_equivalent",
+    "band": 0.0120017898385413
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b4_meas_reload.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b4_meas_reload.json"
+   ]
+  },
+  "cold_recompute-resume_retain_L2048": {
+   "x": "recompute L2048",
+   "y": "retain L2048",
+   "metric": "arrival_ttft_s",
+   "paired_diff": {
+    "mean": 0.34867264023050665,
+    "lo": 0.34464680603705344,
+    "hi": 0.3523934294003993,
+    "n": 5,
+    "width": 0.0077466233633458614,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 0.12001789838541299,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 0.0120017898385413
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b4_meas_recompute.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b4_meas_reload.json"
+   ]
+  },
+  "restore_h2d-recompute_L2048": {
+   "x": "host_h2d_direct L2048",
+   "y": "recompute L2048",
+   "metric": "arrival_ttft_s",
+   "paired_diff": {
+    "mean": 4.5744684101780875,
+    "lo": 4.428456235607155,
+    "hi": 4.680817585205659,
+    "n": 5,
+    "width": 0.2523613495985044,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 0.46869053861591964,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 0.046869053861591965
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b4_meas_reload.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b4_meas_recompute.json"
+   ]
+  },
+  "bg_tpot_host_d2h-retain_L2048": {
+   "x": "host_d2h L2048",
+   "y": "retain L2048",
+   "metric": "bg_tpot_mean",
+   "paired_diff": {
+    "mean": -7.722173051130654e-06,
+    "lo": -1.590005378788728e-05,
+    "hi": 2.074522409939439e-06,
+    "n": 5,
+    "width": 1.797457619782672e-05,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 0.03007404745151252,
+   "margin_10pct": {
+    "verdict": "practically_equivalent",
+    "band": 0.0030074047451512523
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b4_meas_reload.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b4_meas_reload.json"
+   ]
+  },
+  "bg_tpot_recompute-retain_L2048": {
+   "x": "recompute L2048",
+   "y": "retain L2048",
+   "metric": "bg_tpot_mean",
+   "paired_diff": {
+    "mean": 0.00281082327733381,
+    "lo": 0.00280387038470422,
+    "hi": 0.002817171837723864,
+    "n": 5,
+    "width": 1.3301453019644218e-05,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 0.03007404745151252,
+   "margin_10pct": {
+    "verdict": "practically_equivalent",
+    "band": 0.0030074047451512523
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b4_meas_recompute.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b4_meas_reload.json"
+   ]
+  },
+  "bg_tpot_h2d-retain_L2048": {
+   "x": "host_h2d_direct L2048",
+   "y": "retain L2048",
+   "metric": "bg_tpot_mean",
+   "paired_diff": {
+    "mean": 0.0388006781716006,
+    "lo": 0.03764485682358078,
+    "hi": 0.03963995375038,
+    "n": 5,
+    "width": 0.0019950969267992225,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 0.03007404745151252,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 0.0030074047451512523
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b4_meas_reload.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b4_meas_reload.json"
+   ]
+  },
+  "memdip_host_d2h-retain_L2048": {
+   "x": "host_d2h L2048",
+   "y": "retain L2048",
+   "metric": "mem_dip_mb",
+   "paired_diff": {
+    "mean": 0.5799687500002619,
+    "lo": -1.115187499998865,
+    "hi": 1.9383046875002037,
+    "n": 5,
+    "width": 3.0534921874990686,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 4.285218750000058,
+   "margin_10pct": {
+    "verdict": "underpowered_wide_ci",
+    "band": 0.4285218750000058
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b4_meas_reload.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b4_meas_reload.json"
+   ]
+  },
+  "memdip_h2dreload-retain_L2048": {
+   "x": "host_h2d_direct L2048",
+   "y": "retain L2048",
+   "metric": "mem_dip_mb",
+   "paired_diff": {
+    "mean": 2.353687499999796,
+    "lo": -2.823601562499971,
+    "hi": 9.025171874999069,
+    "n": 5,
+    "width": 11.848773437499041,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 4.285218750000058,
+   "margin_10pct": {
+    "verdict": "underpowered_wide_ci",
+    "band": 0.4285218750000058
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b4_meas_reload.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b4_meas_reload.json"
+   ]
+  },
+  "emcrate_host_d2h-retain_L2048": {
+   "x": "host_d2h L2048",
+   "y": "retain L2048",
+   "metric": "emc_rate_mean",
+   "paired_diff": {
+    "mean": -1454.6957877859938,
+    "lo": -4968.272496460937,
+    "hi": 1854.4385805607308,
+    "n": 5,
+    "width": 6822.711077021668,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 590354.1966993415,
+   "margin_10pct": {
+    "verdict": "practically_equivalent",
+    "band": 59035.419669934156
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b4_meas_reload.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b4_meas_reload.json"
+   ]
+  },
+  "resume_ttft_host_d2h-retain_L4096": {
+   "x": "host_d2h L4096",
+   "y": "retain L4096",
+   "metric": "arrival_ttft_s",
+   "paired_diff": {
+    "mean": -0.001098539400845766,
+    "lo": -0.004370816005393863,
+    "hi": 0.003200562996789813,
+    "n": 5,
+    "width": 0.0075713790021836765,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 0.14778596982359887,
+   "margin_10pct": {
+    "verdict": "practically_equivalent",
+    "band": 0.014778596982359888
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b4_meas_reload.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b4_meas_reload.json"
+   ]
+  },
+  "cold_recompute-resume_retain_L4096": {
+   "x": "recompute L4096",
+   "y": "retain L4096",
+   "metric": "arrival_ttft_s",
+   "paired_diff": {
+    "mean": 0.764246069570072,
+    "lo": 0.7624570781830698,
+    "hi": 0.7657928293338045,
+    "n": 5,
+    "width": 0.0033357511507347004,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 0.14778596982359887,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 0.014778596982359888
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b4_meas_recompute.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b4_meas_reload.json"
+   ]
+  },
+  "restore_h2d-recompute_L4096": {
+   "x": "host_h2d_direct L4096",
+   "y": "recompute L4096",
+   "metric": "arrival_ttft_s",
+   "paired_diff": {
+    "mean": 9.074870267603547,
+    "lo": 8.661488874768839,
+    "hi": 9.316824914235621,
+    "n": 5,
+    "width": 0.655336039466782,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 0.9120320393936708,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 0.0912032039393671
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b4_meas_reload.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b4_meas_recompute.json"
+   ]
+  },
+  "bg_tpot_host_d2h-retain_L4096": {
+   "x": "host_d2h L4096",
+   "y": "retain L4096",
+   "metric": "bg_tpot_mean",
+   "paired_diff": {
+    "mean": -6.227178213106393e-06,
+    "lo": -1.5516504443683492e-05,
+    "hi": 4.807698281892453e-06,
+    "n": 5,
+    "width": 2.0324202725575944e-05,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 0.03036850746702696,
+   "margin_10pct": {
+    "verdict": "practically_equivalent",
+    "band": 0.0030368507467026964
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b4_meas_reload.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b4_meas_reload.json"
+   ]
+  },
+  "bg_tpot_recompute-retain_L4096": {
+   "x": "recompute L4096",
+   "y": "retain L4096",
+   "metric": "bg_tpot_mean",
+   "paired_diff": {
+    "mean": 0.006077302646168734,
+    "lo": 0.006072083495485806,
+    "hi": 0.006081674371362025,
+    "n": 5,
+    "width": 9.590875876219068e-06,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 0.03036850746702696,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 0.0030368507467026964
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b4_meas_recompute.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b4_meas_reload.json"
+   ]
+  },
+  "bg_tpot_h2d-retain_L4096": {
+   "x": "host_h2d_direct L4096",
+   "y": "retain L4096",
+   "metric": "bg_tpot_mean",
+   "paired_diff": {
+    "mean": 0.07748407543931105,
+    "lo": 0.07423063066492855,
+    "hi": 0.07937043507200277,
+    "n": 5,
+    "width": 0.005139804407074219,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 0.03036850746702696,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 0.0030368507467026964
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b4_meas_reload.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b4_meas_reload.json"
+   ]
+  },
+  "memdip_host_d2h-retain_L4096": {
+   "x": "host_d2h L4096",
+   "y": "retain L4096",
+   "metric": "mem_dip_mb",
+   "paired_diff": {
+    "mean": 1.4840624999989813,
+    "lo": -0.471882812500553,
+    "hi": 3.4992265624990977,
+    "n": 5,
+    "width": 3.9711093749996507,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 3.32983593750032,
+   "margin_10pct": {
+    "verdict": "underpowered_wide_ci",
+    "band": 0.33298359375003206
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b4_meas_reload.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b4_meas_reload.json"
+   ]
+  },
+  "memdip_h2dreload-retain_L4096": {
+   "x": "host_h2d_direct L4096",
+   "y": "retain L4096",
+   "metric": "mem_dip_mb",
+   "paired_diff": {
+    "mean": 0.5161328124995634,
+    "lo": -1.6256640625004366,
+    "hi": 2.6579296874995633,
+    "n": 5,
+    "width": 4.28359375,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 3.32983593750032,
+   "margin_10pct": {
+    "verdict": "underpowered_wide_ci",
+    "band": 0.33298359375003206
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b4_meas_reload.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b4_meas_reload.json"
+   ]
+  },
+  "emcrate_host_d2h-retain_L4096": {
+   "x": "host_d2h L4096",
+   "y": "retain L4096",
+   "metric": "emc_rate_mean",
+   "paired_diff": {
+    "mean": -219.1869760192232,
+    "lo": -3612.0987766516396,
+    "hi": 2507.469926798646,
+    "n": 5,
+    "width": 6119.568703450286,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 582426.2347099807,
+   "margin_10pct": {
+    "verdict": "practically_equivalent",
+    "band": 58242.62347099807
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b4_meas_reload.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b4_meas_reload.json"
+   ]
+  },
+  "resume_ttft_host_d2h-retain_L6011": {
+   "x": "host_d2h L6011",
+   "y": "retain L6011",
+   "metric": "arrival_ttft_s",
+   "paired_diff": {
+    "mean": -0.001031807973049581,
+    "lo": -0.003250394598580897,
+    "hi": 0.003316567256115377,
+    "n": 5,
+    "width": 0.0065669618546962735,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 0.14783089379779996,
+   "margin_10pct": {
+    "verdict": "practically_equivalent",
+    "band": 0.014783089379779997
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b4_meas_reload.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b4_meas_reload.json"
+   ]
+  },
+  "cold_recompute-resume_retain_L6011": {
+   "x": "recompute L6011",
+   "y": "retain L6011",
+   "metric": "arrival_ttft_s",
+   "paired_diff": {
+    "mean": 1.1839396024122835,
+    "lo": 1.1825409041950479,
+    "hi": 1.1860845704562961,
+    "n": 5,
+    "width": 0.003543666261248246,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 0.14783089379779996,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 0.014783089379779997
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b4_meas_recompute.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b4_meas_reload.json"
+   ]
+  },
+  "restore_h2d-recompute_L6011": {
+   "x": "host_h2d_direct L6011",
+   "y": "recompute L6011",
+   "metric": "arrival_ttft_s",
+   "paired_diff": {
+    "mean": 13.350560849974864,
+    "lo": 12.923273361171596,
+    "hi": 13.63078353239689,
+    "n": 5,
+    "width": 0.7075101712252945,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 1.3317704962100834,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 0.13317704962100835
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_reload.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b4_meas_recompute.json"
+   ]
+  },
+  "bg_tpot_host_d2h-retain_L6011": {
+   "x": "host_d2h L6011",
+   "y": "retain L6011",
+   "metric": "bg_tpot_mean",
+   "paired_diff": {
+    "mean": -4.239179611970068e-06,
+    "lo": -1.8222669394336866e-05,
+    "hi": 1.6117635170201373e-05,
+    "n": 5,
+    "width": 3.4340304564538235e-05,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 0.030622044967773453,
+   "margin_10pct": {
+    "verdict": "practically_equivalent",
+    "band": 0.0030622044967773456
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b4_meas_reload.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b4_meas_reload.json"
+   ]
+  },
+  "bg_tpot_recompute-retain_L6011": {
+   "x": "recompute L6011",
+   "y": "retain L6011",
+   "metric": "bg_tpot_mean",
+   "paired_diff": {
+    "mean": 0.009382289197152904,
+    "lo": 0.009374957922048587,
+    "hi": 0.00939004818764955,
+    "n": 5,
+    "width": 1.5090265600963687e-05,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 0.030622044967773453,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 0.0030622044967773456
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b4_meas_recompute.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b4_meas_reload.json"
+   ]
+  },
+  "bg_tpot_h2d-retain_L6011": {
+   "x": "host_h2d_direct L6011",
+   "y": "retain L6011",
+   "metric": "bg_tpot_mean",
+   "paired_diff": {
+    "mean": 0.1144539261656157,
+    "lo": 0.11109192139633169,
+    "hi": 0.11666021633876751,
+    "n": 5,
+    "width": 0.005568294942435825,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 0.030622044967773453,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 0.0030622044967773456
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_reload.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b4_meas_reload.json"
+   ]
+  },
+  "memdip_host_d2h-retain_L6011": {
+   "x": "host_d2h L6011",
+   "y": "retain L6011",
+   "metric": "mem_dip_mb",
+   "paired_diff": {
+    "mean": -0.07485937500023283,
+    "lo": -1.3932734374990106,
+    "hi": 2.1240781249995053,
+    "n": 5,
+    "width": 3.517351562498516,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 3.3807109374996798,
+   "margin_10pct": {
+    "verdict": "underpowered_wide_ci",
+    "band": 0.338071093749968
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b4_meas_reload.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b4_meas_reload.json"
+   ]
+  },
+  "memdip_h2dreload-retain_L6011": {
+   "x": "host_h2d_direct L6011",
+   "y": "retain L6011",
+   "metric": "mem_dip_mb",
+   "paired_diff": {
+    "mean": 4.034343750000699,
+    "lo": 1.125312500000291,
+    "hi": 6.706851562500378,
+    "n": 5,
+    "width": 5.581539062500087,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 3.3807109374996798,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 0.338071093749968
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_reload.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b4_meas_reload.json"
+   ]
+  },
+  "emcrate_host_d2h-retain_L6011": {
+   "x": "host_d2h L6011",
+   "y": "retain L6011",
+   "metric": "emc_rate_mean",
+   "paired_diff": {
+    "mean": -1707.9220096925042,
+    "lo": -6307.677340782806,
+    "hi": 2891.833321397798,
+    "n": 5,
+    "width": 9199.510662180604,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 590561.7055841277,
+   "margin_10pct": {
+    "verdict": "practically_equivalent",
+    "band": 59056.17055841277
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b4_meas_reload.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b4_meas_reload.json"
+   ]
+  }
+ },
+ "discrepancy": {
+  "phase1": {
+   "p1-retain-bgonly.json": {
+    "bg_tpot_mean": 0.029253723948880456,
+    "bg_gap_max": 0.04040599497966468,
+    "arrival_ttft": null,
+    "arrival_cached": null,
+    "arrival_tpot": null
+   },
+   "p1-retain-r1.json": {
+    "bg_tpot_mean": 0.04002347561016525,
+    "bg_gap_max": 1.2495465370593593,
+    "arrival_ttft": 1.3419802070129663,
+    "arrival_cached": 1,
+    "arrival_tpot": 0.030964364602585278
+   },
+   "p1-retain-r2.json": {
+    "bg_tpot_mean": 0.030620670127801553,
+    "bg_gap_max": 0.08709789102431387,
+    "arrival_ttft": 0.14457385300192982,
+    "arrival_cached": 5994,
+    "arrival_tpot": 0.03094479163354706
+   },
+   "p2-host-bgonly.json": {
+    "bg_tpot_mean": 0.02989323861992324,
+    "bg_gap_max": 0.040532805025577545,
+    "arrival_ttft": null,
+    "arrival_cached": null,
+    "arrival_tpot": null
+   },
+   "p2-host-r1.json": {
+    "bg_tpot_mean": 0.04111093859436672,
+    "bg_gap_max": 1.2966390700312331,
+    "arrival_ttft": 1.4398023199755698,
+    "arrival_cached": 1,
+    "arrival_tpot": 0.031264547144048034
+   },
+   "p2-host-r2.json": {
+    "bg_tpot_mean": 0.03127149992881849,
+    "bg_gap_max": 0.08872248500119895,
+    "arrival_ttft": 0.16274819592945278,
+    "arrival_cached": 5994,
+    "arrival_tpot": 0.03161819414272609
+   },
+   "p4-nvme-loaded.json": {
+    "bg_tpot_mean": 0.030656242125995794,
+    "bg_gap_max": 0.08764333999715745,
+    "arrival_ttft": 0.13487195398192853,
+    "arrival_cached": 5994,
+    "arrival_tpot": 0.03094307439667838
+   }
+  },
+  "sweepB": [
+   {
+    "bg_n": 2,
+    "rep": 0,
+    "base_tpot": 0.029146678055504586,
+    "loaded_tpot": 0.03050447903540513,
+    "inflation_pct": 4.658510233361272,
+    "arrival_ttft": 0.15775719191879034,
+    "arrival_cached": 6010,
+    "gap_max": 0.08607520698569715
+   },
+   {
+    "bg_n": 2,
+    "rep": 1,
+    "base_tpot": 0.029146678055504586,
+    "loaded_tpot": 0.03050992486624443,
+    "inflation_pct": 4.6771944581258555,
+    "arrival_ttft": 0.16007537208497524,
+    "arrival_cached": 6010,
+    "gap_max": 0.08690447499975562
+   },
+   {
+    "bg_n": 8,
+    "rep": 0,
+    "base_tpot": 0.029332664928020447,
+    "loaded_tpot": 0.029551822323889258,
+    "inflation_pct": 0.747144510758236,
+    "arrival_ttft": 3.4188915489939973,
+    "arrival_cached": 6010,
+    "gap_max": 0.052011744934134185
+   },
+   {
+    "bg_n": 8,
+    "rep": 1,
+    "base_tpot": 0.029332664928020447,
+    "loaded_tpot": 0.029550662953553238,
+    "inflation_pct": 0.7431920218218766,
+    "arrival_ttft": 3.4137166140135378,
+    "arrival_cached": 6010,
+    "gap_max": 0.05559948901645839
+   }
+  ],
+  "matrix_6K_bg4": {
+   "retain": {
+    "bg_tpot_each": [
+     0.03061235809078125,
+     0.030622861521340555,
+     0.03062510971661921,
+     0.030631290876130597,
+     0.03061860463399565
+    ],
+    "bg_tpot_mean": 0.030622044967773453,
+    "arr_ttft_each": [
+     0.14303353196009994,
+     0.14909123501274735,
+     0.1494066109880805,
+     0.14943297707941383,
+     0.1481901139486581
+    ],
+    "arr_cached_each": [
+     6010,
+     6010,
+     6010,
+     6010,
+     6010
+    ],
+    "gap_max_each": [
+     0.08562802209053189,
+     0.08784147608093917,
+     0.08812105294782668,
+     0.08860787807498127,
+     0.08787010493688285
+    ],
+    "files": [
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b0_meas_reload.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b1_meas_reload.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b2_meas_reload.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b3_meas_reload.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b4_meas_reload.json"
+    ]
+   },
+   "host_d2h": {
+    "bg_tpot_each": [
+     0.03064458316520194,
+     0.030606801604428586,
+     0.030625275376080497,
+     0.030610016867973086,
+     0.0306023519271233
+    ],
+    "bg_tpot_mean": 0.030617805788161485,
+    "arr_ttft_each": [
+     0.15066368703264743,
+     0.14593779598362744,
+     0.1460784840164706,
+     0.14623440406285226,
+     0.14508105802815408
+    ],
+    "arr_cached_each": [
+     6010,
+     6010,
+     6010,
+     6010,
+     6010
+    ],
+    "gap_max_each": [
+     0.08792772400192916,
+     0.08695876400452107,
+     0.08684470900334418,
+     0.08707708294969052,
+     0.0862130270106718
+    ],
+    "files": [
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b0_meas_reload.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b1_meas_reload.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b2_meas_reload.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b3_meas_reload.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b4_meas_reload.json"
+    ]
+   },
+   "recompute": {
+    "bg_tpot_each": [
+     0.040008903208590206,
+     0.040008378072823286,
+     0.040008010324613215,
+     0.04000268555127128,
+     0.039993693667333796
+    ],
+    "bg_tpot_mean": 0.04000433416492636,
+    "arr_ttft_each": [
+     1.3311317500192672,
+     1.3328067190013826,
+     1.3319194220239297,
+     1.3317403770051897,
+     1.3312542130006477
+    ],
+    "arr_cached_each": [
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "gap_max_each": [
+     1.243142216000706,
+     1.2427300600102171,
+     1.242064808961004,
+     1.2418605879647657,
+     1.2416588889900595
+    ],
+    "files": [
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b0_meas_recompute.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b1_meas_recompute.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b2_meas_recompute.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b3_meas_recompute.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b4_meas_recompute.json"
+    ]
+   },
+   "host_h2d_direct": {
+    "bg_tpot_each": [
+     0.13869184085629022,
+     0.14499140852754278,
+     0.14696723013551627,
+     0.1474839025550599,
+     0.1472454735925366
+    ],
+    "bg_tpot_mean": 0.14507597113338916,
+    "arr_ttft_each": [
+     13.871348764980212,
+     14.672908250940964,
+     14.92297316598706,
+     14.987354606040753,
+     14.957071942975745
+    ],
+    "arr_cached_each": [
+     6010,
+     6010,
+     6010,
+     6010,
+     6010
+    ],
+    "gap_max_each": [
+     13.811827438068576,
+     14.61293483292684,
+     14.864623789908364,
+     14.928649536916055,
+     14.897898764931597
+    ],
+    "files": [
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_reload.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_reload.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_reload.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_reload.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_reload.json"
+    ]
+   }
+  }
+ },
+ "duplication": {
+  "phase1_host_dips": {
+   "p1-retain-bgonly.json": {
+    "dip_mb": 0.48625000000174623,
+    "baseline_mb": 18729.17375
+   },
+   "p1-retain-r1.json": {
+    "dip_mb": 1.0422265624983993,
+    "baseline_mb": 18729.2687890625
+   },
+   "p1-retain-r2.json": {
+    "dip_mb": 1.5438281249989814,
+    "baseline_mb": 18725.465703125
+   },
+   "p2-host-bgonly.json": {
+    "dip_mb": 874.4978298611113,
+    "baseline_mb": 15284.931423611111
+   },
+   "p2-host-r1.json": {
+    "dip_mb": 968.7201171875004,
+    "baseline_mb": 15251.3451171875
+   },
+   "p2-host-r2.json": {
+    "dip_mb": 951.2892187500001,
+    "baseline_mb": 15151.230625
+   },
+   "p2-host-d2h-trace.json": {
+    "dip_mb": 946.2567187500008,
+    "baseline_mb": 15003.9715625,
+    "method": "baseline_avail_kb minus trace min"
+   },
+   "p4-nvme-loaded.json": {
+    "dip_mb": 0.18679687500116415,
+    "baseline_mb": 17871.245390625
+   }
+  },
+  "matrix_plain_spill": {
+   "retain_L2048_warm_spill": {
+    "dip_each_mb": [
+     47.14343749999898,
+     44.60515624999971,
+     7.162070312500873,
+     0.7661328124995634,
+     2.076445312501164
+    ],
+    "excluded_warm": true,
+    "files": [
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b0_warm_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b1_warm_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b2_warm_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b3_warm_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b4_warm_spill.json"
+    ]
+   },
+   "retain_L4096_warm_spill": {
+    "dip_each_mb": [
+     9.666406249998545,
+     6.234414062499127,
+     3.1483593750017462,
+     6.008007812499272,
+     2.118515624999418
+    ],
+    "excluded_warm": true,
+    "files": [
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b0_warm_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b1_warm_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b2_warm_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b3_warm_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b4_warm_spill.json"
+    ]
+   },
+   "retain_L6011_warm_spill": {
+    "dip_each_mb": [
+     3.126953125,
+     5.802695312500873,
+     6.869140625,
+     7.929414062498836,
+     5.751171874999272
+    ],
+    "excluded_warm": true,
+    "files": [
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b0_warm_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b1_warm_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b2_warm_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b3_warm_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b4_warm_spill.json"
+    ]
+   },
+   "host_d2h_L2048_warm_spill": {
+    "dip_each_mb": [
+     8.7316796874984,
+     2.825507812500291,
+     3.541601562501455,
+     5.8634375000001455,
+     4.498164062501019
+    ],
+    "excluded_warm": true,
+    "files": [
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b0_warm_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b1_warm_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b2_warm_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b3_warm_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b4_warm_spill.json"
+    ]
+   },
+   "host_d2h_L4096_warm_spill": {
+    "dip_each_mb": [
+     44.26695312499942,
+     6.82367187500131,
+     2.8341796874992724,
+     1.7790234374988358,
+     1.8530078125004366
+    ],
+    "excluded_warm": true,
+    "files": [
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b0_warm_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b1_warm_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b2_warm_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b3_warm_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b4_warm_spill.json"
+    ]
+   },
+   "host_d2h_L6011_warm_spill": {
+    "dip_each_mb": [
+     3.9780468749995634,
+     52.4489843750016,
+     3.2446484374995634,
+     4.210898437500873,
+     7.543593750000582
+    ],
+    "excluded_warm": true,
+    "files": [
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b0_warm_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b1_warm_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b2_warm_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b3_warm_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b4_warm_spill.json"
+    ]
+   }
+  },
+  "matrix_baselines": {
+   "retain_L2048": {
+    "mean_mb": 18327.19459375,
+    "lo": 18301.0866875,
+    "hi": 18370.8483828125,
+    "n": 5
+   },
+   "retain_L4096": {
+    "mean_mb": 18324.320460937503,
+    "lo": 18297.765156250003,
+    "hi": 18367.2527109375,
+    "n": 5
+   },
+   "retain_L6011": {
+    "mean_mb": 18322.9174296875,
+    "lo": 18297.891421875,
+    "hi": 18367.358812500002,
+    "n": 5
+   },
+   "host_d2h_L2048": {
+    "mean_mb": 17645.451125,
+    "lo": 17621.588390625002,
+    "hi": 17686.233703125,
+    "n": 5
+   },
+   "host_d2h_L4096": {
+    "mean_mb": 17653.4670234375,
+    "lo": 17629.206507812498,
+    "hi": 17694.940804687496,
+    "n": 5
+   },
+   "host_d2h_L6011": {
+    "mean_mb": 17646.133976562498,
+    "lo": 17621.629703125,
+    "hi": 17683.863312499998,
+    "n": 5
+   },
+   "host_h2d_direct_L2048": {
+    "mean_mb": 17538.14046875,
+    "lo": 17471.196226562497,
+    "hi": 17616.525273437503,
+    "n": 5
+   },
+   "host_h2d_direct_L4096": {
+    "mean_mb": 17533.56784375,
+    "lo": 17466.8376015625,
+    "hi": 17611.197125,
+    "n": 5
+   },
+   "host_h2d_direct_L6011": {
+    "mean_mb": 17530.9884921875,
+    "lo": 17465.7028125,
+    "hi": 17611.6685703125,
+    "n": 5
+   },
+   "recompute_L2048": {
+    "mean_mb": 18153.175765624997,
+    "lo": 18100.865046875,
+    "hi": 18246.932554687497,
+    "n": 5
+   },
+   "recompute_L4096": {
+    "mean_mb": 18149.0134140625,
+    "lo": 18096.5326171875,
+    "hi": 18239.4776796875,
+    "n": 5
+   },
+   "recompute_L6011": {
+    "mean_mb": 18152.44890625,
+    "lo": 18101.00090625,
+    "hi": 18246.9937421875,
+    "n": 5
+   }
+  },
+  "extras_plain_spill": {
+   "kernel": {
+    "delta_spill_mb": 0.4,
+    "delta_reload_mb": 0.4,
+    "spill_ttft_s": 1.324784587835893,
+    "resume_ttft_s": 0.1052970108576119
+   },
+   "direct": {
+    "delta_spill_mb": 0.2,
+    "delta_reload_mb": 0.4,
+    "spill_ttft_s": 14.133189776912332,
+    "resume_ttft_s": 0.10290300496853888
+   }
+  },
+  "direct_eviction": {
+   "matrix_host_h2d_direct_L2048_spill": {
+    "mean_mb": 7.4744140625,
+    "lo": 3.771757812499709,
+    "hi": 11.825507812500291,
+    "n": 5,
+    "files": [
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b2_meas_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b3_meas_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b4_meas_spill.json"
+    ]
+   },
+   "matrix_host_h2d_direct_L2048_fill0": {
+    "mean_mb": 5.057281250000233,
+    "lo": 3.147882812500029,
+    "hi": 6.8407890624999705,
+    "n": 5,
+    "files": [
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_fill0.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_fill0.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b2_meas_fill0.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b3_meas_fill0.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b4_meas_fill0.json"
+    ]
+   },
+   "matrix_host_h2d_direct_L2048_reload": {
+    "mean_mb": 6.638906249999854,
+    "lo": 3.3931171874995925,
+    "hi": 11.846273437499622,
+    "n": 5,
+    "files": [
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_reload.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_reload.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b2_meas_reload.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b3_meas_reload.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b4_meas_reload.json"
+    ]
+   },
+   "matrix_host_h2d_direct_L4096_spill": {
+    "mean_mb": 6.973750000000291,
+    "lo": 3.0121562500004075,
+    "hi": 11.987015624999913,
+    "n": 5,
+    "files": [
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b2_meas_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b3_meas_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b4_meas_spill.json"
+    ]
+   },
+   "matrix_host_h2d_direct_L4096_fill0": {
+    "mean_mb": 6.265343749999738,
+    "lo": 4.4263515624996215,
+    "hi": 7.782687499999883,
+    "n": 5,
+    "files": [
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_fill0.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_fill0.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b2_meas_fill0.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b3_meas_fill0.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b4_meas_fill0.json"
+    ]
+   },
+   "matrix_host_h2d_direct_L4096_reload": {
+    "mean_mb": 3.8459687499998836,
+    "lo": 2.694468749999942,
+    "hi": 4.997468749999825,
+    "n": 5,
+    "files": [
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_reload.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_reload.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b2_meas_reload.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b3_meas_reload.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b4_meas_reload.json"
+    ]
+   },
+   "matrix_host_h2d_direct_L6011_spill": {
+    "mean_mb": 9.447031250000146,
+    "lo": 6.79661718750067,
+    "hi": 12.097445312499621,
+    "n": 5,
+    "files": [
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_spill.json"
+    ]
+   },
+   "matrix_host_h2d_direct_L6011_fill0": {
+    "mean_mb": 6.448945312499563,
+    "lo": 3.941546874999767,
+    "hi": 8.54024999999965,
+    "n": 5,
+    "files": [
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_fill0.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_fill0.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_fill0.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_fill0.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_fill0.json"
+    ]
+   },
+   "matrix_host_h2d_direct_L6011_reload": {
+    "mean_mb": 7.415054687500378,
+    "lo": 3.7627109375003784,
+    "hi": 10.992382812500727,
+    "n": 5,
+    "files": [
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_reload.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_reload.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_reload.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_reload.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_reload.json"
+    ]
+   },
+   "v4h_load": [
+    {
+     "cycle": "C1",
+     "spill_A": {
+      "http": 200,
+      "prompt": 6011,
+      "cached": 1,
+      "dev": 1,
+      "host": 0,
+      "TTFT_s": 13.849,
+      "e2e_s": 15.92,
+      "mem_dip_MB": 19.0,
+      "bg_p95_s": 0.0321,
+      "bg_tpot_s": 0.1479
+     },
+     "fill_B_evict": {
+      "http": 200,
+      "prompt": 6011,
+      "cached": 6,
+      "dev": 6,
+      "host": 0,
+      "TTFT_s": 14.116,
+      "e2e_s": 16.186,
+      "mem_dip_MB": 13.9,
+      "bg_p95_s": 0.0314,
+      "bg_tpot_s": 0.1413
+     },
+     "reload_A_H2D": {
+      "http": 200,
+      "prompt": 6011,
+      "cached": 6010,
+      "dev": 6,
+      "host": 6004,
+      "host_hit": true,
+      "TTFT_s": 13.491,
+      "e2e_s": 15.441,
+      "tpot_s": 0.0309,
+      "chunks": 64,
+      "mem_dip_MB": 17.0,
+      "bg_p95_s": 0.0319,
+      "bg_tpot_s": 0.1357,
+      "health_shortgen_s": 0.519,
+      "alive": true
+     }
+    },
+    {
+     "cycle": "C2",
+     "spill_C": {
+      "http": 200,
+      "prompt": 6011,
+      "cached": 1,
+      "dev": 1,
+      "host": 0,
+      "TTFT_s": 14.02,
+      "e2e_s": 16.097,
+      "mem_dip_MB": 16.7,
+      "bg_p95_s": 0.0321,
+      "bg_tpot_s": 0.149
+     },
+     "fill_D_evict": {
+      "http": 200,
+      "prompt": 6011,
+      "cached": 6,
+      "dev": 6,
+      "host": 0,
+      "TTFT_s": 13.865,
+      "e2e_s": 15.934,
+      "mem_dip_MB": 9.3,
+      "bg_p95_s": 0.0316,
+      "bg_tpot_s": 0.1394
+     },
+     "reload_C_H2D": {
+      "http": 200,
+      "prompt": 6011,
+      "cached": 6010,
+      "dev": 6,
+      "host": 6004,
+      "host_hit": true,
+      "TTFT_s": 13.76,
+      "e2e_s": 15.71,
+      "tpot_s": 0.031,
+      "chunks": 64,
+      "mem_dip_MB": 20.5,
+      "bg_p95_s": 0.0316,
+      "bg_tpot_s": 0.1378,
+      "health_shortgen_s": 0.518,
+      "alive": true
+     }
+    }
+   ],
+   "v4h_control": {
+    "spill_P1": {
+     "http": 200,
+     "prompt": 5995,
+     "cached": 1,
+     "TTFT_s": 13.737,
+     "mem_dip_MB": 6.9,
+     "bg_p95_s": 0.0317,
+     "bg_tpot_s": 0.1471
+    },
+    "reload_P1_device_hit": {
+     "http": 200,
+     "prompt": 5995,
+     "cached": 5994,
+     "dev": 5994,
+     "host": 0,
+     "TTFT_s": 0.143,
+     "e2e_s": 2.093,
+     "mem_dip_MB": 4.6,
+     "bg_p95_s": 0.0318,
+     "bg_tpot_s": 0.0306
+    },
+    "health_shortgen_s": 0.516,
+    "alive": true
+   },
+   "crash_probe_V4h": [
+    {
+     "id": "V4h",
+     "flags": "same V4 server, flush",
+     "seq": "spill A + ONE fill B + reload A",
+     "reload": "OK http200 cached 6010 (device 2048 host 3962) in 9.97s; server healthy after",
+     "log": "server-crash-v4.log",
+     "bytes_restored": "6010 tok x 43008 = 258538080 B (~246.6 MB); host portion 3962 tok = ~170.4 MB",
+     "mem_before_reload_kb": 18255300,
+     "mem_after_reload_kb": 18250988
+    }
+   ]
+  }
+ },
+ "crossover": {
+  "fit_resume_retain": {
+   "a": 0.10970466810063756,
+   "b": 7.109931605300277e-06,
+   "r2": 0.7302356635468472,
+   "n": 15
+  },
+  "fit_recompute": {
+   "a": 0.01974557901176499,
+   "b": 0.00021803404858117994,
+   "r2": 0.9999599012945872,
+   "n": 15
+  },
+  "fit_host_restore_direct": {
+   "a": 0.026831825502476647,
+   "b": 0.002435031401550558,
+   "r2": 0.9921673602151976,
+   "n": 15
+  },
+  "slope_units": "s_per_token",
+  "cross_resume_vs_recompute_tok": 426.4997781129025,
+  "cross_hostrestore_vs_recompute_tok": -3.19632609449017,
+  "sweepA_points": [
+   {
+    "length": 2048,
+    "rep": 0,
+    "spill_ttft": 0.4212271800497547,
+    "resume_ttft": 0.09536825504619628,
+    "recompute_ttft": 0.41957173706032336
+   },
+   {
+    "length": 2048,
+    "rep": 1,
+    "spill_ttft": 0.419335828977637,
+    "resume_ttft": 0.09597402601502836,
+    "recompute_ttft": 0.4184209310915321
+   },
+   {
+    "length": 4096,
+    "rep": 0,
+    "spill_ttft": 0.8446410819888115,
+    "resume_ttft": 0.09603535896167159,
+    "recompute_ttft": 0.8415670939721167
+   },
+   {
+    "length": 4096,
+    "rep": 1,
+    "spill_ttft": 0.84423088200856,
+    "resume_ttft": 0.09641696896869689,
+    "recompute_ttft": 0.8406647390220314
+   },
+   {
+    "length": 6011,
+    "rep": 0,
+    "spill_ttft": 1.2663701029960066,
+    "resume_ttft": 0.10611500905361027,
+    "recompute_ttft": 1.2642194509971887
+   },
+   {
+    "length": 6011,
+    "rep": 1,
+    "spill_ttft": 1.2657354190014303,
+    "resume_ttft": 0.10521169297862798,
+    "recompute_ttft": 1.2656225559767336
+   }
+  ],
+  "nvme": {
+   "matrix_meas": [
+    0,
+    15
+   ],
+   "matrix_warm_reload_fail": 15,
+   "matrix_crash_blocks": 15,
+   "note": "no meas files exist; warm reload arrival comp None + health fail per block (server logs: illegal/Traceback/CUDA/AcceleratorError/Scheduler exception)",
+   "phase1_spill_bytes_after_6K": 260542464,
+   "phase1_expected_bytes": 257832960,
+   "phase1_restore_ttft_s": 1.332,
+   "phase1_restore_cached": 0
+  }
+ },
+ "cold_reference_excluded": {
+  "retain_L2048_warm_spill_cold_ttft": {
+   "ttft_each": [
+    0.4774733299855143,
+    0.4788084049941972,
+    0.4695740150054917,
+    0.4698701900197193,
+    0.46907659503631294
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b0_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b1_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b2_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b3_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b4_warm_spill.json"
+   ],
+   "excluded_warm": true
+  },
+  "retain_L4096_warm_spill_cold_ttft": {
+   "ttft_each": [
+    0.910417903913185,
+    0.9155807059723884,
+    0.9147380420472473,
+    0.9131173220230266,
+    0.9127890228992328
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b0_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b1_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b2_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b3_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b4_warm_spill.json"
+   ],
+   "excluded_warm": true
+  },
+  "retain_L6011_warm_spill_cold_ttft": {
+   "ttft_each": [
+    1.3312774139922112,
+    1.3318074819399044,
+    1.3325822330079973,
+    1.3326297100866213,
+    1.333643746911548
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b0_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b1_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b2_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b3_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b4_warm_spill.json"
+   ],
+   "excluded_warm": true
+  },
+  "host_d2h_L2048_warm_spill_cold_ttft": {
+   "ttft_each": [
+    0.49905439489521086,
+    0.49746914801653475,
+    0.49888659303542227,
+    0.49743862403556705,
+    0.49812667397782207
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b0_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b1_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b2_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b3_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b4_warm_spill.json"
+   ],
+   "excluded_warm": true
+  },
+  "host_d2h_L4096_warm_spill_cold_ttft": {
+   "ttft_each": [
+    0.9503794719930738,
+    0.9559399300487712,
+    0.9576644389890134,
+    0.9551406829850748,
+    0.9538119139615446
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b0_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b1_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b2_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b3_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b4_warm_spill.json"
+   ],
+   "excluded_warm": true
+  },
+  "host_d2h_L6011_warm_spill_cold_ttft": {
+   "ttft_each": [
+    1.39056215796154,
+    1.408578628092073,
+    1.3887418849626556,
+    1.3899446340510622,
+    1.3899154079845175
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b0_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b1_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b2_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b3_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b4_warm_spill.json"
+   ],
+   "excluded_warm": true
+  }
+ },
+ "nvme_warm_reference_excluded": {
+  "nvme_spill_L2048_warm_spill": {
+   "mem_dip_mb_each": [
+    51.841718750001746,
+    49.889257812501455,
+    56.21878906249913,
+    44.356367187501746,
+    48.30500000000029
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/nvme_spill_L2048_b0_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/nvme_spill_L2048_b1_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/nvme_spill_L2048_b2_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/nvme_spill_L2048_b3_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/nvme_spill_L2048_b4_warm_spill.json"
+   ],
+   "excluded_warm": true
+  },
+  "nvme_spill_L4096_warm_spill": {
+   "mem_dip_mb_each": [
+    52.71925781249956,
+    49.65027343749898,
+    50.80402343750029,
+    59.98472656249942,
+    52.8525390625
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/nvme_spill_L4096_b0_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/nvme_spill_L4096_b1_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/nvme_spill_L4096_b2_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/nvme_spill_L4096_b3_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/nvme_spill_L4096_b4_warm_spill.json"
+   ],
+   "excluded_warm": true
+  },
+  "nvme_spill_L6011_warm_spill": {
+   "mem_dip_mb_each": [
+    50.90484374999869,
+    51.35355468749913,
+    51.66898437499913,
+    53.34339843750058,
+    50.85746093749913
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/nvme_spill_L6011_b0_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/nvme_spill_L6011_b1_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/nvme_spill_L6011_b2_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/nvme_spill_L6011_b3_warm_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/nvme_spill_L6011_b4_warm_spill.json"
+   ],
+   "excluded_warm": true
+  }
+ },
+ "underpowered": [
+  {
+   "contrast": "memdip_host_d2h-retain_L2048",
+   "verdict": "underpowered_wide_ci",
+   "ci_width": 3.0534921874990686,
+   "band": 0.4285218750000058,
+   "n": 5
+  },
+  {
+   "contrast": "memdip_h2dreload-retain_L2048",
+   "verdict": "underpowered_wide_ci",
+   "ci_width": 11.848773437499041,
+   "band": 0.4285218750000058,
+   "n": 5
+  },
+  {
+   "contrast": "memdip_host_d2h-retain_L4096",
+   "verdict": "underpowered_wide_ci",
+   "ci_width": 3.9711093749996507,
+   "band": 0.33298359375003206,
+   "n": 5
+  },
+  {
+   "contrast": "memdip_h2dreload-retain_L4096",
+   "verdict": "underpowered_wide_ci",
+   "ci_width": 4.28359375,
+   "band": 0.33298359375003206,
+   "n": 5
+  },
+  {
+   "contrast": "memdip_host_d2h-retain_L6011",
+   "verdict": "underpowered_wide_ci",
+   "ci_width": 3.517351562498516,
+   "band": 0.338071093749968,
+   "n": 5
+  },
+  {
+   "aggregate": "retain_L2048_reload_cached",
+   "issue": "n<5 or missing",
+   "n": null
+  },
+  {
+   "aggregate": "retain_L4096_reload_cached",
+   "issue": "n<5 or missing",
+   "n": null
+  },
+  {
+   "aggregate": "retain_L6011_reload_cached",
+   "issue": "n<5 or missing",
+   "n": null
+  },
+  {
+   "aggregate": "host_d2h_L2048_reload_cached",
+   "issue": "n<5 or missing",
+   "n": null
+  },
+  {
+   "aggregate": "host_d2h_L4096_reload_cached",
+   "issue": "n<5 or missing",
+   "n": null
+  },
+  {
+   "aggregate": "host_d2h_L6011_reload_cached",
+   "issue": "n<5 or missing",
+   "n": null
+  },
+  {
+   "aggregate": "recompute_L2048_recompute_cached",
+   "issue": "n<5 or missing",
+   "n": null
+  },
+  {
+   "aggregate": "recompute_L4096_recompute_cached",
+   "issue": "n<5 or missing",
+   "n": null
+  },
+  {
+   "aggregate": "recompute_L6011_recompute_cached",
+   "issue": "n<5 or missing",
+   "n": null
+  },
+  {
+   "aggregate": "host_h2d_direct_L2048_reload_cached",
+   "issue": "n<5 or missing",
+   "n": null
+  },
+  {
+   "aggregate": "host_h2d_direct_L4096_reload_cached",
+   "issue": "n<5 or missing",
+   "n": null
+  },
+  {
+   "aggregate": "host_h2d_direct_L6011_reload_cached",
+   "issue": "n<5 or missing",
+   "n": null
+  }
+ ]
+}
