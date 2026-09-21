@@ -13,3 +13,4 @@ runs/*
 paper/build/
 # OS
 .DS_Store
+.opencode/
