@@ -1,6 +1,7 @@
 {
   "_comment": "Choices tracker. PROPOSED -> FROZEN (with hash+date). Core arms/metrics are LOCKED, do not edit here.",
-  "model": {"value": "ibm-granite/granite-4.2-8b", "revision": "f8de16cdcdbc6c779ca517604e050d82cc119e44", "status": "FROZEN", "note": "smoke PASS 2026-09-21; K2 excluded (unsupported arch)"},
+  "model_mechanism": {"value": "openbmb/MiniCPM5-2B", "revision": "12a3808a", "status": "FROZEN", "note": "FULL PASS 2026-09-21: serves + HiCache host boots (0.70GB alloc); pure-attention Llama arch, no mamba pool"},
+  "model_realism": {"value": "ibm-granite/granite-4.2-8b", "revision": "f8de16cdcdbc6c779ca517604e050d82cc119e44", "status": "FROZEN", "note": "retain-side realism; host tier cannot boot (floor 0.592 vs 10 GiB guard)"},
   "precision": {"value": "BF16", "status": "FROZEN"},
   "context_limit": {"value": 8192, "status": "FROZEN", "note": "user decision 2026-09-21; KV 8192tok~=1.26GB per smoke"},
   "thinking": {"value": "disabled (non-chat /generate; enable_thinking=false if chat used)", "status": "FROZEN"},
@@ -15,5 +16,6 @@
   "sglang_flags": {"mem_fraction_static": 0.8, "max_running_requests": "4 (single) / >=5 (interference cells so arrival overlaps instead of queues)", "max_total_tokens": 8192, "host_arm": "--enable-hierarchical-cache + --hicache-ratio (default RAM backend)", "nvme_arm": "host flags + --hicache-storage-backend file + SGLANG_HICACHE_FILE_BACKEND_STORAGE_DIR on NVMe", "warmup": "skipped", "status": "FROZEN", "note": "flag names per 2026-09-21 launch-help dump; T1.1 check-2 proved rr=4 queues the 5th request"},
   "orin_power": {"value": "MAXN, no clock changes", "status": "PROPOSED"},
   "nvme": {"path": "TBD under /media/ssd", "mode": "O_DIRECT", "status": "OPEN"},
+  "arms_feasibility_20260921": {"retain_recompute": "RUNS (T1.2 PASS)", "host_hicache": "DOES NOT BOOT (10 GiB reserve guard vs unified pool; no mfs window between granite floor 0.592 and guard)", "nvme_file_backend": "DOES NOT BOOT (same host-pool guard gates init; 0 spill bytes)", "status": "FROZEN"},
   "reps": {"pilot_blocks": 1, "main_blocks": 5, "ci": "paired-block 95%", "margin": "10%", "status": "PROPOSED"}
 }
