@@ -1,0 +1,25 @@
+{
+  "_comment": "FROZEN 2026-09-21 main matrix (Orin-32GB, MiniCPM5-2B rev 12a3808a). See tracker for flags.",
+  "platform": "orin-32gb",
+  "model": "openbmb/MiniCPM5-2B rev 12a3808a, BF16, ctx 8192, mfs 0.50, mrr 6, mtt 8192, skip-warmup",
+  "prefix_lengths_tokens": [2048, 4096, 6011],
+  "paused_out_tokens": 64,
+  "bg_decodes": 4,
+  "bg_out_tokens": 128,
+  "arrival_offset_ms": 500,
+  "arms": {
+    "retain": "hierarchical OFF; cold spill + device-hit resume",
+    "host_d2h": "hierarchical ON (kernel default); spill + device-hit resume, NO eviction fill",
+    "host_h2d_direct": "hierarchical ON + --hicache-io-backend direct; spill + one-filler evict + host reload",
+    "recompute": "hierarchical OFF; flush + full prefill resume",
+    "nvme_spill": "hierarchical ON + file backend (NVMe dir); spill + evict + reload attempt"
+  },
+  "excluded": "any kernel/page_first H2D-eviction cell (systematically fatal, 3/3 crashes)",
+  "blocks": 5,
+  "randomize_within_block": true,
+  "warmups_per_cell": 1,
+  "repeats_per_cell": 1,
+  "primary_metrics": ["mem_delta_d2h_mb", "mem_delta_h2d_mb", "peak_dup_mb", "emc_rate", "bg_tpot_base_s", "bg_tpot_loaded_s", "resume_ttft_s", "cached_split_dev_host", "oom_count"],
+  "ci": "paired-block 95%",
+  "practical_margin": "10%"
+}
