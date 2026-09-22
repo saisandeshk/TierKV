@@ -1,0 +1,1939 @@
+{
+ "rev": 1,
+ "frozen_contract": {
+  "reps": "blocks (n=5 per arm x length x platform)",
+  "ci": "paired-block 95pct percentile bootstrap, B=10000, seed base 20260921 + crc32 per-contrast offsets",
+  "margin": "10% of reference (within-platform, y-arm) mean",
+  "warmups": "excluded (Orin warm cycle; A5000 warmup/cell)",
+  "gating_orin": "matrix_pass + arrival_ok + completion==64; None dropped per block, never pooled",
+  "gating_a5000": "pass + completion==64 + prompt==L + bg_alive_offset==bg + bg_alive_firsttok_cb==bg; block value = mean of 2 bg cells (bg1+bg4)",
+  "bg_asymmetry": "A5000 blocks average bg1+bg4 cells; Orin matrix cells are bg4 only. bg_gap_max cross compares block means across this asymmetry; kept descriptive.",
+  "joules_rule": "NO cross-platform joules RoR: Orin rails (VDD_GPU_SOC+VDD_CPU_CV+VIN_SYS_5V0) vs A5000 GPU1 power.draw are incommensurate sensors; within-platform joules ratios only.",
+  "pooling_rule": "boards never pooled; RoR resamples independently",
+  "retain_asymmetry": "Orin retain = device-hit resume (cached 2052/4104/6010 toks, TTFT 0.12/0.15s) while A5000 retain = post-eviction cold resume (cached dev 1 tok, TTFT == recompute). Ratios over retain therefore have different denominators by design; absolute diffs are the honest cross-board comparison and every RoR inherits the version confound.",
+  "file_tier_descriptive": "Orin file-overflow quiet reload 17.0s vs nvme-direct device-hit 0.12-0.15s (~130x, Strand A vs B descriptive, no pooled statistic crosses strands)."
+ },
+ "import": {
+  "a5000_dir": "runs/imported/a5000-main",
+  "a5000_seal": "PASS sha256sum -c SHA256SUMS: 168/168 OK, 0 fail (169 files on disk = 168 sealed + SHA256SUMS)",
+  "a5000_gating": "80/80 cells PASS (4 arms x 5 blocks x 2L x 2bg)",
+  "a5000_gate_warns": [],
+  "orin_ref": "results/summary.json rev2: matrix-v1 60/60 meas cells PASS (L2048/L6011/L4096); cross uses L2048+L6011 common with A5000",
+  "orin_gated_blocks": {
+   "retain_L2048": 5,
+   "retain_L6011": 5,
+   "host_d2h_L2048": 5,
+   "host_d2h_L6011": 5,
+   "host_h2d_direct_L2048": 5,
+   "host_h2d_direct_L6011": 5,
+   "recompute_L2048": 5,
+   "recompute_L6011": 5
+  },
+  "raw_mutation": "none (copy-out of sealed files only)"
+ },
+ "versions": {
+  "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+  "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+  "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+ },
+ "within_platform": {
+  "orin_host_d2h-over-retain_L2048_ttft_s": {
+   "platform": "orin",
+   "x": "host_d2h",
+   "y": "retain",
+   "length": 2048,
+   "metric": "ttft_s",
+   "paired_diff": {
+    "mean": -0.0026380687952041624,
+    "lo": -0.007852537953294814,
+    "hi": 0.004010639525949955,
+    "n": 5,
+    "width": 0.01186317747924477,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 0.9780193718545834,
+    "lo": 0.9356374545714816,
+    "hi": 1.0343386759234887,
+    "n": 5,
+    "width": 0.0987012213520071,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 0.12001789838541299,
+   "margin_10pct": {
+    "verdict": "practically_equivalent",
+    "band": 0.0120017898385413
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "orin_host_d2h-over-retain_L2048_bg_gap_max": {
+   "platform": "orin",
+   "x": "host_d2h",
+   "y": "retain",
+   "length": 2048,
+   "metric": "bg_gap_max",
+   "paired_diff": {
+    "mean": -0.0007399561814963818,
+    "lo": -0.0016972793964669108,
+    "hi": 0.0005710038356482982,
+    "n": 5,
+    "width": 0.0022682832321152093,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 0.9915051045662574,
+    "lo": 0.9806180017524286,
+    "hi": 1.0065815591843936,
+    "n": 5,
+    "width": 0.02596355743196499,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 0.08710597879253328,
+   "margin_10pct": {
+    "verdict": "practically_equivalent",
+    "band": 0.008710597879253329
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "orin_host_d2h-over-retain_L2048_joules": {
+   "platform": "orin",
+   "x": "host_d2h",
+   "y": "retain",
+   "length": 2048,
+   "metric": "joules",
+   "paired_diff": {
+    "mean": 0.0572658639963322,
+    "lo": -0.6056436585918391,
+    "hi": 0.6203404395172868,
+    "n": 5,
+    "width": 1.225984098109126,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 1.0003675330818074,
+    "lo": 0.9964383127410563,
+    "hi": 1.0039970120113553,
+    "n": 5,
+    "width": 0.007558699270298952,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 155.8114543449988,
+   "margin_10pct": {
+    "verdict": "practically_equivalent",
+    "band": 15.58114543449988
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "orin_host_h2d_direct-over-retain_L2048_ttft_s": {
+   "platform": "orin",
+   "x": "host_h2d_direct",
+   "y": "retain",
+   "length": 2048,
+   "metric": "ttft_s",
+   "paired_diff": {
+    "mean": 4.923141050408594,
+    "lo": 4.778377032768913,
+    "hi": 5.027344545256346,
+    "n": 5,
+    "width": 0.24896751248743332,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 42.02005714680098,
+    "lo": 41.073039535908144,
+    "hi": 43.00231700527412,
+    "n": 5,
+    "width": 1.929277469365978,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 0.12001789838541299,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 0.0120017898385413
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "orin_host_h2d_direct-over-retain_L2048_bg_gap_max": {
+   "platform": "orin",
+   "x": "host_h2d_direct",
+   "y": "retain",
+   "length": 2048,
+   "metric": "bg_gap_max",
+   "paired_diff": {
+    "mean": 4.926926537579857,
+    "lo": 4.780711909988895,
+    "hi": 5.033130612992681,
+    "n": 5,
+    "width": 0.2524187030037863,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 57.562438145775054,
+    "lo": 56.189371221156684,
+    "hi": 58.73507726544009,
+    "n": 5,
+    "width": 2.5457060442834063,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 0.08710597879253328,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 0.008710597879253329
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "orin_host_h2d_direct-over-retain_L2048_joules": {
+   "platform": "orin",
+   "x": "host_h2d_direct",
+   "y": "retain",
+   "length": 2048,
+   "metric": "joules",
+   "paired_diff": {
+    "mean": 72.35973073183655,
+    "lo": 68.58516872075964,
+    "hi": 75.29468269991726,
+    "n": 5,
+    "width": 6.70951397915762,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 1.4644057205936678,
+    "lo": 1.4415091760122338,
+    "hi": 1.4818670915785965,
+    "n": 5,
+    "width": 0.0403579155663627,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 155.8114543449988,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 15.58114543449988
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "orin_recompute-over-retain_L2048_ttft_s": {
+   "platform": "orin",
+   "x": "recompute",
+   "y": "retain",
+   "length": 2048,
+   "metric": "ttft_s",
+   "paired_diff": {
+    "mean": 0.34867264023050665,
+    "lo": 0.34464680603705344,
+    "hi": 0.3523934294003993,
+    "n": 5,
+    "width": 0.0077466233633458614,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 3.9051720195167525,
+    "lo": 3.787352827896837,
+    "hi": 4.021821632518359,
+    "n": 5,
+    "width": 0.23446880462152153,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 0.12001789838541299,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 0.0120017898385413
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "orin_recompute-over-retain_L2048_bg_gap_max": {
+   "platform": "orin",
+   "x": "recompute",
+   "y": "retain",
+   "length": 2048,
+   "metric": "bg_gap_max",
+   "paired_diff": {
+    "mean": 0.31965241881553086,
+    "lo": 0.3187562279868871,
+    "hi": 0.3205486096441746,
+    "n": 5,
+    "width": 0.0017923816572875118,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 4.669695504792736,
+    "lo": 4.63687396919387,
+    "hi": 4.702943851824018,
+    "n": 5,
+    "width": 0.06606988263014824,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 0.08710597879253328,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 0.008710597879253329
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "orin_recompute-over-retain_L2048_joules": {
+   "platform": "orin",
+   "x": "recompute",
+   "y": "retain",
+   "length": 2048,
+   "metric": "joules",
+   "paired_diff": {
+    "mean": 25.930079472233928,
+    "lo": 25.358849784022475,
+    "hi": 26.401346182342685,
+    "n": 5,
+    "width": 1.0424963983202105,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 1.1664195972063733,
+    "lo": 1.1624470899535462,
+    "hi": 1.169664121686321,
+    "n": 5,
+    "width": 0.007217031732774881,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 155.8114543449988,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 15.58114543449988
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "orin_host_d2h-over-retain_L6011_ttft_s": {
+   "platform": "orin",
+   "x": "host_d2h",
+   "y": "retain",
+   "length": 6011,
+   "metric": "ttft_s",
+   "paired_diff": {
+    "mean": -0.001031807973049581,
+    "lo": -0.003250394598580897,
+    "hi": 0.003316567256115377,
+    "n": 5,
+    "width": 0.0065669618546962735,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 0.9930203494916234,
+    "lo": 0.9782067738343653,
+    "hi": 1.0228021081980627,
+    "n": 5,
+    "width": 0.04459533436369745,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 0.14783089379779996,
+   "margin_10pct": {
+    "verdict": "practically_equivalent",
+    "band": 0.014783089379779997
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "orin_host_d2h-over-retain_L6011_bg_gap_max": {
+   "platform": "orin",
+   "x": "host_d2h",
+   "y": "retain",
+   "length": 6011,
+   "metric": "bg_gap_max",
+   "paired_diff": {
+    "mean": -0.0006094454322010279,
+    "lo": -0.0015304180094972252,
+    "hi": 0.0008718631463125349,
+    "n": 5,
+    "width": 0.00240228115580976,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 0.9930439487806427,
+    "lo": 0.9826513517631722,
+    "hi": 1.01007711418013,
+    "n": 5,
+    "width": 0.02742576241695771,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 0.08761370682623237,
+   "margin_10pct": {
+    "verdict": "practically_equivalent",
+    "band": 0.008761370682623238
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "orin_host_d2h-over-retain_L6011_joules": {
+   "platform": "orin",
+   "x": "host_d2h",
+   "y": "retain",
+   "length": 6011,
+   "metric": "joules",
+   "paired_diff": {
+    "mean": 0.3070703372034302,
+    "lo": -0.12652101615607309,
+    "hi": 0.9826193980243432,
+    "n": 5,
+    "width": 1.1091404141804162,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 1.0019130554443636,
+    "lo": 0.9992140732822584,
+    "hi": 1.0060817722654294,
+    "n": 5,
+    "width": 0.006867698983170967,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 160.51303589141745,
+   "margin_10pct": {
+    "verdict": "practically_equivalent",
+    "band": 16.051303589141746
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "orin_host_h2d_direct-over-retain_L6011_ttft_s": {
+   "platform": "orin",
+   "x": "host_h2d_direct",
+   "y": "retain",
+   "length": 6011,
+   "metric": "ttft_s",
+   "paired_diff": {
+    "mean": 14.534500452387146,
+    "lo": 14.109336868789978,
+    "hi": 14.813434694195166,
+    "n": 5,
+    "width": 0.7040978254051886,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 99.31842370017146,
+    "lo": 98.08066815920513,
+    "hi": 100.46538059460019,
+    "n": 5,
+    "width": 2.384712435395059,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 0.14783089379779996,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 0.014783089379779997
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "orin_host_h2d_direct-over-retain_L6011_bg_gap_max": {
+   "platform": "orin",
+   "x": "host_h2d_direct",
+   "y": "retain",
+   "length": 6011,
+   "metric": "bg_gap_max",
+   "paired_diff": {
+    "mean": 14.535573165724054,
+    "lo": 14.108746652724221,
+    "hi": 14.815328674926423,
+    "n": 5,
+    "width": 0.7065820222022019,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 166.90524122615898,
+    "lo": 164.00145576268187,
+    "hi": 168.98627270149862,
+    "n": 5,
+    "width": 4.984816938816749,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 0.08761370682623237,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 0.008761370682623238
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "orin_host_h2d_direct-over-retain_L6011_joules": {
+   "platform": "orin",
+   "x": "host_h2d_direct",
+   "y": "retain",
+   "length": 6011,
+   "metric": "joules",
+   "paired_diff": {
+    "mean": 210.824494586399,
+    "lo": 204.81003576266977,
+    "hi": 215.2952597543936,
+    "n": 5,
+    "width": 10.485223991723842,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 2.313441574483806,
+    "lo": 2.280697852351808,
+    "hi": 2.3378926229088712,
+    "n": 5,
+    "width": 0.05719477055706301,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 160.51303589141745,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 16.051303589141746
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "orin_recompute-over-retain_L6011_ttft_s": {
+   "platform": "orin",
+   "x": "recompute",
+   "y": "retain",
+   "length": 6011,
+   "metric": "ttft_s",
+   "paired_diff": {
+    "mean": 1.1839396024122835,
+    "lo": 1.1825409041950479,
+    "hi": 1.1860845704562961,
+    "n": 5,
+    "width": 0.003543666261248246,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 9.008742773561604,
+    "lo": 8.91857285403616,
+    "hi": 9.160029484625433,
+    "n": 5,
+    "width": 0.2414566305892727,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 0.14783089379779996,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 0.014783089379779997
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "orin_recompute-over-retain_L6011_bg_gap_max": {
+   "platform": "orin",
+   "x": "recompute",
+   "y": "retain",
+   "length": 6011,
+   "metric": "bg_gap_max",
+   "paired_diff": {
+    "mean": 1.1546776055591181,
+    "lo": 1.15360534877982,
+    "hi": 1.156136775109917,
+    "n": 5,
+    "width": 0.002531426330097064,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 14.179189049143128,
+    "lo": 14.062980346117206,
+    "hi": 14.35321311831351,
+    "n": 5,
+    "width": 0.2902327721963047,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 0.08761370682623237,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 0.008761370682623238
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "orin_recompute-over-retain_L6011_joules": {
+   "platform": "orin",
+   "x": "recompute",
+   "y": "retain",
+   "length": 6011,
+   "metric": "joules",
+   "paired_diff": {
+    "mean": 76.5212882772315,
+    "lo": 76.02470246442604,
+    "hi": 77.12865625602976,
+    "n": 5,
+    "width": 1.1039537916037148,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 1.4767294310537868,
+    "lo": 1.4724632558866935,
+    "hi": 1.4823825176317516,
+    "n": 5,
+    "width": 0.009919261745058083,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 160.51303589141745,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 16.051303589141746
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "a5000_host_d2h-over-retain_L2048_ttft_s": {
+   "platform": "a5000",
+   "x": "host_d2h",
+   "y": "retain",
+   "length": 2048,
+   "metric": "ttft_s",
+   "paired_diff": {
+    "mean": -0.098852271202486,
+    "lo": -0.10255262380233035,
+    "hi": -0.09515191860264167,
+    "n": 5,
+    "width": 0.007400705199688676,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 0.3510138284526543,
+    "lo": 0.3335612857457632,
+    "hi": 0.37408237433118724,
+    "n": 5,
+    "width": 0.040521088585424025,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 0.15231799310422503,
+   "margin_10pct": {
+    "verdict": "clears_margin_negative",
+    "band": 0.015231799310422504
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "a5000_host_d2h-over-retain_L2048_bg_gap_max": {
+   "platform": "a5000",
+   "x": "host_d2h",
+   "y": "retain",
+   "length": 2048,
+   "metric": "bg_gap_max",
+   "paired_diff": {
+    "mean": -0.09250457462039777,
+    "lo": -0.093179158330895,
+    "hi": -0.09173842970049009,
+    "n": 5,
+    "width": 0.001440728630404911,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 0.2254580395942997,
+    "lo": 0.22145876717100316,
+    "hi": 0.22943836730320866,
+    "n": 5,
+    "width": 0.0079796001322055,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 0.11943132760934531,
+   "margin_10pct": {
+    "verdict": "clears_margin_negative",
+    "band": 0.011943132760934533
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "a5000_host_d2h-over-retain_L2048_joules": {
+   "platform": "a5000",
+   "x": "host_d2h",
+   "y": "retain",
+   "length": 2048,
+   "metric": "joules",
+   "paired_diff": {
+    "mean": -24.68111535453354,
+    "lo": -29.632770623655375,
+    "hi": -19.729460085411706,
+    "n": 5,
+    "width": 9.90331053824367,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 0.8872873329784688,
+    "lo": 0.866617274195464,
+    "hi": 0.9081266608111034,
+    "n": 5,
+    "width": 0.04150938661563941,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 218.9737498609523,
+   "margin_10pct": {
+    "verdict": "indeterminate_overlaps_band",
+    "band": 21.89737498609523
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "a5000_host_h2d_direct-over-retain_L2048_ttft_s": {
+   "platform": "a5000",
+   "x": "host_h2d_direct",
+   "y": "retain",
+   "length": 2048,
+   "metric": "ttft_s",
+   "paired_diff": {
+    "mean": 0.7461552976979874,
+    "lo": 0.7282448070880492,
+    "hi": 0.7604167381010484,
+    "n": 5,
+    "width": 0.0321719310129992,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 5.898668125094213,
+    "lo": 5.754729680023489,
+    "hi": 6.082119517873502,
+    "n": 5,
+    "width": 0.32738983785001263,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 0.15231799310422503,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 0.015231799310422504
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "a5000_host_h2d_direct-over-retain_L2048_bg_gap_max": {
+   "platform": "a5000",
+   "x": "host_h2d_direct",
+   "y": "retain",
+   "length": 2048,
+   "metric": "bg_gap_max",
+   "paired_diff": {
+    "mean": 0.7518252496956848,
+    "lo": 0.7350101360876579,
+    "hi": 0.7621795018902049,
+    "n": 5,
+    "width": 0.02716936580254703,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 7.295042220035203,
+    "lo": 7.155915504864471,
+    "hi": 7.397719712351558,
+    "n": 5,
+    "width": 0.2418042074870863,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 0.11943132760934531,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 0.011943132760934533
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "a5000_host_h2d_direct-over-retain_L2048_joules": {
+   "platform": "a5000",
+   "x": "host_h2d_direct",
+   "y": "retain",
+   "length": 2048,
+   "metric": "joules",
+   "paired_diff": {
+    "mean": 90.61204128796655,
+    "lo": 82.51695813841714,
+    "hi": 99.37135178731565,
+    "n": 5,
+    "width": 16.854393648898508,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 1.4138032131500005,
+    "lo": 1.3726181121708667,
+    "hi": 1.4643985220095055,
+    "n": 5,
+    "width": 0.09178040983863878,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 218.9737498609523,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 21.89737498609523
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "a5000_recompute-over-retain_L2048_ttft_s": {
+   "platform": "a5000",
+   "x": "recompute",
+   "y": "retain",
+   "length": 2048,
+   "metric": "ttft_s",
+   "paired_diff": {
+    "mean": -0.001210700406227261,
+    "lo": -0.004530446318676695,
+    "hi": 0.002193223510403186,
+    "n": 5,
+    "width": 0.006723669829079881,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 0.9920514944981003,
+    "lo": 0.9706893886083039,
+    "hi": 1.0179136087335288,
+    "n": 5,
+    "width": 0.04722422012522487,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 0.15231799310422503,
+   "margin_10pct": {
+    "verdict": "practically_equivalent",
+    "band": 0.015231799310422504
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "a5000_recompute-over-retain_L2048_bg_gap_max": {
+   "platform": "a5000",
+   "x": "recompute",
+   "y": "retain",
+   "length": 2048,
+   "metric": "bg_gap_max",
+   "paired_diff": {
+    "mean": -0.00038093841285444794,
+    "lo": -0.0010625572176650167,
+    "hi": 0.00015781580004841088,
+    "n": 5,
+    "width": 0.0012203730177134276,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 0.9968103979041372,
+    "lo": 0.9911673189011185,
+    "hi": 1.0015035203170184,
+    "n": 5,
+    "width": 0.01033620141589986,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 0.11943132760934531,
+   "margin_10pct": {
+    "verdict": "practically_equivalent",
+    "band": 0.011943132760934533
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "a5000_recompute-over-retain_L2048_joules": {
+   "platform": "a5000",
+   "x": "recompute",
+   "y": "retain",
+   "length": 2048,
+   "metric": "joules",
+   "paired_diff": {
+    "mean": -17.631132656263684,
+    "lo": -27.204992054659716,
+    "hi": -9.338408646978161,
+    "n": 5,
+    "width": 17.866583407681553,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 0.9194828938744509,
+    "lo": 0.8744647095605842,
+    "hi": 0.957199017459721,
+    "n": 5,
+    "width": 0.08273430789913683,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 218.9737498609523,
+   "margin_10pct": {
+    "verdict": "indeterminate_overlaps_band",
+    "band": 21.89737498609523
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "a5000_host_d2h-over-retain_L6011_ttft_s": {
+   "platform": "a5000",
+   "x": "host_d2h",
+   "y": "retain",
+   "length": 6011,
+   "metric": "ttft_s",
+   "paired_diff": {
+    "mean": -0.4014508968917653,
+    "lo": -0.4047379065887071,
+    "hi": -0.39826853018021213,
+    "n": 5,
+    "width": 0.006469376408494987,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 0.16733752303119895,
+    "lo": 0.164093058098939,
+    "hi": 0.16912299061779357,
+    "n": 5,
+    "width": 0.005029932518854557,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 0.48212920360383577,
+   "margin_10pct": {
+    "verdict": "clears_margin_negative",
+    "band": 0.04821292036038358
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "a5000_host_d2h-over-retain_L6011_bg_gap_max": {
+   "platform": "a5000",
+   "x": "host_d2h",
+   "y": "retain",
+   "length": 6011,
+   "metric": "bg_gap_max",
+   "paired_diff": {
+    "mean": -0.36708385788369924,
+    "lo": -0.36950964940479025,
+    "hi": -0.3651468388736248,
+    "n": 5,
+    "width": 0.00436281053116544,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 0.1192293931851544,
+    "lo": 0.11285372224035801,
+    "hi": 0.12376733698602402,
+    "n": 5,
+    "width": 0.010913614745666003,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 0.4167757813935168,
+   "margin_10pct": {
+    "verdict": "clears_margin_negative",
+    "band": 0.04167757813935168
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "a5000_host_d2h-over-retain_L6011_joules": {
+   "platform": "a5000",
+   "x": "host_d2h",
+   "y": "retain",
+   "length": 6011,
+   "metric": "joules",
+   "paired_diff": {
+    "mean": -88.91732270377834,
+    "lo": -97.25132129868258,
+    "hi": -80.38873922115324,
+    "n": 5,
+    "width": 16.86258207752934,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 0.6961832058171578,
+    "lo": 0.6721465620229272,
+    "hi": 0.7235812104745623,
+    "n": 5,
+    "width": 0.051434648451635034,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 292.6675694243101,
+   "margin_10pct": {
+    "verdict": "clears_margin_negative",
+    "band": 29.266756942431012
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "a5000_host_h2d_direct-over-retain_L6011_ttft_s": {
+   "platform": "a5000",
+   "x": "host_h2d_direct",
+   "y": "retain",
+   "length": 6011,
+   "metric": "ttft_s",
+   "paired_diff": {
+    "mean": 2.095199135277653,
+    "lo": 2.060362165962579,
+    "hi": 2.125655000493862,
+    "n": 5,
+    "width": 0.0652928345312831,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 5.345721270597979,
+    "lo": 5.277186666509958,
+    "hi": 5.4144280235645335,
+    "n": 5,
+    "width": 0.13724135705457563,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 0.48212920360383577,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 0.04821292036038358
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "a5000_host_h2d_direct-over-retain_L6011_bg_gap_max": {
+   "platform": "a5000",
+   "x": "host_h2d_direct",
+   "y": "retain",
+   "length": 6011,
+   "metric": "bg_gap_max",
+   "paired_diff": {
+    "mean": 2.1084782592079137,
+    "lo": 2.0717574505019,
+    "hi": 2.137873575516278,
+    "n": 5,
+    "width": 0.06611612501437802,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 6.059022988711293,
+    "lo": 5.9756126675039365,
+    "hi": 6.126586147199925,
+    "n": 5,
+    "width": 0.1509734796959883,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 0.4167757813935168,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 0.04167757813935168
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "a5000_host_h2d_direct-over-retain_L6011_joules": {
+   "platform": "a5000",
+   "x": "host_h2d_direct",
+   "y": "retain",
+   "length": 6011,
+   "metric": "joules",
+   "paired_diff": {
+    "mean": 160.49899230326656,
+    "lo": 154.01437316678908,
+    "hi": 166.3791992567524,
+    "n": 5,
+    "width": 12.364826089963316,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 1.5484003322232631,
+    "lo": 1.5236589731857197,
+    "hi": 1.573646049892964,
+    "n": 5,
+    "width": 0.04998707670724434,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 292.6675694243101,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 29.266756942431012
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "a5000_recompute-over-retain_L6011_ttft_s": {
+   "platform": "a5000",
+   "x": "recompute",
+   "y": "retain",
+   "length": 6011,
+   "metric": "ttft_s",
+   "paired_diff": {
+    "mean": -0.010513841197825969,
+    "lo": -0.015968265599804,
+    "hi": -0.006537572294473648,
+    "n": 5,
+    "width": 0.009430693305330352,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 0.9781928970092731,
+    "lo": 0.9670137023348971,
+    "hi": 0.9866511534623987,
+    "n": 5,
+    "width": 0.019637451127501593,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 0.48212920360383577,
+   "margin_10pct": {
+    "verdict": "practically_equivalent",
+    "band": 0.04821292036038358
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "a5000_recompute-over-retain_L6011_bg_gap_max": {
+   "platform": "a5000",
+   "x": "recompute",
+   "y": "retain",
+   "length": 6011,
+   "metric": "bg_gap_max",
+   "paired_diff": {
+    "mean": -0.0018796029908116907,
+    "lo": -0.003173907403834164,
+    "hi": -0.0007730626908596605,
+    "n": 5,
+    "width": 0.0024008447129745037,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 0.9954901338448047,
+    "lo": 0.9923979450892464,
+    "hi": 0.998143301677119,
+    "n": 5,
+    "width": 0.005745356587872563,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 0.4167757813935168,
+   "margin_10pct": {
+    "verdict": "practically_equivalent",
+    "band": 0.04167757813935168
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "a5000_recompute-over-retain_L6011_joules": {
+   "platform": "a5000",
+   "x": "recompute",
+   "y": "retain",
+   "length": 6011,
+   "metric": "joules",
+   "paired_diff": {
+    "mean": -26.14111795941551,
+    "lo": -30.10612529427276,
+    "hi": -22.338169520140866,
+    "n": 5,
+    "width": 7.767955774131895,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "ratio_xy": {
+    "ratio": 0.9106798269079277,
+    "lo": 0.8975601018161781,
+    "hi": 0.9236849880611571,
+    "n": 5,
+    "width": 0.026124886244978995,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "reference_mean_y": 292.6675694243101,
+   "margin_10pct": {
+    "verdict": "indeterminate_overlaps_band",
+    "band": 29.266756942431012
+   },
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  }
+ },
+ "ratio_of_ratios": {
+  "RoR_orin-over-a5000_host_d2h-over-retain_L2048_ttft_s": {
+   "x": "host_d2h",
+   "y": "retain",
+   "length": 2048,
+   "metric": "ttft_s",
+   "ror_orin_over_a5000": {
+    "ror": 2.786270205267715,
+    "lo": 2.582473072514045,
+    "hi": 3.0045901549245837,
+    "n_orin": 5,
+    "n_a5000": 5,
+    "width": 0.4221170824105389
+   },
+   "method": "independent per-platform block resampling, boards never pooled",
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "RoR_orin-over-a5000_host_d2h-over-retain_L2048_bg_gap_max": {
+   "x": "host_d2h",
+   "y": "retain",
+   "length": 2048,
+   "metric": "bg_gap_max",
+   "ror_orin_over_a5000": {
+    "ror": 4.397736742279941,
+    "lo": 4.30373638502651,
+    "hi": 4.499760626057283,
+    "n_orin": 5,
+    "n_a5000": 5,
+    "width": 0.19602424103077265
+   },
+   "method": "independent per-platform block resampling, boards never pooled",
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "RoR_orin-over-a5000_host_h2d_direct-over-retain_L2048_ttft_s": {
+   "x": "host_h2d_direct",
+   "y": "retain",
+   "length": 2048,
+   "metric": "ttft_s",
+   "ror_orin_over_a5000": {
+    "ror": 7.12365168808846,
+    "lo": 6.865188387629249,
+    "hi": 7.382750988859273,
+    "n_orin": 5,
+    "n_a5000": 5,
+    "width": 0.5175626012300238
+   },
+   "method": "independent per-platform block resampling, boards never pooled",
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "RoR_orin-over-a5000_host_h2d_direct-over-retain_L2048_bg_gap_max": {
+   "x": "host_h2d_direct",
+   "y": "retain",
+   "length": 2048,
+   "metric": "bg_gap_max",
+   "ror_orin_over_a5000": {
+    "ror": 7.890624400731334,
+    "lo": 7.6760932244523,
+    "hi": 8.107134999439992,
+    "n_orin": 5,
+    "n_a5000": 5,
+    "width": 0.43104177498769225
+   },
+   "method": "independent per-platform block resampling, boards never pooled",
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "RoR_orin-over-a5000_recompute-over-retain_L2048_ttft_s": {
+   "x": "recompute",
+   "y": "retain",
+   "length": 2048,
+   "metric": "ttft_s",
+   "ror_orin_over_a5000": {
+    "ror": 3.93646100144475,
+    "lo": 3.782580735446101,
+    "hi": 4.083979874476423,
+    "n_orin": 5,
+    "n_a5000": 5,
+    "width": 0.3013991390303219
+   },
+   "method": "independent per-platform block resampling, boards never pooled",
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "RoR_orin-over-a5000_recompute-over-retain_L2048_bg_gap_max": {
+   "x": "recompute",
+   "y": "retain",
+   "length": 2048,
+   "metric": "bg_gap_max",
+   "ror_orin_over_a5000": {
+    "ror": 4.684637634811088,
+    "lo": 4.643647229997103,
+    "hi": 4.726336657295936,
+    "n_orin": 5,
+    "n_a5000": 5,
+    "width": 0.082689427298833
+   },
+   "method": "independent per-platform block resampling, boards never pooled",
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "RoR_orin-over-a5000_host_d2h-over-retain_L6011_ttft_s": {
+   "x": "host_d2h",
+   "y": "retain",
+   "length": 6011,
+   "metric": "ttft_s",
+   "ror_orin_over_a5000": {
+    "ror": 5.9342359771064705,
+    "lo": 5.789287456269982,
+    "hi": 6.139694133122095,
+    "n_orin": 5,
+    "n_a5000": 5,
+    "width": 0.35040667685211346
+   },
+   "method": "independent per-platform block resampling, boards never pooled",
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "RoR_orin-over-a5000_host_d2h-over-retain_L6011_bg_gap_max": {
+   "x": "host_d2h",
+   "y": "retain",
+   "length": 6011,
+   "metric": "bg_gap_max",
+   "ror_orin_over_a5000": {
+    "ror": 8.328851822960461,
+    "lo": 7.995357535403319,
+    "hi": 8.807318207731601,
+    "n_orin": 5,
+    "n_a5000": 5,
+    "width": 0.811960672328282
+   },
+   "method": "independent per-platform block resampling, boards never pooled",
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "RoR_orin-over-a5000_host_h2d_direct-over-retain_L6011_ttft_s": {
+   "x": "host_h2d_direct",
+   "y": "retain",
+   "length": 6011,
+   "metric": "ttft_s",
+   "ror_orin_over_a5000": {
+    "ror": 18.57905017353469,
+    "lo": 18.240899122990662,
+    "hi": 18.89811152383365,
+    "n_orin": 5,
+    "n_a5000": 5,
+    "width": 0.6572124008429867
+   },
+   "method": "independent per-platform block resampling, boards never pooled",
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "RoR_orin-over-a5000_host_h2d_direct-over-retain_L6011_bg_gap_max": {
+   "x": "host_h2d_direct",
+   "y": "retain",
+   "length": 6011,
+   "metric": "bg_gap_max",
+   "ror_orin_over_a5000": {
+    "ror": 27.546560152870196,
+    "lo": 26.982341710758146,
+    "hi": 28.09855757127779,
+    "n_orin": 5,
+    "n_a5000": 5,
+    "width": 1.1162158605196453
+   },
+   "method": "independent per-platform block resampling, boards never pooled",
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "RoR_orin-over-a5000_recompute-over-retain_L6011_ttft_s": {
+   "x": "recompute",
+   "y": "retain",
+   "length": 6011,
+   "metric": "ttft_s",
+   "ror_orin_over_a5000": {
+    "ror": 9.209576966981597,
+    "lo": 9.073112297398643,
+    "hi": 9.386603625956724,
+    "n_orin": 5,
+    "n_a5000": 5,
+    "width": 0.31349132855808115
+   },
+   "method": "independent per-platform block resampling, boards never pooled",
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  },
+  "RoR_orin-over-a5000_recompute-over-retain_L6011_bg_gap_max": {
+   "x": "recompute",
+   "y": "retain",
+   "length": 6011,
+   "metric": "bg_gap_max",
+   "ror_orin_over_a5000": {
+    "ror": 14.243424989437054,
+    "lo": 14.116043546656577,
+    "hi": 14.420080177118306,
+    "n_orin": 5,
+    "n_a5000": 5,
+    "width": 0.304036630461729
+   },
+   "method": "independent per-platform block resampling, boards never pooled",
+   "versions": {
+    "orin": "sglang 0.5.16 (jouleserve/sglang:0.5.16-orin-cu126-sm87)",
+    "a5000": "sglang 0.5.20 / torch 2.13.0+cu126",
+    "confound": "ALL cross-platform directions are version-confounded (0.5.16 vs 0.5.20) until a 0.5.16 A5000 control exists; never claim arch-only deltas."
+   }
+  }
+ }
+}
