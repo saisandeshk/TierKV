@@ -5198,5 +5198,1466 @@
    "issue": "n<5 or missing",
    "n": null
   }
- ]
+ ],
+ "rev": 3,
+ "sharegpt": {
+  "provenance": {
+   "dataset": "anon8231489123/ShareGPT_Vicuna_unfiltered",
+   "dataset_rev": "192ab2185289094fc556ec8ce5ce1e8e587154ca",
+   "slice_sha256": "a5e183a201fb0e27781bc54d2172d988a5426792311f2260b249b8805d501053",
+   "slice_convos": 7037,
+   "prefix_sha256": "f8c96bf1210fdaa779df909776f6069fd57dd5ddca791e5aa195d7070f005650",
+   "prefix_tokens": 6011,
+   "prefix_file": "prefix_sharegpt_6011.txt",
+   "blocks": [
+    0,
+    1
+   ],
+   "arms": [
+    "host_d2h",
+    "host_h2d_direct",
+    "recompute",
+    "retain"
+   ],
+   "nvme": "skipped by design",
+   "bg_note": "bg decodes stay synthetic short prompts (same strings as matrix-v1 mx_cell.py); victim-only natural text = recorded asymmetry",
+   "corrections": [
+    {
+     "what": "recompute_b1 timing contamination",
+     "files": [
+      "recompute_b1_base_bgonly.json",
+      "recompute_b1_warm_recompute.json",
+      "recompute_b1_meas_recompute.json"
+     ],
+     "cause": "duplicate driver sh_finish.py ran concurrent cells on port 31503 (~01:10-01:11 IST); server log shows 0 flush_cache successes -> meas device-hit artifact",
+     "remedy": "clean rerun files *_clean.json + server-recompute-blk1-rerun.log",
+     "note_file": "/media/ssd/saisandesh/TierKV/runs/sharegpt/b1-contamination-note.txt"
+    },
+    {
+     "what": "host_h2d_direct b0-meas retry invalid",
+     "cause": "duplicate driver raced orch teardown (arrival http None); BLOCKED-systematic verdict retracted",
+     "remedy": "orch block-1 h2d arm served as valid retest -> complete/PASS, no systematic crash",
+     "note_file": "/media/ssd/saisandesh/TierKV/runs/sharegpt/b0-crash-note.txt"
+    }
+   ]
+  },
+  "coverage": {
+   "meas_cells_complete": [
+    7,
+    8
+   ],
+   "note": "7/8 arm x block reload/recompute meas cells PASS (h2d b0 crashed); h2d b1 spill+fill0+reload sub-phases PASS; nvme not planned",
+   "failed_listed_not_pooled": [
+    "host_h2d_direct_b0 meas spill (arrival comp None) + CRASH"
+   ]
+  },
+  "per_arm": {
+   "retain": {
+    "blocks": [
+     0,
+     1
+    ],
+    "files": [
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/retain_b0_meas_reload.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/retain_b1_meas_reload.json"
+    ],
+    "arrival_ttft_s": {
+     "mean": 0.1487970274174586,
+     "lo": 0.1465203899424523,
+     "hi": 0.15107366489246488,
+     "n": 2,
+     "width": 0.004553274950012565,
+     "label": "sharegpt retain arrival_ttft_s",
+     "values_each": [
+      0.1465203899424523,
+      0.15107366489246488
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/retain_b0_meas_reload.json",
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/retain_b1_meas_reload.json"
+     ],
+     "blocks": [
+      0,
+      1
+     ]
+    },
+    "bg_tpot_mean": {
+     "mean": 0.030614980797816847,
+     "lo": 0.030608214747791334,
+     "hi": 0.030621746847842357,
+     "n": 2,
+     "width": 1.353210005102315e-05,
+     "label": "sharegpt retain bg_tpot_mean",
+     "values_each": [
+      0.030608214747791334,
+      0.030621746847842357
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/retain_b0_meas_reload.json",
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/retain_b1_meas_reload.json"
+     ],
+     "blocks": [
+      0,
+      1
+     ]
+    },
+    "bg_gap_p95_mean": {
+     "mean": 0.03186881763394922,
+     "lo": 0.031832259497605264,
+     "hi": 0.031905375770293176,
+     "n": 2,
+     "width": 7.311627268791199e-05,
+     "label": "sharegpt retain bg_gap_p95_mean",
+     "values_each": [
+      0.031832259497605264,
+      0.031905375770293176
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/retain_b0_meas_reload.json",
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/retain_b1_meas_reload.json"
+     ],
+     "blocks": [
+      0,
+      1
+     ]
+    },
+    "bg_gap_max": {
+     "mean": 0.08744228549767286,
+     "lo": 0.08628172497265041,
+     "hi": 0.0886028460226953,
+     "n": 2,
+     "width": 0.0023211210500448942,
+     "label": "sharegpt retain bg_gap_max",
+     "values_each": [
+      0.08628172497265041,
+      0.0886028460226953
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/retain_b0_meas_reload.json",
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/retain_b1_meas_reload.json"
+     ],
+     "blocks": [
+      0,
+      1
+     ]
+    },
+    "mem_dip_mb": {
+     "mean": 4.096640624999054,
+     "lo": 3.439804687499418,
+     "hi": 4.75347656249869,
+     "n": 2,
+     "width": 1.3136718749992724,
+     "label": "sharegpt retain mem_dip_mb",
+     "values_each": [
+      3.439804687499418,
+      4.75347656249869
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/retain_b0_meas_reload.json",
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/retain_b1_meas_reload.json"
+     ],
+     "blocks": [
+      0,
+      1
+     ]
+    },
+    "mem_baseline_mb": {
+     "mean": 18129.870078125,
+     "lo": 17823.0542578125,
+     "hi": 18436.6858984375,
+     "n": 2,
+     "width": 613.6316406250007,
+     "label": "sharegpt retain mem_baseline_mb",
+     "values_each": [
+      18436.6858984375,
+      17823.0542578125
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/retain_b0_meas_reload.json",
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/retain_b1_meas_reload.json"
+     ],
+     "blocks": [
+      0,
+      1
+     ]
+    },
+    "emc_rate_mean": {
+     "mean": 587425.8137929605,
+     "lo": 585706.820417763,
+     "hi": 589144.8071681581,
+     "n": 2,
+     "width": 3437.9867503951536,
+     "label": "sharegpt retain emc_rate_mean",
+     "values_each": [
+      585706.820417763,
+      589144.8071681581
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/retain_b0_meas_reload.json",
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/retain_b1_meas_reload.json"
+     ],
+     "blocks": [
+      0,
+      1
+     ]
+    },
+    "emc_rate_max": {
+     "mean": 1608081.2372375021,
+     "lo": 1602458.1380916703,
+     "hi": 1613704.336383334,
+     "n": 2,
+     "width": 11246.198291663546,
+     "label": "sharegpt retain emc_rate_max",
+     "values_each": [
+      1613704.336383334,
+      1602458.1380916703
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/retain_b0_meas_reload.json",
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/retain_b1_meas_reload.json"
+     ],
+     "blocks": [
+      0,
+      1
+     ]
+    },
+    "cached": {
+     "dev": [
+      6010,
+      6010
+     ],
+     "host": [
+      0,
+      0
+     ]
+    }
+   },
+   "host_d2h": {
+    "blocks": [
+     0,
+     1
+    ],
+    "files": [
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_d2h_b0_meas_reload.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_d2h_b1_meas_reload.json"
+    ],
+    "arrival_ttft_s": {
+     "mean": 0.14962166792247444,
+     "lo": 0.14836273388937116,
+     "hi": 0.15088060195557773,
+     "n": 2,
+     "width": 0.0025178680662065744,
+     "label": "sharegpt host_d2h arrival_ttft_s",
+     "values_each": [
+      0.14836273388937116,
+      0.15088060195557773
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_d2h_b0_meas_reload.json",
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_d2h_b1_meas_reload.json"
+     ],
+     "blocks": [
+      0,
+      1
+     ]
+    },
+    "bg_tpot_mean": {
+     "mean": 0.030647660870064694,
+     "lo": 0.03061726824637121,
+     "hi": 0.03067805349375818,
+     "n": 2,
+     "width": 6.078524738696925e-05,
+     "label": "sharegpt host_d2h bg_tpot_mean",
+     "values_each": [
+      0.03061726824637121,
+      0.03067805349375818
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_d2h_b0_meas_reload.json",
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_d2h_b1_meas_reload.json"
+     ],
+     "blocks": [
+      0,
+      1
+     ]
+    },
+    "bg_gap_p95_mean": {
+     "mean": 0.0316562098741997,
+     "lo": 0.03161990671651438,
+     "hi": 0.03169251303188503,
+     "n": 2,
+     "width": 7.26063153706491e-05,
+     "label": "sharegpt host_d2h bg_gap_p95_mean",
+     "values_each": [
+      0.03161990671651438,
+      0.03169251303188503
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_d2h_b0_meas_reload.json",
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_d2h_b1_meas_reload.json"
+     ],
+     "blocks": [
+      0,
+      1
+     ]
+    },
+    "bg_gap_max": {
+     "mean": 0.08735815098043531,
+     "lo": 0.08705228101462126,
+     "hi": 0.08766402094624937,
+     "n": 2,
+     "width": 0.000611739931628108,
+     "label": "sharegpt host_d2h bg_gap_max",
+     "values_each": [
+      0.08705228101462126,
+      0.08766402094624937
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_d2h_b0_meas_reload.json",
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_d2h_b1_meas_reload.json"
+     ],
+     "blocks": [
+      0,
+      1
+     ]
+    },
+    "mem_dip_mb": {
+     "mean": 2.024199218751164,
+     "lo": 1.5964843750007276,
+     "hi": 2.4519140625016007,
+     "n": 2,
+     "width": 0.8554296875008731,
+     "label": "sharegpt host_d2h mem_dip_mb",
+     "values_each": [
+      2.4519140625016007,
+      1.5964843750007276
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_d2h_b0_meas_reload.json",
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_d2h_b1_meas_reload.json"
+     ],
+     "blocks": [
+      0,
+      1
+     ]
+    },
+    "mem_baseline_mb": {
+     "mean": 15722.280058593751,
+     "lo": 13684.768359375,
+     "hi": 17759.7917578125,
+     "n": 2,
+     "width": 4075.023398437501,
+     "label": "sharegpt host_d2h mem_baseline_mb",
+     "values_each": [
+      17759.7917578125,
+      13684.768359375
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_d2h_b0_meas_reload.json",
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_d2h_b1_meas_reload.json"
+     ],
+     "blocks": [
+      0,
+      1
+     ]
+    },
+    "emc_rate_mean": {
+     "mean": 589679.2014215607,
+     "lo": 589266.7424920913,
+     "hi": 590091.6603510303,
+     "n": 2,
+     "width": 824.9178589390358,
+     "label": "sharegpt host_d2h emc_rate_mean",
+     "values_each": [
+      589266.7424920913,
+      590091.6603510303
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_d2h_b0_meas_reload.json",
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_d2h_b1_meas_reload.json"
+     ],
+     "blocks": [
+      0,
+      1
+     ]
+    },
+    "emc_rate_max": {
+     "mean": 1601372.2334754912,
+     "lo": 1596593.5055973022,
+     "hi": 1606150.9613536801,
+     "n": 2,
+     "width": 9557.455756377894,
+     "label": "sharegpt host_d2h emc_rate_max",
+     "values_each": [
+      1606150.9613536801,
+      1596593.5055973022
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_d2h_b0_meas_reload.json",
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_d2h_b1_meas_reload.json"
+     ],
+     "blocks": [
+      0,
+      1
+     ]
+    },
+    "cached": {
+     "dev": [
+      6010,
+      6010
+     ],
+     "host": [
+      0,
+      0
+     ]
+    }
+   },
+   "recompute": {
+    "blocks": [
+     0,
+     1
+    ],
+    "files": [
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/recompute_b0_meas_recompute.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/recompute_b1_meas_recompute_clean.json"
+    ],
+    "arrival_ttft_s": {
+     "mean": 1.3413695610361174,
+     "lo": 1.331975394161418,
+     "hi": 1.3507637279108167,
+     "n": 2,
+     "width": 0.01878833374939859,
+     "label": "sharegpt recompute arrival_ttft_s",
+     "values_each": [
+      1.3507637279108167,
+      1.331975394161418
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/recompute_b0_meas_recompute.json",
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/recompute_b1_meas_recompute_clean.json"
+     ],
+     "blocks": [
+      0,
+      1
+     ]
+    },
+    "bg_tpot_mean": {
+     "mean": 0.040129573802384876,
+     "lo": 0.04002054729343091,
+     "hi": 0.04023860031133884,
+     "n": 2,
+     "width": 0.00021805301790793485,
+     "label": "sharegpt recompute bg_tpot_mean",
+     "values_each": [
+      0.04023860031133884,
+      0.04002054729343091
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/recompute_b0_meas_recompute.json",
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/recompute_b1_meas_recompute_clean.json"
+     ],
+     "blocks": [
+      0,
+      1
+     ]
+    },
+    "bg_gap_p95_mean": {
+     "mean": 0.03189551655668765,
+     "lo": 0.03165673423791304,
+     "hi": 0.032134298875462264,
+     "n": 2,
+     "width": 0.0004775646375492215,
+     "label": "sharegpt recompute bg_gap_p95_mean",
+     "values_each": [
+      0.032134298875462264,
+      0.03165673423791304
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/recompute_b0_meas_recompute.json",
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/recompute_b1_meas_recompute_clean.json"
+     ],
+     "blocks": [
+      0,
+      1
+     ]
+    },
+    "bg_gap_max": {
+     "mean": 1.252369804540649,
+     "lo": 1.2456595161929727,
+     "hi": 1.2590800928883255,
+     "n": 2,
+     "width": 0.013420576695352793,
+     "label": "sharegpt recompute bg_gap_max",
+     "values_each": [
+      1.2590800928883255,
+      1.2456595161929727
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/recompute_b0_meas_recompute.json",
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/recompute_b1_meas_recompute_clean.json"
+     ],
+     "blocks": [
+      0,
+      1
+     ]
+    },
+    "mem_dip_mb": {
+     "mean": -26.7754492187496,
+     "lo": -56.37554687500051,
+     "hi": 2.8246484375013097,
+     "n": 2,
+     "width": 59.20019531250182,
+     "label": "sharegpt recompute mem_dip_mb",
+     "values_each": [
+      -56.37554687500051,
+      2.8246484375013097
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/recompute_b0_meas_recompute.json",
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/recompute_b1_meas_recompute_clean.json"
+     ],
+     "blocks": [
+      0,
+      1
+     ]
+    },
+    "mem_baseline_mb": {
+     "mean": 15767.996035156251,
+     "lo": 13725.987734375,
+     "hi": 17810.0043359375,
+     "n": 2,
+     "width": 4084.016601562502,
+     "label": "sharegpt recompute mem_baseline_mb",
+     "values_each": [
+      13725.987734375,
+      17810.0043359375
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/recompute_b0_meas_recompute.json",
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/recompute_b1_meas_recompute_clean.json"
+     ],
+     "blocks": [
+      0,
+      1
+     ]
+    },
+    "emc_rate_mean": {
+     "mean": 421662.6065506767,
+     "lo": 412188.8858053051,
+     "hi": 431136.3272960483,
+     "n": 2,
+     "width": 18947.441490743193,
+     "label": "sharegpt recompute emc_rate_mean",
+     "values_each": [
+      412188.8858053051,
+      431136.3272960483
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/recompute_b0_meas_recompute.json",
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/recompute_b1_meas_recompute_clean.json"
+     ],
+     "blocks": [
+      0,
+      1
+     ]
+    },
+    "emc_rate_max": {
+     "mean": 1561975.1787921533,
+     "lo": 1539061.1767578258,
+     "hi": 1584889.1808264807,
+     "n": 2,
+     "width": 45828.00406865496,
+     "label": "sharegpt recompute emc_rate_max",
+     "values_each": [
+      1539061.1767578258,
+      1584889.1808264807
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/recompute_b0_meas_recompute.json",
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/recompute_b1_meas_recompute_clean.json"
+     ],
+     "blocks": [
+      0,
+      1
+     ]
+    },
+    "cached": {
+     "dev": [
+      1,
+      1
+     ],
+     "host": [
+      0,
+      0
+     ]
+    }
+   },
+   "host_h2d_direct": {
+    "blocks": [
+     1,
+     1,
+     1
+    ],
+    "files": [
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_h2d_direct_b1_meas_reload.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_h2d_direct_b1_meas_spill.json",
+     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_h2d_direct_b1_meas_fill0.json"
+    ],
+    "arrival_ttft_s": {
+     "mean": 14.667230936931446,
+     "lo": 14.667230936931446,
+     "hi": 14.667230936931446,
+     "n": 1,
+     "width": 0.0,
+     "label": "sharegpt host_h2d_direct arrival_ttft_s",
+     "values_each": [
+      14.667230936931446
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_h2d_direct_b1_meas_reload.json"
+     ],
+     "blocks": [
+      1
+     ]
+    },
+    "bg_tpot_mean": {
+     "mean": 0.14559065717717956,
+     "lo": 0.14559065717717956,
+     "hi": 0.14559065717717956,
+     "n": 1,
+     "width": 0.0,
+     "label": "sharegpt host_h2d_direct bg_tpot_mean",
+     "values_each": [
+      0.14559065717717956
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_h2d_direct_b1_meas_reload.json"
+     ],
+     "blocks": [
+      1
+     ]
+    },
+    "bg_gap_p95_mean": {
+     "mean": 0.03211896790890023,
+     "lo": 0.03211896790890023,
+     "hi": 0.03211896790890023,
+     "n": 1,
+     "width": 0.0,
+     "label": "sharegpt host_h2d_direct bg_gap_p95_mean",
+     "values_each": [
+      0.03211896790890023
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_h2d_direct_b1_meas_reload.json"
+     ],
+     "blocks": [
+      1
+     ]
+    },
+    "bg_gap_max": {
+     "mean": 14.60780565883033,
+     "lo": 14.60780565883033,
+     "hi": 14.60780565883033,
+     "n": 1,
+     "width": 0.0,
+     "label": "sharegpt host_h2d_direct bg_gap_max",
+     "values_each": [
+      14.60780565883033
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_h2d_direct_b1_meas_reload.json"
+     ],
+     "blocks": [
+      1
+     ]
+    },
+    "mem_dip_mb": {
+     "mean": 13.857734375000291,
+     "lo": 13.857734375000291,
+     "hi": 13.857734375000291,
+     "n": 1,
+     "width": 0.0,
+     "label": "sharegpt host_h2d_direct mem_dip_mb",
+     "values_each": [
+      13.857734375000291
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_h2d_direct_b1_meas_reload.json"
+     ],
+     "blocks": [
+      1
+     ]
+    },
+    "mem_baseline_mb": {
+     "mean": 17134.404609375,
+     "lo": 17134.404609375,
+     "hi": 17134.404609375,
+     "n": 1,
+     "width": 0.0,
+     "label": "sharegpt host_h2d_direct mem_baseline_mb",
+     "values_each": [
+      17134.404609375
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_h2d_direct_b1_meas_reload.json"
+     ],
+     "blocks": [
+      1
+     ]
+    },
+    "emc_rate_mean": {
+     "mean": 110143.04422748646,
+     "lo": 110143.04422748646,
+     "hi": 110143.04422748646,
+     "n": 1,
+     "width": 0.0,
+     "label": "sharegpt host_h2d_direct emc_rate_mean",
+     "values_each": [
+      110143.04422748646
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_h2d_direct_b1_meas_reload.json"
+     ],
+     "blocks": [
+      1
+     ]
+    },
+    "emc_rate_max": {
+     "mean": 1685169.4520973244,
+     "lo": 1685169.4520973244,
+     "hi": 1685169.4520973244,
+     "n": 1,
+     "width": 0.0,
+     "label": "sharegpt host_h2d_direct emc_rate_max",
+     "values_each": [
+      1685169.4520973244
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_h2d_direct_b1_meas_reload.json"
+     ],
+     "blocks": [
+      1
+     ]
+    },
+    "cached": {
+     "dev": [
+      1
+     ],
+     "host": [
+      6009
+     ]
+    }
+   },
+   "host_h2d_direct_spill": {
+    "arrival_ttft_s": {
+     "mean": 15.143910698825493,
+     "lo": 15.143910698825493,
+     "hi": 15.143910698825493,
+     "n": 1,
+     "width": 0.0,
+     "label": "sharegpt host_h2d_direct spill arrival_ttft_s",
+     "values_each": [
+      15.143910698825493
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_h2d_direct_b1_meas_spill.json"
+     ],
+     "blocks": [
+      1
+     ]
+    },
+    "bg_tpot_mean": {
+     "mean": 0.15960358047269388,
+     "lo": 0.15960358047269388,
+     "hi": 0.15960358047269388,
+     "n": 1,
+     "width": 0.0,
+     "label": "sharegpt host_h2d_direct spill bg_tpot_mean",
+     "values_each": [
+      0.15960358047269388
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_h2d_direct_b1_meas_spill.json"
+     ],
+     "blocks": [
+      1
+     ]
+    },
+    "mem_dip_mb": {
+     "mean": 11.856953124999563,
+     "lo": 11.856953124999563,
+     "hi": 11.856953124999563,
+     "n": 1,
+     "width": 0.0,
+     "label": "sharegpt host_h2d_direct spill mem_dip_mb",
+     "values_each": [
+      11.856953124999563
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_h2d_direct_b1_meas_spill.json"
+     ],
+     "blocks": [
+      1
+     ]
+    },
+    "mem_baseline_mb": {
+     "mean": 17126.677265625,
+     "lo": 17126.677265625,
+     "hi": 17126.677265625,
+     "n": 1,
+     "width": 0.0,
+     "label": "sharegpt host_h2d_direct spill mem_baseline_mb",
+     "values_each": [
+      17126.677265625
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_h2d_direct_b1_meas_spill.json"
+     ],
+     "blocks": [
+      1
+     ]
+    }
+   },
+   "host_h2d_direct_fill0": {
+    "arrival_ttft_s": {
+     "mean": 15.139688583090901,
+     "lo": 15.139688583090901,
+     "hi": 15.139688583090901,
+     "n": 1,
+     "width": 0.0,
+     "label": "sharegpt host_h2d_direct fill0 arrival_ttft_s",
+     "values_each": [
+      15.139688583090901
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_h2d_direct_b1_meas_fill0.json"
+     ],
+     "blocks": [
+      1
+     ]
+    },
+    "bg_tpot_mean": {
+     "mean": 0.1494661613681911,
+     "lo": 0.1494661613681911,
+     "hi": 0.1494661613681911,
+     "n": 1,
+     "width": 0.0,
+     "label": "sharegpt host_h2d_direct fill0 bg_tpot_mean",
+     "values_each": [
+      0.1494661613681911
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_h2d_direct_b1_meas_fill0.json"
+     ],
+     "blocks": [
+      1
+     ]
+    },
+    "mem_dip_mb": {
+     "mean": 9.497695312500582,
+     "lo": 9.497695312500582,
+     "hi": 9.497695312500582,
+     "n": 1,
+     "width": 0.0,
+     "label": "sharegpt host_h2d_direct fill0 mem_dip_mb",
+     "values_each": [
+      9.497695312500582
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_h2d_direct_b1_meas_fill0.json"
+     ],
+     "blocks": [
+      1
+     ]
+    },
+    "mem_baseline_mb": {
+     "mean": 17127.6305078125,
+     "lo": 17127.6305078125,
+     "hi": 17127.6305078125,
+     "n": 1,
+     "width": 0.0,
+     "label": "sharegpt host_h2d_direct fill0 mem_baseline_mb",
+     "values_each": [
+      17127.6305078125
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_h2d_direct_b1_meas_fill0.json"
+     ],
+     "blocks": [
+      1
+     ]
+    }
+   }
+  },
+  "vs_synthetic_L6011": {
+   "retain": {
+    "arrival_ttft_s": {
+     "synthetic_mean": 0.14783089379779996,
+     "synthetic_ci": [
+      0.14534473738167436,
+      0.1493540822295472
+     ],
+     "sharegpt_mean": 0.1487970274174586,
+     "sharegpt_ci": [
+      0.1465203899424523,
+      0.15107366489246488
+     ],
+     "sharegpt_n": 2,
+     "delta_sharegpt_minus_synthetic": 0.0009661336196586379,
+     "delta_pct": 0.6535397269396852,
+     "synthetic_mean_in_sharegpt_ci": true
+    },
+    "bg_tpot_mean": {
+     "synthetic_mean": 0.030622044967773453,
+     "synthetic_ci": [
+      0.030616157724591718,
+      0.03062751739580133
+     ],
+     "sharegpt_mean": 0.030614980797816847,
+     "sharegpt_ci": [
+      0.030608214747791334,
+      0.030621746847842357
+     ],
+     "sharegpt_n": 2,
+     "delta_sharegpt_minus_synthetic": -7.064169956605415e-06,
+     "delta_pct": -0.023068903347375155,
+     "synthetic_mean_in_sharegpt_ci": false
+    },
+    "bg_gap_p95_mean": {
+     "synthetic_mean": 0.03176282625645399,
+     "synthetic_ci": [
+      0.031643576110946016,
+      0.0319284560973756
+     ],
+     "sharegpt_mean": 0.03186881763394922,
+     "sharegpt_ci": [
+      0.031832259497605264,
+      0.031905375770293176
+     ],
+     "sharegpt_n": 2,
+     "delta_sharegpt_minus_synthetic": 0.00010599137749522924,
+     "delta_pct": 0.33369630472884165,
+     "synthetic_mean_in_sharegpt_ci": false
+    },
+    "bg_gap_max": {
+     "synthetic_mean": 0.08761370682623237,
+     "synthetic_ci": [
+      0.0865693190600723,
+      0.0883127688197419
+     ],
+     "sharegpt_mean": 0.08744228549767286,
+     "sharegpt_ci": [
+      0.08628172497265041,
+      0.0886028460226953
+     ],
+     "sharegpt_n": 2,
+     "delta_sharegpt_minus_synthetic": -0.00017142132855951786,
+     "delta_pct": -0.19565583373786977,
+     "synthetic_mean_in_sharegpt_ci": true
+    },
+    "mem_dip_mb": {
+     "synthetic_mean": 3.3807109374996798,
+     "synthetic_ci": [
+      2.197453124999447,
+      4.522125000000233
+     ],
+     "sharegpt_mean": 4.096640624999054,
+     "sharegpt_ci": [
+      3.439804687499418,
+      4.75347656249869
+     ],
+     "sharegpt_n": 2,
+     "delta_sharegpt_minus_synthetic": 0.7159296874993744,
+     "delta_pct": 21.17689742586702,
+     "synthetic_mean_in_sharegpt_ci": false
+    },
+    "mem_baseline_mb": {
+     "synthetic_mean": 18322.9174296875,
+     "synthetic_ci": [
+      18297.891421875,
+      18367.358812500002
+     ],
+     "sharegpt_mean": 18129.870078125,
+     "sharegpt_ci": [
+      17823.0542578125,
+      18436.6858984375
+     ],
+     "sharegpt_n": 2,
+     "delta_sharegpt_minus_synthetic": -193.04735156249808,
+     "delta_pct": -1.053584137478649,
+     "synthetic_mean_in_sharegpt_ci": true
+    },
+    "emc_rate_mean": {
+     "synthetic_mean": 590561.7055841277,
+     "synthetic_ci": [
+      588594.2929087518,
+      592659.8324341346
+     ],
+     "sharegpt_mean": 587425.8137929605,
+     "sharegpt_ci": [
+      585706.820417763,
+      589144.8071681581
+     ],
+     "sharegpt_n": 2,
+     "delta_sharegpt_minus_synthetic": -3135.8917911672033,
+     "delta_pct": -0.5310015467503901,
+     "synthetic_mean_in_sharegpt_ci": false
+    },
+    "emc_rate_max": {
+     "synthetic_mean": 1608030.1795935738,
+     "synthetic_ci": [
+      1605786.3664978973,
+      1610555.111226644
+     ],
+     "sharegpt_mean": 1608081.2372375021,
+     "sharegpt_ci": [
+      1602458.1380916703,
+      1613704.336383334
+     ],
+     "sharegpt_n": 2,
+     "delta_sharegpt_minus_synthetic": 51.057643928332254,
+     "delta_pct": 0.0031751670196411967,
+     "synthetic_mean_in_sharegpt_ci": true
+    }
+   },
+   "host_d2h": {
+    "arrival_ttft_s": {
+     "synthetic_mean": 0.14679908582475037,
+     "synthetic_ci": [
+      0.14551121243275703,
+      0.14882960582617671
+     ],
+     "sharegpt_mean": 0.14962166792247444,
+     "sharegpt_ci": [
+      0.14836273388937116,
+      0.15088060195557773
+     ],
+     "sharegpt_n": 2,
+     "delta_sharegpt_minus_synthetic": 0.002822582097724069,
+     "delta_pct": 1.9227518222379696,
+     "synthetic_mean_in_sharegpt_ci": false
+    },
+    "bg_tpot_mean": {
+     "synthetic_mean": 0.030617805788161485,
+     "synthetic_ci": [
+      0.03060566478621537,
+      0.030632998491729076
+     ],
+     "sharegpt_mean": 0.030647660870064694,
+     "sharegpt_ci": [
+      0.03061726824637121,
+      0.03067805349375818
+     ],
+     "sharegpt_n": 2,
+     "delta_sharegpt_minus_synthetic": 2.985508190320868e-05,
+     "delta_pct": 0.09750888783399457,
+     "synthetic_mean_in_sharegpt_ci": true
+    },
+    "bg_gap_p95_mean": {
+     "synthetic_mean": 0.031869717949302864,
+     "synthetic_ci": [
+      0.03179266619263217,
+      0.03191794354934245
+     ],
+     "sharegpt_mean": 0.0316562098741997,
+     "sharegpt_ci": [
+      0.03161990671651438,
+      0.03169251303188503
+     ],
+     "sharegpt_n": 2,
+     "delta_sharegpt_minus_synthetic": -0.00021350807510316094,
+     "delta_pct": -0.6699402719622479,
+     "synthetic_mean_in_sharegpt_ci": false
+    },
+    "bg_gap_max": {
+     "synthetic_mean": 0.08700426139403135,
+     "synthetic_ci": [
+      0.0865349855972454,
+      0.08754014000296592
+     ],
+     "sharegpt_mean": 0.08735815098043531,
+     "sharegpt_ci": [
+      0.08705228101462126,
+      0.08766402094624937
+     ],
+     "sharegpt_n": 2,
+     "delta_sharegpt_minus_synthetic": 0.0003538895864039632,
+     "delta_pct": 0.40674971631704543,
+     "synthetic_mean_in_sharegpt_ci": false
+    },
+    "mem_dip_mb": {
+     "synthetic_mean": 3.305851562499447,
+     "synthetic_ci": [
+      1.744695312499971,
+      4.962148437498399
+     ],
+     "sharegpt_mean": 2.024199218751164,
+     "sharegpt_ci": [
+      1.5964843750007276,
+      2.4519140625016007
+     ],
+     "sharegpt_n": 2,
+     "delta_sharegpt_minus_synthetic": -1.281652343748283,
+     "delta_pct": -38.76920422825238,
+     "synthetic_mean_in_sharegpt_ci": false
+    },
+    "mem_baseline_mb": {
+     "synthetic_mean": 17646.133976562498,
+     "synthetic_ci": [
+      17621.629703125,
+      17683.863312499998
+     ],
+     "sharegpt_mean": 15722.280058593751,
+     "sharegpt_ci": [
+      13684.768359375,
+      17759.7917578125
+     ],
+     "sharegpt_n": 2,
+     "delta_sharegpt_minus_synthetic": -1923.8539179687468,
+     "delta_pct": -10.902410241948743,
+     "synthetic_mean_in_sharegpt_ci": true
+    },
+    "emc_rate_mean": {
+     "synthetic_mean": 588853.7835744353,
+     "synthetic_ci": [
+      585689.9305010262,
+      592469.716001489
+     ],
+     "sharegpt_mean": 589679.2014215607,
+     "sharegpt_ci": [
+      589266.7424920913,
+      590091.6603510303
+     ],
+     "sharegpt_n": 2,
+     "delta_sharegpt_minus_synthetic": 825.4178471254418,
+     "delta_pct": 0.1401736509384427,
+     "synthetic_mean_in_sharegpt_ci": false
+    },
+    "emc_rate_max": {
+     "synthetic_mean": 1630137.832298156,
+     "synthetic_ci": [
+      1605381.4954534178,
+      1673765.4270438042
+     ],
+     "sharegpt_mean": 1601372.2334754912,
+     "sharegpt_ci": [
+      1596593.5055973022,
+      1606150.9613536801
+     ],
+     "sharegpt_n": 2,
+     "delta_sharegpt_minus_synthetic": -28765.598822664935,
+     "delta_pct": -1.7646114489663374,
+     "synthetic_mean_in_sharegpt_ci": false
+    }
+   },
+   "recompute": {
+    "arrival_ttft_s": {
+     "synthetic_mean": 1.3317704962100834,
+     "synthetic_ci": [
+      1.3313024606090038,
+      1.332318758405745
+     ],
+     "sharegpt_mean": 1.3413695610361174,
+     "sharegpt_ci": [
+      1.331975394161418,
+      1.3507637279108167
+     ],
+     "sharegpt_n": 2,
+     "delta_sharegpt_minus_synthetic": 0.00959906482603401,
+     "delta_pct": 0.7207747020489468,
+     "synthetic_mean_in_sharegpt_ci": false
+    },
+    "bg_tpot_mean": {
+     "synthetic_mean": 0.04000433416492636,
+     "synthetic_ci": [
+      0.03999853395237257,
+      0.04000851457748804
+     ],
+     "sharegpt_mean": 0.040129573802384876,
+     "sharegpt_ci": [
+      0.04002054729343091,
+      0.04023860031133884
+     ],
+     "sharegpt_n": 2,
+     "delta_sharegpt_minus_synthetic": 0.00012523963745851574,
+     "delta_pct": 0.31306517174411336,
+     "synthetic_mean_in_sharegpt_ci": false
+    },
+    "bg_gap_p95_mean": {
+     "synthetic_mean": 0.03173088874318637,
+     "synthetic_ci": [
+      0.031631220399867745,
+      0.03184132862370461
+     ],
+     "sharegpt_mean": 0.03189551655668765,
+     "sharegpt_ci": [
+      0.03165673423791304,
+      0.032134298875462264
+     ],
+     "sharegpt_n": 2,
+     "delta_sharegpt_minus_synthetic": 0.00016462781350128075,
+     "delta_pct": 0.5188250944803163,
+     "synthetic_mean_in_sharegpt_ci": true
+    },
+    "bg_gap_max": {
+     "synthetic_mean": 1.2422913123853505,
+     "synthetic_ci": [
+      1.241820752574131,
+      1.2428034591954202
+     ],
+     "sharegpt_mean": 1.252369804540649,
+     "sharegpt_ci": [
+      1.2456595161929727,
+      1.2590800928883255
+     ],
+     "sharegpt_n": 2,
+     "delta_sharegpt_minus_synthetic": 0.010078492155298546,
+     "delta_pct": 0.8112825111806196,
+     "synthetic_mean_in_sharegpt_ci": false
+    },
+    "mem_dip_mb": {
+     "synthetic_mean": 5.154375000000437,
+     "synthetic_ci": [
+      3.767296875000466,
+      6.151281250000466
+     ],
+     "sharegpt_mean": -26.7754492187496,
+     "sharegpt_ci": [
+      -56.37554687500051,
+      2.8246484375013097
+     ],
+     "sharegpt_n": 2,
+     "delta_sharegpt_minus_synthetic": -31.929824218750035,
+     "delta_pct": -619.4703376985052,
+     "synthetic_mean_in_sharegpt_ci": false
+    },
+    "mem_baseline_mb": {
+     "synthetic_mean": 18152.44890625,
+     "synthetic_ci": [
+      18101.00090625,
+      18246.9937421875
+     ],
+     "sharegpt_mean": 15767.996035156251,
+     "sharegpt_ci": [
+      13725.987734375,
+      17810.0043359375
+     ],
+     "sharegpt_n": 2,
+     "delta_sharegpt_minus_synthetic": -2384.4528710937484,
+     "delta_pct": -13.135709035229768,
+     "synthetic_mean_in_sharegpt_ci": false
+    },
+    "emc_rate_mean": {
+     "synthetic_mean": 434158.2844616071,
+     "synthetic_ci": [
+      433069.4811886634,
+      435009.5932662527
+     ],
+     "sharegpt_mean": 421662.6065506767,
+     "sharegpt_ci": [
+      412188.8858053051,
+      431136.3272960483
+     ],
+     "sharegpt_n": 2,
+     "delta_sharegpt_minus_synthetic": -12495.677910930419,
+     "delta_pct": -2.8781387706159087,
+     "synthetic_mean_in_sharegpt_ci": false
+    },
+    "emc_rate_max": {
+     "synthetic_mean": 1596096.9638336499,
+     "synthetic_ci": [
+      1592392.9862752564,
+      1599950.9803991367
+     ],
+     "sharegpt_mean": 1561975.1787921533,
+     "sharegpt_ci": [
+      1539061.1767578258,
+      1584889.1808264807
+     ],
+     "sharegpt_n": 2,
+     "delta_sharegpt_minus_synthetic": -34121.78504149662,
+     "delta_pct": -2.1378265741161386,
+     "synthetic_mean_in_sharegpt_ci": false
+    }
+   },
+   "host_h2d_direct": {
+    "arrival_ttft_s": {
+     "synthetic_mean": 14.682331346184947,
+     "synthetic_ci": [
+      14.25486183038447,
+      14.96236525280401
+     ],
+     "sharegpt_mean": 14.667230936931446,
+     "sharegpt_ci": [
+      14.667230936931446,
+      14.667230936931446
+     ],
+     "sharegpt_n": 1,
+     "delta_sharegpt_minus_synthetic": -0.015100409253500757,
+     "delta_pct": -0.10284748993506705,
+     "synthetic_mean_in_sharegpt_ci": false
+    },
+    "bg_tpot_mean": {
+     "synthetic_mean": 0.14507597113338916,
+     "synthetic_ci": [
+      0.14171016673029466,
+      0.14728519648614186
+     ],
+     "sharegpt_mean": 0.14559065717717956,
+     "sharegpt_ci": [
+      0.14559065717717956,
+      0.14559065717717956
+     ],
+     "sharegpt_n": 1,
+     "delta_sharegpt_minus_synthetic": 0.0005146860437904022,
+     "delta_pct": 0.3547700144755036,
+     "synthetic_mean_in_sharegpt_ci": false
+    },
+    "bg_gap_p95_mean": {
+     "synthetic_mean": 0.03186923690955155,
+     "synthetic_ci": [
+      0.0317800645600073,
+      0.031956483906833456
+     ],
+     "sharegpt_mean": 0.03211896790890023,
+     "sharegpt_ci": [
+      0.03211896790890023,
+      0.03211896790890023
+     ],
+     "sharegpt_n": 1,
+     "delta_sharegpt_minus_synthetic": 0.00024973099934868376,
+     "delta_pct": 0.7836114810575735,
+     "synthetic_mean_in_sharegpt_ci": false
+    },
+    "bg_gap_max": {
+     "synthetic_mean": 14.623186872550287,
+     "synthetic_ci": [
+      14.195413336809725,
+      14.903544078720733
+     ],
+     "sharegpt_mean": 14.60780565883033,
+     "sharegpt_ci": [
+      14.60780565883033,
+      14.60780565883033
+     ],
+     "sharegpt_n": 1,
+     "delta_sharegpt_minus_synthetic": -0.015381213719956932,
+     "delta_pct": -0.10518373220566281,
+     "synthetic_mean_in_sharegpt_ci": false
+    },
+    "mem_dip_mb": {
+     "synthetic_mean": 7.415054687500378,
+     "synthetic_ci": [
+      3.7627109375003784,
+      10.992382812500727
+     ],
+     "sharegpt_mean": 13.857734375000291,
+     "sharegpt_ci": [
+      13.857734375000291,
+      13.857734375000291
+     ],
+     "sharegpt_n": 1,
+     "delta_sharegpt_minus_synthetic": 6.442679687499913,
+     "delta_pct": 86.88647567711664,
+     "synthetic_mean_in_sharegpt_ci": false
+    },
+    "mem_baseline_mb": {
+     "synthetic_mean": 17530.9884921875,
+     "synthetic_ci": [
+      17465.7028125,
+      17611.6685703125
+     ],
+     "sharegpt_mean": 17134.404609375,
+     "sharegpt_ci": [
+      17134.404609375,
+      17134.404609375
+     ],
+     "sharegpt_n": 1,
+     "delta_sharegpt_minus_synthetic": -396.5838828124979,
+     "delta_pct": -2.2621877995597988,
+     "synthetic_mean_in_sharegpt_ci": false
+    },
+    "emc_rate_mean": {
+     "synthetic_mean": 113971.10206958705,
+     "synthetic_ci": [
+      111388.13276890441,
+      117084.44728218453
+     ],
+     "sharegpt_mean": 110143.04422748646,
+     "sharegpt_ci": [
+      110143.04422748646,
+      110143.04422748646
+     ],
+     "sharegpt_n": 1,
+     "delta_sharegpt_minus_synthetic": -3828.057842100592,
+     "delta_pct": -3.3587968990273556,
+     "synthetic_mean_in_sharegpt_ci": false
+    },
+    "emc_rate_max": {
+     "synthetic_mean": 1671435.7990967077,
+     "synthetic_ci": [
+      1631125.383683677,
+      1704034.6470156729
+     ],
+     "sharegpt_mean": 1685169.4520973244,
+     "sharegpt_ci": [
+      1685169.4520973244,
+      1685169.4520973244
+     ],
+     "sharegpt_n": 1,
+     "delta_sharegpt_minus_synthetic": 13733.653000616701,
+     "delta_pct": 0.821667993950995,
+     "synthetic_mean_in_sharegpt_ci": false
+    }
+   }
+  },
+  "arm_ordering_TTFT": {
+   "synthetic": {
+    "retain": 0.14783089379779996,
+    "host_d2h": 0.14679908582475037,
+    "recompute": 1.3317704962100834,
+    "host_h2d_direct": 14.682331346184947
+   },
+   "sharegpt": {
+    "retain": 0.1487970274174586,
+    "host_d2h": 0.14962166792247444,
+    "recompute": 1.3413695610361174,
+    "host_h2d_direct": 14.667230936931446
+   },
+   "same_direction": true
+  },
+  "ci_honesty": "n=2 per arm (n=1 host_h2d_direct reload: b0 crashed, valid retest is orch b1). Bootstrap 95% CIs over blocks are honestly wide by construction; no 10%-margin equivalence or superiority claims are made from ShareGPT alone.",
+  "caveats": [
+   "recompute b0 mem_dip_mb is negative (-56.4MB: load-min above lead-mean) with lead baseline 13726MB vs clean-b1 17810MB; b0 ran under concurrent-server memory pressure with a mid-cell peer teardown freeing memory. The recompute mem_dip ShareGPT aggregate averages incommensurate baselines and is not interpretable; use per-block values.",
+   "host_d2h b1 lead baseline 13685MB vs b0 17760MB (same concurrent-server cause); dip values stay small-positive (2.45/1.60MB).",
+   "recompute b1 dirty files excluded (device-hit artifact); clean rerun used for all timing comparisons."
+  ],
+  "excluded": {
+   "recompute_b1_dirty": {
+    "files": [
+     "recompute_b1_base_bgonly.json",
+     "recompute_b1_warm_recompute.json",
+     "recompute_b1_meas_recompute.json"
+    ],
+    "why": "timing contamination: duplicate driver ran concurrent cells on port 31503; server log shows 0 flush_cache successes, meas arrival is a device-hit artifact (ttft 0.1388s, cached 6010). Superseded by *_clean.json single-server rerun.",
+    "note_file": "b1-contamination-note.txt"
+   },
+   "host_h2d_direct_b0_meas": {
+    "files": [
+     "host_h2d_direct_b0_meas_spill.json"
+    ],
+    "why": "meas spill arrival comp None + CRASH (abrupt server death, empty server log, no CUDA-illegal signature). Listed, not pooled.",
+    "note_file": "b0-crash-note.txt"
+   },
+   "host_h2d_direct_b0_retry": {
+    "files": [
+     "host_h2d_direct_b0_meas_spill_r1.json",
+     "host_h2d_direct_b0_base_bgonly_retry.json"
+    ],
+    "why": "invalid race artifact: reused orch server torn down mid-cell (arrival http None). Ignored per b0-crash-note addendum.",
+    "note_file": "b0-crash-note.txt"
+   }
+  },
+  "ci_method": "block-mean 95pct percentile bootstrap, B=10000, seed=20260922+n"
+ }
 }

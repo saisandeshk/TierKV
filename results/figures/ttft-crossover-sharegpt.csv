@@ -1,0 +1,9 @@
+source,arm,length,tokens,mean_ttft_s,lo_s,hi_s,n,cached_note
+synthetic,retain,6011,6011,0.147831,0.145345,0.149354,5,device-hit
+synthetic,host_d2h,6011,6011,0.146799,0.145511,0.14883,5,device-hit
+synthetic,recompute,6011,6011,1.33177,1.331302,1.332319,5,cold
+synthetic,host_h2d_direct,6011,6011,14.682331,14.254862,14.962365,5,host-hit-direct
+sharegpt,retain,6011,6011,0.148797,0.14652,0.151074,2,device-hit
+sharegpt,host_d2h,6011,6011,0.149622,0.148363,0.150881,2,device-hit
+sharegpt,recompute,6011,6011,1.34137,1.331975,1.350764,2,cold
+sharegpt,host_h2d_direct,6011,6011,14.667231,14.667231,14.667231,1,host-hit-direct

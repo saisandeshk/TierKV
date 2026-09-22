@@ -4338,5 +4338,143 @@
    "on_disk": true,
    "warm": false
   }
- ]
+ ],
+ "sharegpt": {
+  "meas_cells_complete": [
+   7,
+   8
+  ],
+  "per_arm": {
+   "retain": {
+    "meas_pass": 2,
+    "blocks": [
+     0,
+     1
+    ],
+    "files": [
+     "runs/imported/sharegpt/retain_b0_meas_reload.json",
+     "runs/imported/sharegpt/retain_b1_meas_reload.json"
+    ]
+   },
+   "host_d2h": {
+    "meas_pass": 2,
+    "blocks": [
+     0,
+     1
+    ],
+    "files": [
+     "runs/imported/sharegpt/host_d2h_b0_meas_reload.json",
+     "runs/imported/sharegpt/host_d2h_b1_meas_reload.json"
+    ]
+   },
+   "recompute": {
+    "meas_pass": 2,
+    "blocks": [
+     0,
+     1
+    ],
+    "files": [
+     "runs/imported/sharegpt/recompute_b0_meas_recompute.json",
+     "runs/imported/sharegpt/recompute_b1_meas_recompute_clean.json"
+    ]
+   },
+   "host_h2d_direct": {
+    "meas_pass": 1,
+    "blocks": [
+     1
+    ],
+    "files": [
+     "runs/imported/sharegpt/host_h2d_direct_b1_meas_reload.json",
+     "runs/imported/sharegpt/host_h2d_direct_b1_meas_spill.json",
+     "runs/imported/sharegpt/host_h2d_direct_b1_meas_fill0.json"
+    ]
+   }
+  },
+  "failed": [
+   {
+    "cell": "host_h2d_direct_b0",
+    "arm": "host_h2d_direct",
+    "block": 0,
+    "phase": "meas/spill",
+    "note": "arrival comp None",
+    "file": "runs/imported/sharegpt/host_h2d_direct_b0_meas_spill.json",
+    "server_log": "runs/imported/sharegpt/server-host_h2d_direct-blk0.log"
+   },
+   {
+    "cell": "host_h2d_direct_b0",
+    "arm": "host_h2d_direct",
+    "block": 0,
+    "phase": "CRASH",
+    "note": "health fail",
+    "file": null,
+    "server_log": "runs/imported/sharegpt/server-host_h2d_direct-blk0.log"
+   }
+  ],
+  "superseded_invalid": {
+   "recompute_b1_dirty": {
+    "files": [
+     "recompute_b1_base_bgonly.json",
+     "recompute_b1_warm_recompute.json",
+     "recompute_b1_meas_recompute.json"
+    ],
+    "why": "timing contamination: duplicate driver ran concurrent cells on port 31503; server log shows 0 flush_cache successes, meas arrival is a device-hit artifact (ttft 0.1388s, cached 6010). Superseded by *_clean.json single-server rerun.",
+    "note_file": "b1-contamination-note.txt"
+   },
+   "host_h2d_direct_b0_meas": {
+    "files": [
+     "host_h2d_direct_b0_meas_spill.json"
+    ],
+    "why": "meas spill arrival comp None + CRASH (abrupt server death, empty server log, no CUDA-illegal signature). Listed, not pooled.",
+    "note_file": "b0-crash-note.txt"
+   },
+   "host_h2d_direct_b0_retry": {
+    "files": [
+     "host_h2d_direct_b0_meas_spill_r1.json",
+     "host_h2d_direct_b0_base_bgonly_retry.json"
+    ],
+    "why": "invalid race artifact: reused orch server torn down mid-cell (arrival http None). Ignored per b0-crash-note addendum.",
+    "note_file": "b0-crash-note.txt"
+   }
+  },
+  "provenance": {
+   "dataset": "anon8231489123/ShareGPT_Vicuna_unfiltered",
+   "dataset_rev": "192ab2185289094fc556ec8ce5ce1e8e587154ca",
+   "slice_sha256": "a5e183a201fb0e27781bc54d2172d988a5426792311f2260b249b8805d501053",
+   "slice_convos": 7037,
+   "prefix_sha256": "f8c96bf1210fdaa779df909776f6069fd57dd5ddca791e5aa195d7070f005650",
+   "prefix_tokens": 6011,
+   "prefix_file": "prefix_sharegpt_6011.txt",
+   "blocks": [
+    0,
+    1
+   ],
+   "arms": [
+    "host_d2h",
+    "host_h2d_direct",
+    "recompute",
+    "retain"
+   ],
+   "nvme": "skipped by design",
+   "bg_note": "bg decodes stay synthetic short prompts (same strings as matrix-v1 mx_cell.py); victim-only natural text = recorded asymmetry",
+   "corrections": [
+    {
+     "what": "recompute_b1 timing contamination",
+     "files": [
+      "recompute_b1_base_bgonly.json",
+      "recompute_b1_warm_recompute.json",
+      "recompute_b1_meas_recompute.json"
+     ],
+     "cause": "duplicate driver sh_finish.py ran concurrent cells on port 31503 (~01:10-01:11 IST); server log shows 0 flush_cache successes -> meas device-hit artifact",
+     "remedy": "clean rerun files *_clean.json + server-recompute-blk1-rerun.log",
+     "note_file": "/media/ssd/saisandesh/TierKV/runs/sharegpt/b1-contamination-note.txt"
+    },
+    {
+     "what": "host_h2d_direct b0-meas retry invalid",
+     "cause": "duplicate driver raced orch teardown (arrival http None); BLOCKED-systematic verdict retracted",
+     "remedy": "orch block-1 h2d arm served as valid retest -> complete/PASS, no systematic crash",
+     "note_file": "/media/ssd/saisandesh/TierKV/runs/sharegpt/b0-crash-note.txt"
+    }
+   ]
+  }
+ }
 }
