@@ -1,9 +1,11 @@
 {
+ "rev": 2,
  "frozen_contract": {
   "reps": "blocks (n=5 per arm x length)",
   "ci": "paired-block 95pct percentile bootstrap, B=10000, seed=20260921",
   "margin": "10% of reference mean",
-  "warmups": "excluded from all stats"
+  "warmups": "excluded from all stats",
+  "gating": "aggregates+contrasts require matrix_pass and arrival_ok (arrival http 200, completion_tokens==64); None metric values dropped per block with warn, never pooled"
  },
  "coverage": {
   "meas_cells_complete_non_nvme": [
@@ -17,6 +19,20 @@
    15
   ]
  },
+ "fill_accounting": {
+  "included_in_claim_aggregates": [
+   "retain/host_d2h reload",
+   "recompute recompute",
+   "host_h2d_direct spill+fill0+reload"
+  ],
+  "excluded_characterization_only": {
+   "host_h2d_direct_L2048_meas_fill1_fill2_fill3": "n=5 each",
+   "host_h2d_direct_L4096_meas_fill1": "n=5 (no fill2/fill3 at this length)",
+   "note": "fill1-3 are intermediate eviction-path sub-phases; eviction depth varies by length (L2048 4 fills, L4096 2 fills, L6011 1 fill), so they are listed in coverage (meas_entries 30/20/15) but excluded from claim aggregates; spill+fill0+reload carry the eviction-path characterization."
+  }
+ },
+ "emc_note": "emc_rate_mean/emc_rate_max aggregates are raw audit values only (UTILIZATION proxy: decaying 20ms avg-activity d(mc_all)/dt, emc_hz==204M floor; units are counts/s, never GB/s). Deprecated as claim contrasts; primary interference evidence is the raw mc_all timeline (emc-timeline-sample.csv, Mcounts) + bg_gap_max (h2d 13.8-14.9s vs retain 0.087s).",
+ "joules_note": "joules_window_j = integrated rails power (VDD_GPU_SOC+VDD_CPU_CV+VIN_SYS_5V0 V*I from rails_temps @~1Hz, piecewise-linear p(t)) over t0..t1 per cell; None with reason when unbracketed or gapped (never invented). Aggregates + paired contrasts per arm x length; see joules-windows.csv.",
  "claim_scope": {
   "may_claim": "meas phases of retain/host_d2h/host_h2d_direct/recompute (60/60 arm x length x block meas cells PASS incl. h2d spill+fill+reload sub-phases)",
   "must_exclude": "nvme_spill meas (0/15, reload crash every block); warmups as reps; kernel/page_first H2D (excluded by design; crash-probe 3/3 fatal)"
@@ -183,6 +199,28 @@
    "n": 5,
    "width": 61874.31338019017,
    "label": "retain L2048 reload emc_rate_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "retain_L2048_reload_joules_window_j": {
+   "mean": 155.8114543449988,
+   "lo": 155.20104461906993,
+   "hi": 156.4158598173555,
+   "n": 5,
+   "width": 1.214815198285578,
+   "label": "retain L2048 reload joules_window_j",
    "files": [
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b0_meas_reload.json",
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b1_meas_reload.json",
@@ -404,6 +442,28 @@
     4
    ]
   },
+  "retain_L4096_reload_joules_window_j": {
+   "mean": 158.43592433960447,
+   "lo": 158.13851911686888,
+   "hi": 158.7702729455214,
+   "n": 5,
+   "width": 0.6317538286525348,
+   "label": "retain L4096 reload joules_window_j",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
   "retain_L4096_reload_cached": {
    "dev": [
     4104,
@@ -595,6 +655,28 @@
    "n": 5,
    "width": 4768.744728746591,
    "label": "retain L6011 reload emc_rate_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "retain_L6011_reload_joules_window_j": {
+   "mean": 160.51303589141745,
+   "lo": 159.917895296056,
+   "hi": 160.95027530797336,
+   "n": 5,
+   "width": 1.032380011917354,
+   "label": "retain L6011 reload joules_window_j",
    "files": [
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b0_meas_reload.json",
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b1_meas_reload.json",
@@ -816,6 +898,28 @@
     4
    ]
   },
+  "host_d2h_L2048_reload_joules_window_j": {
+   "mean": 155.86872020899511,
+   "lo": 155.65354194989445,
+   "hi": 156.09671103218315,
+   "n": 5,
+   "width": 0.4431690822887049,
+   "label": "host_d2h L2048 reload joules_window_j",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
   "host_d2h_L2048_reload_cached": {
    "dev": [
     2052,
@@ -1007,6 +1111,28 @@
    "n": 5,
    "width": 6867.800378050888,
    "label": "host_d2h L4096 reload emc_rate_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_d2h_L4096_reload_joules_window_j": {
+   "mean": 158.23105532255207,
+   "lo": 157.85957899635974,
+   "hi": 158.6017757073641,
+   "n": 5,
+   "width": 0.7421967110043681,
+   "label": "host_d2h L4096 reload joules_window_j",
    "files": [
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b0_meas_reload.json",
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b1_meas_reload.json",
@@ -1228,6 +1354,28 @@
     4
    ]
   },
+  "host_d2h_L6011_reload_joules_window_j": {
+   "mean": 160.82010622862086,
+   "lo": 160.61764084161973,
+   "hi": 161.01180989474364,
+   "n": 5,
+   "width": 0.39416905312390327,
+   "label": "host_d2h L6011 reload joules_window_j",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
   "host_d2h_L6011_reload_cached": {
    "dev": [
     6010,
@@ -1419,6 +1567,28 @@
    "n": 5,
    "width": 15272.596547195222,
    "label": "recompute L2048 recompute emc_rate_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b4_meas_recompute.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "recompute_L2048_recompute_joules_window_j": {
+   "mean": 181.74153381723272,
+   "lo": 181.18256113614095,
+   "hi": 182.3391140922991,
+   "n": 5,
+   "width": 1.1565529561581513,
+   "label": "recompute L2048 recompute joules_window_j",
    "files": [
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b0_meas_recompute.json",
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b1_meas_recompute.json",
@@ -1640,6 +1810,28 @@
     4
    ]
   },
+  "recompute_L4096_recompute_joules_window_j": {
+   "mean": 205.65104946015717,
+   "lo": 205.50910394513738,
+   "hi": 205.80429977823965,
+   "n": 5,
+   "width": 0.2951958331022695,
+   "label": "recompute L4096 recompute joules_window_j",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b4_meas_recompute.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
   "recompute_L4096_recompute_cached": {
    "dev": [
     1,
@@ -1831,6 +2023,28 @@
    "n": 5,
    "width": 7557.994123880286,
    "label": "recompute L6011 recompute emc_rate_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b4_meas_recompute.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "recompute_L6011_recompute_joules_window_j": {
+   "mean": 237.03432416864894,
+   "lo": 236.79420874212536,
+   "hi": 237.3906285869586,
+   "n": 5,
+   "width": 0.5964198448332354,
+   "label": "recompute L6011 recompute joules_window_j",
    "files": [
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b0_meas_recompute.json",
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b1_meas_recompute.json",
@@ -2052,6 +2266,28 @@
     4
    ]
   },
+  "host_h2d_direct_L2048_reload_joules_window_j": {
+   "mean": 228.17118507683531,
+   "lo": 223.86816749248948,
+   "hi": 231.55080397446181,
+   "n": 5,
+   "width": 7.682636481972338,
+   "label": "host_h2d_direct L2048 reload joules_window_j",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
   "host_h2d_direct_L2048_reload_cached": {
    "dev": [
     1,
@@ -2243,6 +2479,28 @@
    "n": 5,
    "width": 66970.65744390618,
    "label": "host_h2d_direct L4096 reload emc_rate_max",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L4096_reload_joules_window_j": {
+   "mean": 304.961026434855,
+   "lo": 298.611809209615,
+   "hi": 309.3622424134095,
+   "n": 5,
+   "width": 10.7504332037945,
+   "label": "host_h2d_direct L4096 reload joules_window_j",
    "files": [
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_reload.json",
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_reload.json",
@@ -2464,6 +2722,28 @@
     4
    ]
   },
+  "host_h2d_direct_L6011_reload_joules_window_j": {
+   "mean": 371.3375304778164,
+   "lo": 364.730687918498,
+   "hi": 376.28446129766274,
+   "n": 5,
+   "width": 11.553773379164738,
+   "label": "host_h2d_direct L6011 reload joules_window_j",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
   "host_h2d_direct_L6011_reload_cached": {
    "dev": [
     6,
@@ -2582,6 +2862,28 @@
     4
    ]
   },
+  "host_h2d_direct_L2048_spill_joules_window_j": {
+   "mean": 293.6348934641562,
+   "lo": 291.90834043971154,
+   "hi": 295.1924192441418,
+   "n": 5,
+   "width": 3.284078804430237,
+   "label": "host_h2d_direct L2048 spill joules_window_j",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b2_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b3_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b4_meas_spill.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
   "host_h2d_direct_L2048_fill0_mem_dip_mb": {
    "mean": 5.057281250000233,
    "lo": 3.147882812500029,
@@ -2655,6 +2957,28 @@
    "n": 5,
    "width": 0.0033042660587573602,
    "label": "host_h2d_direct L2048 fill0 bg_tpot_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b2_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b3_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b4_meas_fill0.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L2048_fill0_joules_window_j": {
+   "mean": 262.6278476979195,
+   "lo": 256.5743608477909,
+   "hi": 269.0605445188617,
+   "n": 5,
+   "width": 12.486183671070819,
+   "label": "host_h2d_direct L2048 fill0 joules_window_j",
    "files": [
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_fill0.json",
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_fill0.json",
@@ -2758,6 +3082,28 @@
     4
    ]
   },
+  "host_h2d_direct_L4096_spill_joules_window_j": {
+   "mean": 376.09773229409575,
+   "lo": 374.65884540255786,
+   "hi": 376.9533330547163,
+   "n": 5,
+   "width": 2.294487652158466,
+   "label": "host_h2d_direct L4096 spill joules_window_j",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b2_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b3_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b4_meas_spill.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
   "host_h2d_direct_L4096_fill0_mem_dip_mb": {
    "mean": 6.265343749999738,
    "lo": 4.4263515624996215,
@@ -2831,6 +3177,28 @@
    "n": 5,
    "width": 0.004661266098127115,
    "label": "host_h2d_direct L4096 fill0 bg_tpot_mean",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b2_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b3_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b4_meas_fill0.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "host_h2d_direct_L4096_fill0_joules_window_j": {
+   "mean": 342.0325650702653,
+   "lo": 335.48831275995764,
+   "hi": 348.96748099632833,
+   "n": 5,
+   "width": 13.479168236370697,
+   "label": "host_h2d_direct L4096 fill0 joules_window_j",
    "files": [
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_fill0.json",
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_fill0.json",
@@ -2934,6 +3302,28 @@
     4
    ]
   },
+  "host_h2d_direct_L6011_spill_joules_window_j": {
+   "mean": 472.18384769100555,
+   "lo": 465.9181619789003,
+   "hi": 475.5214262823191,
+   "n": 5,
+   "width": 9.603264303418825,
+   "label": "host_h2d_direct L6011 spill joules_window_j",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_spill.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_spill.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
   "host_h2d_direct_L6011_fill0_mem_dip_mb": {
    "mean": 6.448945312499563,
    "lo": 3.941546874999767,
@@ -3021,6 +3411,28 @@
     3,
     4
    ]
+  },
+  "host_h2d_direct_L6011_fill0_joules_window_j": {
+   "mean": 439.9661487544596,
+   "lo": 433.70278826941023,
+   "hi": 446.32317760362076,
+   "n": 5,
+   "width": 12.620389334210529,
+   "label": "host_h2d_direct L6011 fill0 joules_window_j",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_fill0.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_fill0.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
   }
  },
  "contrasts": {
@@ -3030,10 +3442,10 @@
    "metric": "arrival_ttft_s",
    "paired_diff": {
     "mean": -0.0026380687952041624,
-    "lo": -0.007939025736413896,
+    "lo": -0.007852537953294814,
     "hi": 0.004010639525949955,
     "n": 5,
-    "width": 0.011949665262363851,
+    "width": 0.01186317747924477,
     "blocks": [
      0,
      1,
@@ -3069,10 +3481,10 @@
    "metric": "arrival_ttft_s",
    "paired_diff": {
     "mean": 0.34867264023050665,
-    "lo": 0.34464680603705344,
+    "lo": 0.34456981546245513,
     "hi": 0.3523934294003993,
     "n": 5,
-    "width": 0.0077466233633458614,
+    "width": 0.007823613937944174,
     "blocks": [
      0,
      1,
@@ -3148,9 +3560,9 @@
    "paired_diff": {
     "mean": -7.722173051130654e-06,
     "lo": -1.590005378788728e-05,
-    "hi": 2.074522409939439e-06,
+    "hi": 2.546990785278619e-06,
     "n": 5,
-    "width": 1.797457619782672e-05,
+    "width": 1.84470445731659e-05,
     "blocks": [
      0,
      1,
@@ -3265,9 +3677,9 @@
    "paired_diff": {
     "mean": 0.5799687500002619,
     "lo": -1.115187499998865,
-    "hi": 1.9383046875002037,
+    "hi": 1.9475312499998836,
     "n": 5,
-    "width": 3.0534921874990686,
+    "width": 3.0627187499987487,
     "blocks": [
      0,
      1,
@@ -3336,16 +3748,16 @@
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b4_meas_reload.json"
    ]
   },
-  "emcrate_host_d2h-retain_L2048": {
+  "joules_host_d2h-retain_L2048": {
    "x": "host_d2h L2048",
    "y": "retain L2048",
-   "metric": "emc_rate_mean",
+   "metric": "joules_window_j",
    "paired_diff": {
-    "mean": -1454.6957877859938,
-    "lo": -4968.272496460937,
-    "hi": 1854.4385805607308,
+    "mean": 0.0572658639963322,
+    "lo": -0.5566072923755769,
+    "hi": 0.6203404395172868,
     "n": 5,
-    "width": 6822.711077021668,
+    "width": 1.1769477318928638,
     "blocks": [
      0,
      1,
@@ -3355,10 +3767,10 @@
     ],
     "n_blocks": 5
    },
-   "reference_mean_y": 590354.1966993415,
+   "reference_mean_y": 155.8114543449988,
    "margin_10pct": {
     "verdict": "practically_equivalent",
-    "band": 59035.419669934156
+    "band": 15.58114543449988
    },
    "x_files": [
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L2048_b0_meas_reload.json",
@@ -3375,6 +3787,84 @@
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b4_meas_reload.json"
    ]
   },
+  "joules_recompute-retain_L2048": {
+   "x": "recompute L2048",
+   "y": "retain L2048",
+   "metric": "joules_window_j",
+   "paired_diff": {
+    "mean": 25.930079472233928,
+    "lo": 25.386635699276116,
+    "hi": 26.401346182342685,
+    "n": 5,
+    "width": 1.014710483066569,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 155.8114543449988,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 15.58114543449988
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L2048_b4_meas_recompute.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b4_meas_reload.json"
+   ]
+  },
+  "joules_h2dreload-retain_L2048": {
+   "x": "host_h2d_direct L2048",
+   "y": "retain L2048",
+   "metric": "joules_window_j",
+   "paired_diff": {
+    "mean": 72.35973073183655,
+    "lo": 68.58516872075964,
+    "hi": 75.29468269991726,
+    "n": 5,
+    "width": 6.70951397915762,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 155.8114543449988,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 15.58114543449988
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L2048_b4_meas_reload.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L2048_b4_meas_reload.json"
+   ]
+  },
   "resume_ttft_host_d2h-retain_L4096": {
    "x": "host_d2h L4096",
    "y": "retain L4096",
@@ -3382,9 +3872,9 @@
    "paired_diff": {
     "mean": -0.001098539400845766,
     "lo": -0.004370816005393863,
-    "hi": 0.003200562996789813,
+    "hi": 0.003492147591896355,
     "n": 5,
-    "width": 0.0075713790021836765,
+    "width": 0.007862963597290218,
     "blocks": [
      0,
      1,
@@ -3577,9 +4067,9 @@
    "paired_diff": {
     "mean": 0.07748407543931105,
     "lo": 0.07423063066492855,
-    "hi": 0.07937043507200277,
+    "hi": 0.07938757753755905,
     "n": 5,
-    "width": 0.005139804407074219,
+    "width": 0.005156946872630505,
     "blocks": [
      0,
      1,
@@ -3616,9 +4106,9 @@
    "paired_diff": {
     "mean": 1.4840624999989813,
     "lo": -0.471882812500553,
-    "hi": 3.4992265624990977,
+    "hi": 3.5989843749986905,
     "n": 5,
-    "width": 3.9711093749996507,
+    "width": 4.0708671874992435,
     "blocks": [
      0,
      1,
@@ -3687,16 +4177,16 @@
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b4_meas_reload.json"
    ]
   },
-  "emcrate_host_d2h-retain_L4096": {
+  "joules_host_d2h-retain_L4096": {
    "x": "host_d2h L4096",
    "y": "retain L4096",
-   "metric": "emc_rate_mean",
+   "metric": "joules_window_j",
    "paired_diff": {
-    "mean": -219.1869760192232,
-    "lo": -3612.0987766516396,
-    "hi": 2507.469926798646,
+    "mean": -0.2048690170523912,
+    "lo": -0.4731494502494854,
+    "hi": 0.04213019985846245,
     "n": 5,
-    "width": 6119.568703450286,
+    "width": 0.5152796501079479,
     "blocks": [
      0,
      1,
@@ -3706,10 +4196,10 @@
     ],
     "n_blocks": 5
    },
-   "reference_mean_y": 582426.2347099807,
+   "reference_mean_y": 158.43592433960447,
    "margin_10pct": {
     "verdict": "practically_equivalent",
-    "band": 58242.62347099807
+    "band": 15.843592433960447
    },
    "x_files": [
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b0_meas_reload.json",
@@ -3717,6 +4207,84 @@
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b2_meas_reload.json",
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b3_meas_reload.json",
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L4096_b4_meas_reload.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b4_meas_reload.json"
+   ]
+  },
+  "joules_recompute-retain_L4096": {
+   "x": "recompute L4096",
+   "y": "retain L4096",
+   "metric": "joules_window_j",
+   "paired_diff": {
+    "mean": 47.21512512055271,
+    "lo": 46.99700643066706,
+    "hi": 47.43324381043838,
+    "n": 5,
+    "width": 0.4362373797713204,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 158.43592433960447,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 15.843592433960447
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L4096_b4_meas_recompute.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b4_meas_reload.json"
+   ]
+  },
+  "joules_h2dreload-retain_L4096": {
+   "x": "host_h2d_direct L4096",
+   "y": "retain L4096",
+   "metric": "joules_window_j",
+   "paired_diff": {
+    "mean": 146.5251020952506,
+    "lo": 140.15925657285874,
+    "hi": 151.1234674639265,
+    "n": 5,
+    "width": 10.96421089106775,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 158.43592433960447,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 15.843592433960447
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L4096_b4_meas_reload.json"
    ],
    "y_files": [
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L4096_b0_meas_reload.json",
@@ -3772,9 +4340,9 @@
    "paired_diff": {
     "mean": 1.1839396024122835,
     "lo": 1.1825409041950479,
-    "hi": 1.1860845704562961,
+    "hi": 1.1860635076183825,
     "n": 5,
-    "width": 0.003543666261248246,
+    "width": 0.003522603423334658,
     "blocks": [
      0,
      1,
@@ -3850,9 +4418,9 @@
    "paired_diff": {
     "mean": -4.239179611970068e-06,
     "lo": -1.8222669394336866e-05,
-    "hi": 1.6117635170201373e-05,
+    "hi": 1.5113374913168498e-05,
     "n": 5,
-    "width": 3.4340304564538235e-05,
+    "width": 3.3336044307505365e-05,
     "blocks": [
      0,
      1,
@@ -4005,10 +4573,10 @@
    "metric": "mem_dip_mb",
    "paired_diff": {
     "mean": 4.034343750000699,
-    "lo": 1.125312500000291,
+    "lo": 1.0884921875003783,
     "hi": 6.706851562500378,
     "n": 5,
-    "width": 5.581539062500087,
+    "width": 5.618359375,
     "blocks": [
      0,
      1,
@@ -4038,16 +4606,16 @@
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b4_meas_reload.json"
    ]
   },
-  "emcrate_host_d2h-retain_L6011": {
+  "joules_host_d2h-retain_L6011": {
    "x": "host_d2h L6011",
    "y": "retain L6011",
-   "metric": "emc_rate_mean",
+   "metric": "joules_window_j",
    "paired_diff": {
-    "mean": -1707.9220096925042,
-    "lo": -6307.677340782806,
-    "hi": 2891.833321397798,
+    "mean": 0.3070703372034302,
+    "lo": -0.12141095247355907,
+    "hi": 0.9722110764706826,
     "n": 5,
-    "width": 9199.510662180604,
+    "width": 1.0936220289442418,
     "blocks": [
      0,
      1,
@@ -4057,10 +4625,10 @@
     ],
     "n_blocks": 5
    },
-   "reference_mean_y": 590561.7055841277,
+   "reference_mean_y": 160.51303589141745,
    "margin_10pct": {
     "verdict": "practically_equivalent",
-    "band": 59056.17055841277
+    "band": 16.051303589141746
    },
    "x_files": [
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b0_meas_reload.json",
@@ -4068,6 +4636,84 @@
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b2_meas_reload.json",
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b3_meas_reload.json",
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_d2h_L6011_b4_meas_reload.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b4_meas_reload.json"
+   ]
+  },
+  "joules_recompute-retain_L6011": {
+   "x": "recompute L6011",
+   "y": "retain L6011",
+   "metric": "joules_window_j",
+   "paired_diff": {
+    "mean": 76.5212882772315,
+    "lo": 76.02470246442604,
+    "hi": 77.12865625602976,
+    "n": 5,
+    "width": 1.1039537916037148,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 160.51303589141745,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 16.051303589141746
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b0_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b1_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b2_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b3_meas_recompute.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/recompute_L6011_b4_meas_recompute.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b4_meas_reload.json"
+   ]
+  },
+  "joules_h2dreload-retain_L6011": {
+   "x": "host_h2d_direct L6011",
+   "y": "retain L6011",
+   "metric": "joules_window_j",
+   "paired_diff": {
+    "mean": 210.824494586399,
+    "lo": 204.81003576266977,
+    "hi": 215.2952597543936,
+    "n": 5,
+    "width": 10.485223991723842,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "reference_mean_y": 160.51303589141745,
+   "margin_10pct": {
+    "verdict": "clears_margin_positive",
+    "band": 16.051303589141746
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/host_h2d_direct_L6011_b4_meas_reload.json"
    ],
    "y_files": [
     "/home/saisandeshk/Study/ISP/TierKV/runs/imported/matrix-v1/retain_L6011_b0_meas_reload.json",
@@ -4823,7 +5469,9 @@
   },
   "slope_units": "s_per_token",
   "cross_resume_vs_recompute_tok": 426.4997781129025,
-  "cross_hostrestore_vs_recompute_tok": -3.19632609449017,
+  "cross_hostrestore_vs_recompute_tok": null,
+  "cross_hostrestore_vs_recompute_note": "no-crossover (OLS crossing at negative tokens): host-restore TTFT lies above recompute over the whole measured 2048..6011 range; reported as None, never as a negative token count.",
+  "cross_resume_vs_recompute_note": "426-tok crossing is a BACKWARD extrapolation below the measured range (min fitted x = 2053 tokens): resume and recompute are not measured there; do not project NVMe or short-prefix crossovers from it.",
   "sweepA_points": [
    {
     "length": 2048,
@@ -5106,7 +5754,7 @@
   {
    "contrast": "memdip_host_d2h-retain_L2048",
    "verdict": "underpowered_wide_ci",
-   "ci_width": 3.0534921874990686,
+   "ci_width": 3.0627187499987487,
    "band": 0.4285218750000058,
    "n": 5
   },
@@ -5120,7 +5768,7 @@
   {
    "contrast": "memdip_host_d2h-retain_L4096",
    "verdict": "underpowered_wide_ci",
-   "ci_width": 3.9711093749996507,
+   "ci_width": 4.0708671874992435,
    "band": 0.33298359375003206,
    "n": 5
   },
@@ -5199,7 +5847,6 @@
    "n": null
   }
  ],
- "rev": 3,
  "sharegpt": {
   "provenance": {
    "dataset": "anon8231489123/ShareGPT_Vicuna_unfiltered",
@@ -5421,6 +6068,26 @@
       1
      ]
     },
+    "joules_window_j": {
+     "mean": 159.80424668646134,
+     "lo": 159.0733865142922,
+     "hi": 160.5351068586305,
+     "n": 2,
+     "width": 1.4617203443383175,
+     "label": "sharegpt retain joules_window_j",
+     "values_each": [
+      159.0733865142922,
+      160.5351068586305
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/retain_b0_meas_reload.json",
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/retain_b1_meas_reload.json"
+     ],
+     "blocks": [
+      0,
+      1
+     ]
+    },
     "cached": {
      "dev": [
       6010,
@@ -5591,6 +6258,26 @@
      "values_each": [
       1606150.9613536801,
       1596593.5055973022
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_d2h_b0_meas_reload.json",
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_d2h_b1_meas_reload.json"
+     ],
+     "blocks": [
+      0,
+      1
+     ]
+    },
+    "joules_window_j": {
+     "mean": 160.10025385551603,
+     "lo": 159.96513726544543,
+     "hi": 160.2353704455866,
+     "n": 2,
+     "width": 0.2702331801411617,
+     "label": "sharegpt host_d2h joules_window_j",
+     "values_each": [
+      159.96513726544543,
+      160.2353704455866
      ],
      "files": [
       "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_d2h_b0_meas_reload.json",
@@ -5781,6 +6468,26 @@
       1
      ]
     },
+    "joules_window_j": {
+     "mean": 237.6148188636492,
+     "lo": 236.63183287047394,
+     "hi": 238.5978048568244,
+     "n": 2,
+     "width": 1.9659719863504677,
+     "label": "sharegpt recompute joules_window_j",
+     "values_each": [
+      238.5978048568244,
+      236.63183287047394
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/recompute_b0_meas_recompute.json",
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/recompute_b1_meas_recompute_clean.json"
+     ],
+     "blocks": [
+      0,
+      1
+     ]
+    },
     "cached": {
      "dev": [
       1,
@@ -5805,10 +6512,10 @@
     ],
     "arrival_ttft_s": {
      "mean": 14.667230936931446,
-     "lo": 14.667230936931446,
-     "hi": 14.667230936931446,
+     "lo": null,
+     "hi": null,
      "n": 1,
-     "width": 0.0,
+     "width": null,
      "label": "sharegpt host_h2d_direct arrival_ttft_s",
      "values_each": [
       14.667230936931446
@@ -5822,10 +6529,10 @@
     },
     "bg_tpot_mean": {
      "mean": 0.14559065717717956,
-     "lo": 0.14559065717717956,
-     "hi": 0.14559065717717956,
+     "lo": null,
+     "hi": null,
      "n": 1,
-     "width": 0.0,
+     "width": null,
      "label": "sharegpt host_h2d_direct bg_tpot_mean",
      "values_each": [
       0.14559065717717956
@@ -5839,10 +6546,10 @@
     },
     "bg_gap_p95_mean": {
      "mean": 0.03211896790890023,
-     "lo": 0.03211896790890023,
-     "hi": 0.03211896790890023,
+     "lo": null,
+     "hi": null,
      "n": 1,
-     "width": 0.0,
+     "width": null,
      "label": "sharegpt host_h2d_direct bg_gap_p95_mean",
      "values_each": [
       0.03211896790890023
@@ -5856,10 +6563,10 @@
     },
     "bg_gap_max": {
      "mean": 14.60780565883033,
-     "lo": 14.60780565883033,
-     "hi": 14.60780565883033,
+     "lo": null,
+     "hi": null,
      "n": 1,
-     "width": 0.0,
+     "width": null,
      "label": "sharegpt host_h2d_direct bg_gap_max",
      "values_each": [
       14.60780565883033
@@ -5873,10 +6580,10 @@
     },
     "mem_dip_mb": {
      "mean": 13.857734375000291,
-     "lo": 13.857734375000291,
-     "hi": 13.857734375000291,
+     "lo": null,
+     "hi": null,
      "n": 1,
-     "width": 0.0,
+     "width": null,
      "label": "sharegpt host_h2d_direct mem_dip_mb",
      "values_each": [
       13.857734375000291
@@ -5890,10 +6597,10 @@
     },
     "mem_baseline_mb": {
      "mean": 17134.404609375,
-     "lo": 17134.404609375,
-     "hi": 17134.404609375,
+     "lo": null,
+     "hi": null,
      "n": 1,
-     "width": 0.0,
+     "width": null,
      "label": "sharegpt host_h2d_direct mem_baseline_mb",
      "values_each": [
       17134.404609375
@@ -5907,10 +6614,10 @@
     },
     "emc_rate_mean": {
      "mean": 110143.04422748646,
-     "lo": 110143.04422748646,
-     "hi": 110143.04422748646,
+     "lo": null,
+     "hi": null,
      "n": 1,
-     "width": 0.0,
+     "width": null,
      "label": "sharegpt host_h2d_direct emc_rate_mean",
      "values_each": [
       110143.04422748646
@@ -5924,13 +6631,30 @@
     },
     "emc_rate_max": {
      "mean": 1685169.4520973244,
-     "lo": 1685169.4520973244,
-     "hi": 1685169.4520973244,
+     "lo": null,
+     "hi": null,
      "n": 1,
-     "width": 0.0,
+     "width": null,
      "label": "sharegpt host_h2d_direct emc_rate_max",
      "values_each": [
       1685169.4520973244
+     ],
+     "files": [
+      "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_h2d_direct_b1_meas_reload.json"
+     ],
+     "blocks": [
+      1
+     ]
+    },
+    "joules_window_j": {
+     "mean": 369.76864674821684,
+     "lo": null,
+     "hi": null,
+     "n": 1,
+     "width": null,
+     "label": "sharegpt host_h2d_direct joules_window_j",
+     "values_each": [
+      369.76864674821684
      ],
      "files": [
       "/home/saisandeshk/Study/ISP/TierKV/runs/imported/sharegpt/host_h2d_direct_b1_meas_reload.json"
@@ -5951,10 +6675,10 @@
    "host_h2d_direct_spill": {
     "arrival_ttft_s": {
      "mean": 15.143910698825493,
-     "lo": 15.143910698825493,
-     "hi": 15.143910698825493,
+     "lo": null,
+     "hi": null,
      "n": 1,
-     "width": 0.0,
+     "width": null,
      "label": "sharegpt host_h2d_direct spill arrival_ttft_s",
      "values_each": [
       15.143910698825493
@@ -5968,10 +6692,10 @@
     },
     "bg_tpot_mean": {
      "mean": 0.15960358047269388,
-     "lo": 0.15960358047269388,
-     "hi": 0.15960358047269388,
+     "lo": null,
+     "hi": null,
      "n": 1,
-     "width": 0.0,
+     "width": null,
      "label": "sharegpt host_h2d_direct spill bg_tpot_mean",
      "values_each": [
       0.15960358047269388
@@ -5985,10 +6709,10 @@
     },
     "mem_dip_mb": {
      "mean": 11.856953124999563,
-     "lo": 11.856953124999563,
-     "hi": 11.856953124999563,
+     "lo": null,
+     "hi": null,
      "n": 1,
-     "width": 0.0,
+     "width": null,
      "label": "sharegpt host_h2d_direct spill mem_dip_mb",
      "values_each": [
       11.856953124999563
@@ -6002,10 +6726,10 @@
     },
     "mem_baseline_mb": {
      "mean": 17126.677265625,
-     "lo": 17126.677265625,
-     "hi": 17126.677265625,
+     "lo": null,
+     "hi": null,
      "n": 1,
-     "width": 0.0,
+     "width": null,
      "label": "sharegpt host_h2d_direct spill mem_baseline_mb",
      "values_each": [
       17126.677265625
@@ -6021,10 +6745,10 @@
    "host_h2d_direct_fill0": {
     "arrival_ttft_s": {
      "mean": 15.139688583090901,
-     "lo": 15.139688583090901,
-     "hi": 15.139688583090901,
+     "lo": null,
+     "hi": null,
      "n": 1,
-     "width": 0.0,
+     "width": null,
      "label": "sharegpt host_h2d_direct fill0 arrival_ttft_s",
      "values_each": [
       15.139688583090901
@@ -6038,10 +6762,10 @@
     },
     "bg_tpot_mean": {
      "mean": 0.1494661613681911,
-     "lo": 0.1494661613681911,
-     "hi": 0.1494661613681911,
+     "lo": null,
+     "hi": null,
      "n": 1,
-     "width": 0.0,
+     "width": null,
      "label": "sharegpt host_h2d_direct fill0 bg_tpot_mean",
      "values_each": [
       0.1494661613681911
@@ -6055,10 +6779,10 @@
     },
     "mem_dip_mb": {
      "mean": 9.497695312500582,
-     "lo": 9.497695312500582,
-     "hi": 9.497695312500582,
+     "lo": null,
+     "hi": null,
      "n": 1,
-     "width": 0.0,
+     "width": null,
      "label": "sharegpt host_h2d_direct fill0 mem_dip_mb",
      "values_each": [
       9.497695312500582
@@ -6072,10 +6796,10 @@
     },
     "mem_baseline_mb": {
      "mean": 17127.6305078125,
-     "lo": 17127.6305078125,
-     "hi": 17127.6305078125,
+     "lo": null,
+     "hi": null,
      "n": 1,
-     "width": 0.0,
+     "width": null,
      "label": "sharegpt host_h2d_direct fill0 mem_baseline_mb",
      "values_each": [
       17127.6305078125
@@ -6105,7 +6829,8 @@
      "sharegpt_n": 2,
      "delta_sharegpt_minus_synthetic": 0.0009661336196586379,
      "delta_pct": 0.6535397269396852,
-     "synthetic_mean_in_sharegpt_ci": true
+     "synthetic_mean_in_sharegpt_ci": true,
+     "ci_overlap_flag": "ok"
     },
     "bg_tpot_mean": {
      "synthetic_mean": 0.030622044967773453,
@@ -6121,7 +6846,8 @@
      "sharegpt_n": 2,
      "delta_sharegpt_minus_synthetic": -7.064169956605415e-06,
      "delta_pct": -0.023068903347375155,
-     "synthetic_mean_in_sharegpt_ci": false
+     "synthetic_mean_in_sharegpt_ci": false,
+     "ci_overlap_flag": "ok"
     },
     "bg_gap_p95_mean": {
      "synthetic_mean": 0.03176282625645399,
@@ -6137,7 +6863,8 @@
      "sharegpt_n": 2,
      "delta_sharegpt_minus_synthetic": 0.00010599137749522924,
      "delta_pct": 0.33369630472884165,
-     "synthetic_mean_in_sharegpt_ci": false
+     "synthetic_mean_in_sharegpt_ci": false,
+     "ci_overlap_flag": "ok"
     },
     "bg_gap_max": {
      "synthetic_mean": 0.08761370682623237,
@@ -6153,7 +6880,8 @@
      "sharegpt_n": 2,
      "delta_sharegpt_minus_synthetic": -0.00017142132855951786,
      "delta_pct": -0.19565583373786977,
-     "synthetic_mean_in_sharegpt_ci": true
+     "synthetic_mean_in_sharegpt_ci": true,
+     "ci_overlap_flag": "ok"
     },
     "mem_dip_mb": {
      "synthetic_mean": 3.3807109374996798,
@@ -6169,7 +6897,8 @@
      "sharegpt_n": 2,
      "delta_sharegpt_minus_synthetic": 0.7159296874993744,
      "delta_pct": 21.17689742586702,
-     "synthetic_mean_in_sharegpt_ci": false
+     "synthetic_mean_in_sharegpt_ci": false,
+     "ci_overlap_flag": "ok"
     },
     "mem_baseline_mb": {
      "synthetic_mean": 18322.9174296875,
@@ -6185,7 +6914,8 @@
      "sharegpt_n": 2,
      "delta_sharegpt_minus_synthetic": -193.04735156249808,
      "delta_pct": -1.053584137478649,
-     "synthetic_mean_in_sharegpt_ci": true
+     "synthetic_mean_in_sharegpt_ci": true,
+     "ci_overlap_flag": "ok"
     },
     "emc_rate_mean": {
      "synthetic_mean": 590561.7055841277,
@@ -6201,7 +6931,8 @@
      "sharegpt_n": 2,
      "delta_sharegpt_minus_synthetic": -3135.8917911672033,
      "delta_pct": -0.5310015467503901,
-     "synthetic_mean_in_sharegpt_ci": false
+     "synthetic_mean_in_sharegpt_ci": false,
+     "ci_overlap_flag": "ok"
     },
     "emc_rate_max": {
      "synthetic_mean": 1608030.1795935738,
@@ -6217,7 +6948,25 @@
      "sharegpt_n": 2,
      "delta_sharegpt_minus_synthetic": 51.057643928332254,
      "delta_pct": 0.0031751670196411967,
-     "synthetic_mean_in_sharegpt_ci": true
+     "synthetic_mean_in_sharegpt_ci": true,
+     "ci_overlap_flag": "ok"
+    },
+    "joules_window_j": {
+     "synthetic_mean": 160.51303589141745,
+     "synthetic_ci": [
+      159.917895296056,
+      160.95027530797336
+     ],
+     "sharegpt_mean": 159.80424668646134,
+     "sharegpt_ci": [
+      159.0733865142922,
+      160.5351068586305
+     ],
+     "sharegpt_n": 2,
+     "delta_sharegpt_minus_synthetic": -0.7087892049561049,
+     "delta_pct": -0.4415773466745597,
+     "synthetic_mean_in_sharegpt_ci": true,
+     "ci_overlap_flag": "ok"
     }
    },
    "host_d2h": {
@@ -6235,7 +6984,8 @@
      "sharegpt_n": 2,
      "delta_sharegpt_minus_synthetic": 0.002822582097724069,
      "delta_pct": 1.9227518222379696,
-     "synthetic_mean_in_sharegpt_ci": false
+     "synthetic_mean_in_sharegpt_ci": false,
+     "ci_overlap_flag": "ok"
     },
     "bg_tpot_mean": {
      "synthetic_mean": 0.030617805788161485,
@@ -6251,7 +7001,8 @@
      "sharegpt_n": 2,
      "delta_sharegpt_minus_synthetic": 2.985508190320868e-05,
      "delta_pct": 0.09750888783399457,
-     "synthetic_mean_in_sharegpt_ci": true
+     "synthetic_mean_in_sharegpt_ci": true,
+     "ci_overlap_flag": "ok"
     },
     "bg_gap_p95_mean": {
      "synthetic_mean": 0.031869717949302864,
@@ -6267,7 +7018,8 @@
      "sharegpt_n": 2,
      "delta_sharegpt_minus_synthetic": -0.00021350807510316094,
      "delta_pct": -0.6699402719622479,
-     "synthetic_mean_in_sharegpt_ci": false
+     "synthetic_mean_in_sharegpt_ci": false,
+     "ci_overlap_flag": "ok"
     },
     "bg_gap_max": {
      "synthetic_mean": 0.08700426139403135,
@@ -6283,7 +7035,8 @@
      "sharegpt_n": 2,
      "delta_sharegpt_minus_synthetic": 0.0003538895864039632,
      "delta_pct": 0.40674971631704543,
-     "synthetic_mean_in_sharegpt_ci": false
+     "synthetic_mean_in_sharegpt_ci": false,
+     "ci_overlap_flag": "ok"
     },
     "mem_dip_mb": {
      "synthetic_mean": 3.305851562499447,
@@ -6299,7 +7052,8 @@
      "sharegpt_n": 2,
      "delta_sharegpt_minus_synthetic": -1.281652343748283,
      "delta_pct": -38.76920422825238,
-     "synthetic_mean_in_sharegpt_ci": false
+     "synthetic_mean_in_sharegpt_ci": false,
+     "ci_overlap_flag": "ok"
     },
     "mem_baseline_mb": {
      "synthetic_mean": 17646.133976562498,
@@ -6315,7 +7069,8 @@
      "sharegpt_n": 2,
      "delta_sharegpt_minus_synthetic": -1923.8539179687468,
      "delta_pct": -10.902410241948743,
-     "synthetic_mean_in_sharegpt_ci": true
+     "synthetic_mean_in_sharegpt_ci": true,
+     "ci_overlap_flag": "ok"
     },
     "emc_rate_mean": {
      "synthetic_mean": 588853.7835744353,
@@ -6331,7 +7086,8 @@
      "sharegpt_n": 2,
      "delta_sharegpt_minus_synthetic": 825.4178471254418,
      "delta_pct": 0.1401736509384427,
-     "synthetic_mean_in_sharegpt_ci": false
+     "synthetic_mean_in_sharegpt_ci": false,
+     "ci_overlap_flag": "ok"
     },
     "emc_rate_max": {
      "synthetic_mean": 1630137.832298156,
@@ -6347,7 +7103,25 @@
      "sharegpt_n": 2,
      "delta_sharegpt_minus_synthetic": -28765.598822664935,
      "delta_pct": -1.7646114489663374,
-     "synthetic_mean_in_sharegpt_ci": false
+     "synthetic_mean_in_sharegpt_ci": false,
+     "ci_overlap_flag": "ok"
+    },
+    "joules_window_j": {
+     "synthetic_mean": 160.82010622862086,
+     "synthetic_ci": [
+      160.61764084161973,
+      161.01180989474364
+     ],
+     "sharegpt_mean": 160.10025385551603,
+     "sharegpt_ci": [
+      159.96513726544543,
+      160.2353704455866
+     ],
+     "sharegpt_n": 2,
+     "delta_sharegpt_minus_synthetic": -0.7198523731048283,
+     "delta_pct": -0.447613417243669,
+     "synthetic_mean_in_sharegpt_ci": false,
+     "ci_overlap_flag": "ok"
     }
    },
    "recompute": {
@@ -6365,7 +7139,8 @@
      "sharegpt_n": 2,
      "delta_sharegpt_minus_synthetic": 0.00959906482603401,
      "delta_pct": 0.7207747020489468,
-     "synthetic_mean_in_sharegpt_ci": false
+     "synthetic_mean_in_sharegpt_ci": false,
+     "ci_overlap_flag": "ok"
     },
     "bg_tpot_mean": {
      "synthetic_mean": 0.04000433416492636,
@@ -6381,7 +7156,8 @@
      "sharegpt_n": 2,
      "delta_sharegpt_minus_synthetic": 0.00012523963745851574,
      "delta_pct": 0.31306517174411336,
-     "synthetic_mean_in_sharegpt_ci": false
+     "synthetic_mean_in_sharegpt_ci": false,
+     "ci_overlap_flag": "ok"
     },
     "bg_gap_p95_mean": {
      "synthetic_mean": 0.03173088874318637,
@@ -6397,7 +7173,8 @@
      "sharegpt_n": 2,
      "delta_sharegpt_minus_synthetic": 0.00016462781350128075,
      "delta_pct": 0.5188250944803163,
-     "synthetic_mean_in_sharegpt_ci": true
+     "synthetic_mean_in_sharegpt_ci": true,
+     "ci_overlap_flag": "ok"
     },
     "bg_gap_max": {
      "synthetic_mean": 1.2422913123853505,
@@ -6413,7 +7190,8 @@
      "sharegpt_n": 2,
      "delta_sharegpt_minus_synthetic": 0.010078492155298546,
      "delta_pct": 0.8112825111806196,
-     "synthetic_mean_in_sharegpt_ci": false
+     "synthetic_mean_in_sharegpt_ci": false,
+     "ci_overlap_flag": "ok"
     },
     "mem_dip_mb": {
      "synthetic_mean": 5.154375000000437,
@@ -6429,7 +7207,8 @@
      "sharegpt_n": 2,
      "delta_sharegpt_minus_synthetic": -31.929824218750035,
      "delta_pct": -619.4703376985052,
-     "synthetic_mean_in_sharegpt_ci": false
+     "synthetic_mean_in_sharegpt_ci": false,
+     "ci_overlap_flag": "ok"
     },
     "mem_baseline_mb": {
      "synthetic_mean": 18152.44890625,
@@ -6445,7 +7224,8 @@
      "sharegpt_n": 2,
      "delta_sharegpt_minus_synthetic": -2384.4528710937484,
      "delta_pct": -13.135709035229768,
-     "synthetic_mean_in_sharegpt_ci": false
+     "synthetic_mean_in_sharegpt_ci": false,
+     "ci_overlap_flag": "ok"
     },
     "emc_rate_mean": {
      "synthetic_mean": 434158.2844616071,
@@ -6461,7 +7241,8 @@
      "sharegpt_n": 2,
      "delta_sharegpt_minus_synthetic": -12495.677910930419,
      "delta_pct": -2.8781387706159087,
-     "synthetic_mean_in_sharegpt_ci": false
+     "synthetic_mean_in_sharegpt_ci": false,
+     "ci_overlap_flag": "ok"
     },
     "emc_rate_max": {
      "synthetic_mean": 1596096.9638336499,
@@ -6477,7 +7258,25 @@
      "sharegpt_n": 2,
      "delta_sharegpt_minus_synthetic": -34121.78504149662,
      "delta_pct": -2.1378265741161386,
-     "synthetic_mean_in_sharegpt_ci": false
+     "synthetic_mean_in_sharegpt_ci": false,
+     "ci_overlap_flag": "ok"
+    },
+    "joules_window_j": {
+     "synthetic_mean": 237.03432416864894,
+     "synthetic_ci": [
+      236.79420874212536,
+      237.3906285869586
+     ],
+     "sharegpt_mean": 237.6148188636492,
+     "sharegpt_ci": [
+      236.63183287047394,
+      238.5978048568244
+     ],
+     "sharegpt_n": 2,
+     "delta_sharegpt_minus_synthetic": 0.5804946950002545,
+     "delta_pct": 0.24489900230113296,
+     "synthetic_mean_in_sharegpt_ci": true,
+     "ci_overlap_flag": "ok"
     }
    },
    "host_h2d_direct": {
@@ -6489,13 +7288,14 @@
      ],
      "sharegpt_mean": 14.667230936931446,
      "sharegpt_ci": [
-      14.667230936931446,
-      14.667230936931446
+      null,
+      null
      ],
      "sharegpt_n": 1,
      "delta_sharegpt_minus_synthetic": -0.015100409253500757,
      "delta_pct": -0.10284748993506705,
-     "synthetic_mean_in_sharegpt_ci": false
+     "synthetic_mean_in_sharegpt_ci": null,
+     "ci_overlap_flag": "indeterminate_n1"
     },
     "bg_tpot_mean": {
      "synthetic_mean": 0.14507597113338916,
@@ -6505,13 +7305,14 @@
      ],
      "sharegpt_mean": 0.14559065717717956,
      "sharegpt_ci": [
-      0.14559065717717956,
-      0.14559065717717956
+      null,
+      null
      ],
      "sharegpt_n": 1,
      "delta_sharegpt_minus_synthetic": 0.0005146860437904022,
      "delta_pct": 0.3547700144755036,
-     "synthetic_mean_in_sharegpt_ci": false
+     "synthetic_mean_in_sharegpt_ci": null,
+     "ci_overlap_flag": "indeterminate_n1"
     },
     "bg_gap_p95_mean": {
      "synthetic_mean": 0.03186923690955155,
@@ -6521,13 +7322,14 @@
      ],
      "sharegpt_mean": 0.03211896790890023,
      "sharegpt_ci": [
-      0.03211896790890023,
-      0.03211896790890023
+      null,
+      null
      ],
      "sharegpt_n": 1,
      "delta_sharegpt_minus_synthetic": 0.00024973099934868376,
      "delta_pct": 0.7836114810575735,
-     "synthetic_mean_in_sharegpt_ci": false
+     "synthetic_mean_in_sharegpt_ci": null,
+     "ci_overlap_flag": "indeterminate_n1"
     },
     "bg_gap_max": {
      "synthetic_mean": 14.623186872550287,
@@ -6537,13 +7339,14 @@
      ],
      "sharegpt_mean": 14.60780565883033,
      "sharegpt_ci": [
-      14.60780565883033,
-      14.60780565883033
+      null,
+      null
      ],
      "sharegpt_n": 1,
      "delta_sharegpt_minus_synthetic": -0.015381213719956932,
      "delta_pct": -0.10518373220566281,
-     "synthetic_mean_in_sharegpt_ci": false
+     "synthetic_mean_in_sharegpt_ci": null,
+     "ci_overlap_flag": "indeterminate_n1"
     },
     "mem_dip_mb": {
      "synthetic_mean": 7.415054687500378,
@@ -6553,13 +7356,14 @@
      ],
      "sharegpt_mean": 13.857734375000291,
      "sharegpt_ci": [
-      13.857734375000291,
-      13.857734375000291
+      null,
+      null
      ],
      "sharegpt_n": 1,
      "delta_sharegpt_minus_synthetic": 6.442679687499913,
      "delta_pct": 86.88647567711664,
-     "synthetic_mean_in_sharegpt_ci": false
+     "synthetic_mean_in_sharegpt_ci": null,
+     "ci_overlap_flag": "indeterminate_n1"
     },
     "mem_baseline_mb": {
      "synthetic_mean": 17530.9884921875,
@@ -6569,13 +7373,14 @@
      ],
      "sharegpt_mean": 17134.404609375,
      "sharegpt_ci": [
-      17134.404609375,
-      17134.404609375
+      null,
+      null
      ],
      "sharegpt_n": 1,
      "delta_sharegpt_minus_synthetic": -396.5838828124979,
      "delta_pct": -2.2621877995597988,
-     "synthetic_mean_in_sharegpt_ci": false
+     "synthetic_mean_in_sharegpt_ci": null,
+     "ci_overlap_flag": "indeterminate_n1"
     },
     "emc_rate_mean": {
      "synthetic_mean": 113971.10206958705,
@@ -6585,13 +7390,14 @@
      ],
      "sharegpt_mean": 110143.04422748646,
      "sharegpt_ci": [
-      110143.04422748646,
-      110143.04422748646
+      null,
+      null
      ],
      "sharegpt_n": 1,
      "delta_sharegpt_minus_synthetic": -3828.057842100592,
      "delta_pct": -3.3587968990273556,
-     "synthetic_mean_in_sharegpt_ci": false
+     "synthetic_mean_in_sharegpt_ci": null,
+     "ci_overlap_flag": "indeterminate_n1"
     },
     "emc_rate_max": {
      "synthetic_mean": 1671435.7990967077,
@@ -6601,13 +7407,31 @@
      ],
      "sharegpt_mean": 1685169.4520973244,
      "sharegpt_ci": [
-      1685169.4520973244,
-      1685169.4520973244
+      null,
+      null
      ],
      "sharegpt_n": 1,
      "delta_sharegpt_minus_synthetic": 13733.653000616701,
      "delta_pct": 0.821667993950995,
-     "synthetic_mean_in_sharegpt_ci": false
+     "synthetic_mean_in_sharegpt_ci": null,
+     "ci_overlap_flag": "indeterminate_n1"
+    },
+    "joules_window_j": {
+     "synthetic_mean": 371.3375304778164,
+     "synthetic_ci": [
+      364.730687918498,
+      376.28446129766274
+     ],
+     "sharegpt_mean": 369.76864674821684,
+     "sharegpt_ci": [
+      null,
+      null
+     ],
+     "sharegpt_n": 1,
+     "delta_sharegpt_minus_synthetic": -1.5688837295995768,
+     "delta_pct": -0.4224953312908676,
+     "synthetic_mean_in_sharegpt_ci": null,
+     "ci_overlap_flag": "indeterminate_n1"
     }
    }
   },
@@ -6626,7 +7450,7 @@
    },
    "same_direction": true
   },
-  "ci_honesty": "n=2 per arm (n=1 host_h2d_direct reload: b0 crashed, valid retest is orch b1). Bootstrap 95% CIs over blocks are honestly wide by construction; no 10%-margin equivalence or superiority claims are made from ShareGPT alone.",
+  "ci_honesty": "n=2 per arm (n=1 host_h2d_direct reload: b0 crashed, valid retest is orch b1). Bootstrap 95% CIs over blocks are honestly wide by construction; n=1 CIs are undefined (lo/hi/width None, overlap indeterminate -- never read as zero-width precise); no 10%-margin equivalence or superiority claims are made from ShareGPT alone. emc_rate_* values are utilization-only audit raw (see matrix emc_note), not claim contrasts.",
   "caveats": [
    "recompute b0 mem_dip_mb is negative (-56.4MB: load-min above lead-mean) with lead baseline 13726MB vs clean-b1 17810MB; b0 ran under concurrent-server memory pressure with a mid-cell peer teardown freeing memory. The recompute mem_dip ShareGPT aggregate averages incommensurate baselines and is not interpretable; use per-block values.",
    "host_d2h b1 lead baseline 13685MB vs b0 17760MB (same concurrent-server cause); dip values stay small-positive (2.45/1.60MB).",

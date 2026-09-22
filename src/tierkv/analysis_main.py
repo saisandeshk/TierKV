@@ -3,12 +3,17 @@
 Reads: runs/imported/{matrix-v1,extras,phase1,crash-probe,v4h-load} (+ configs).
 Writes (results/ only):
   results/summary.json            all contrasts + CIs + n (+coverage, crossover,
-                                  discrepancy, duplication, underpowered)
-  results/coverage.json           cell-by-cell audit (failed/crashed stay listed)
+                                  discrepancy, duplication, underpowered;
+                                  rev written here at creation, emc/joules/
+                                  fill notes included)
+  results/coverage.json           cell-by-cell audit (failed/crashed stay listed;
+                                  denominators + expected entries derived from
+                                  matrix-summary.json, never literals)
   results/figures/mem-bars.csv
   results/figures/emc-timeline-sample.csv
-  results/figures/ttft-crossover.csv
+  results/figures/ttft-crossover.csv   (TOK/sweepA/crossover header notes)
   results/figures/tpot-concurrency.csv
+  results/figures/joules-windows.csv
 
 Rules enforced: warmups never pooled (warm=True excluded from every
 aggregate); failed/crashed cells listed, never pooled; every aggregate
@@ -18,6 +23,7 @@ import csv
 import json
 import os
 import glob
+import zlib
 
 from tierkv.analysis_cells import (
     MATRIX, EXTRAS, PHASE1, IMPORTED,
@@ -55,6 +61,39 @@ def main():
 
     # ---------------- 1. COVERAGE AUDIT ----------------
     audit = coverage_audit()
+    # Denominators derived from matrix-summary.json (never literals):
+    # planned cells = all cells in the sealed campaign summary.
+    summ_cells = audit["cells"]
+    planned_total = len(summ_cells)
+    planned_nvme = sum(1 for c in summ_cells.values()
+                       if c.get("arm") == "nvme_spill")
+    planned_non_nvme = planned_total - planned_nvme
+    # Expected meas result entries per arm x length, derived from the
+    # sealed summary's per-cell meas phases (eviction depth varies:
+    # L2048 spill+fill0-3+reload=6/block, L4096 spill+fill0-1+reload=4,
+    # L6011 spill+fill0+reload=3, others reload/recompute=1).
+    # NOTE: matrix-summary phase strings are bare "meas"/"warm" for
+    # single-phase cells (retain/host_d2h/recompute) and "meas/<sub>"
+    # for multi-phase h2d cells -- match both.
+    def _is_meas_phase(ph):
+        return ph == "meas" or ph.startswith("meas/")
+
+    exp_meas_entries = {}
+    exp_meas_phases = {}
+    for arm in ARMS:
+        for L in LENGTHS:
+            phs = None
+            n_cells = 0
+            for key, c in summ_cells.items():
+                if c.get("arm") == arm and c.get("length") == L:
+                    n_cells += 1
+                    mph = sorted(r.get("phase", "") for r in c.get("results", [])
+                                 if _is_meas_phase(r.get("phase", "")))
+                    if phs is None:
+                        phs = mph
+            exp_meas_entries["%s_L%d" % (arm, L)] = (
+                len(phs) * n_cells if phs is not None else 0)
+            exp_meas_phases["%s_L%d" % (arm, L)] = phs or []
     # meas-phase pass accounting per arm x length (warm kept separate)
     cov = {}
     for arm in ARMS:
@@ -67,19 +106,28 @@ def main():
                      "nvme_spill": ["meas"]}[arm]
             # nvme has no meas rows at all -> 0 coverage
             npass = sum(1 for r in mrows if r["pass"])
-            # expected meas result entries per block:
-            exp_per_block = {"retain": 1, "host_d2h": 1, "recompute": 1,
-                             "host_h2d_direct": 1, "nvme_spill": 0}[arm]
-            cov["%s_L%d" % (arm, L)] = {
+            # expected meas result phases per block, derived (see above);
+            # per-block count = entries / n_blocks.
+            key = "%s_L%d" % (arm, L)
+            exp_total = exp_meas_entries[key]
+            exp_per_block = (exp_total // len(BLOCKS)) if exp_total else 0
+            cov[key] = {
                 "meas_pass": npass, "meas_entries": len(mrows),
+                "expected_meas_entries": exp_total,
                 "expected_meas_per_block": exp_per_block,
+                "expected_meas_phases": exp_meas_phases[key],
                 "blocks": BLOCKS,
             }
     n_cells_ok = sum(1 for k, v in audit["cells"].items()
                      if v["arm"] != "nvme_spill" and v["status"] == "complete")
-    coverage_pct = {"meas_cells_complete_non_nvme": [n_cells_ok, 60],
-                    "pct": n_cells_ok / 60 * 100.0,
-                    "planned_cells": 75, "nvme_meas_cells": [0, 15]}
+    coverage_pct = {"meas_cells_complete_non_nvme": [n_cells_ok,
+                                                     planned_non_nvme],
+                    "pct": (n_cells_ok / planned_non_nvme * 100.0
+                            if planned_non_nvme else None),
+                    "planned_cells": planned_total,
+                    # nvme has no meas files by design (warm reload
+                    # crash-indexed per block); 0 meas cells complete.
+                    "nvme_meas_cells": [0, planned_nvme]}
     with open(os.path.join(RESULTS, "coverage.json"), "w") as f:
         json.dump({"coverage_pct": coverage_pct, "per_arm_length": cov,
                    "failed": audit["failed"],
@@ -87,15 +135,31 @@ def main():
                    "all_rows": audit["rows"]}, f, indent=1)
 
     # ---------------- 2. PAIRED-BLOCK AGGREGATES (meas only) ----------------
+    # Gate: only cells with matrix_pass AND arrival_ok
+    # (arrival_ok <=> arrival http 200 and completion_tokens == 64)
+    # enter aggregates/contrasts. by_block() additionally drops None
+    # metric values; both gates warn when they drop rows.
     def sel(arm, L, phase):
-        return sorted([r for r in meas if r["arm"] == arm and r["length"] == L
+        rows = sorted([r for r in meas if r["arm"] == arm and r["length"] == L
                        and r["phase"] == phase], key=lambda r: r["block"])
+        gated = [r for r in rows
+                 if r.get("matrix_pass") and r.get("arrival_ok")
+                 and r.get("completion_tokens") == 64]
+        if len(gated) != len(rows):
+            print("warn sel %s L%d %s: gated %d/%d "
+                  "(require matrix_pass+arrival_ok+comp==64)"
+                  % (arm, L, phase, len(gated), len(rows)))
+        return gated
 
     aggregates = {}   # label -> ci dict
     seed = SEED0
+    # Joules aggregates use a DEDICATED seed stream (JSEED0) that never
+    # consumes the legacy `seed` counter, so every pre-existing aggregate
+    # keeps its exact historical seed and bitwise-identical CI.
+    jseed = SEED0 + 100000
     metrics = ["arrival_ttft_s", "bg_tpot_mean", "bg_gap_p95_mean",
                "bg_gap_max", "mem_dip_mb", "mem_baseline_mb",
-               "emc_rate_mean", "emc_rate_max"]
+               "emc_rate_mean", "emc_rate_max", "joules_window_j"]
     for arm in ["retain", "host_d2h", "recompute", "host_h2d_direct"]:
         for L in LENGTHS:
             phase = {"retain": "reload", "host_d2h": "reload",
@@ -103,6 +167,12 @@ def main():
                      "host_h2d_direct": "reload"}[arm]
             rows = sel(arm, L, phase)
             for m in metrics:
+                if m == "joules_window_j":
+                    jseed += 1
+                    aggregates["%s_L%d_%s_%s" % (arm, L, phase, m)] = agg(
+                        rows, m, "%s L%d %s %s" % (arm, L, phase, m),
+                        jseed)
+                    continue
                 seed += 1
                 aggregates["%s_L%d_%s_%s" % (arm, L, phase, m)] = agg(
                     rows, m, "%s L%d %s %s" % (arm, L, phase, m), seed)
@@ -118,7 +188,13 @@ def main():
         for phase in ["spill", "fill0"]:
             rows = sel("host_h2d_direct", L, phase)
             for m in ["mem_dip_mb", "mem_baseline_mb", "arrival_ttft_s",
-                      "bg_tpot_mean"]:
+                      "bg_tpot_mean", "joules_window_j"]:
+                if m == "joules_window_j":
+                    jseed += 1
+                    aggregates["host_h2d_direct_L%d_%s_%s" % (L, phase, m)] = agg(
+                        rows, m, "host_h2d_direct L%d %s %s" % (L, phase, m),
+                        jseed)
+                    continue
                 seed += 1
                 aggregates["host_h2d_direct_L%d_%s_%s" % (L, phase, m)] = agg(
                     rows, m, "host_h2d_direct L%d %s %s" % (L, phase, m),
@@ -162,8 +238,18 @@ def main():
                  {"retain": "reload", "host_d2h": "reload",
                   "recompute": "recompute",
                   "host_h2d_direct": "reload"}[arm_y])
+        # Explicit None filter (by_block also drops None): only blocks
+        # with a real metric value on BOTH arms enter the paired diff.
         bx, by = by_block(rx, metric), by_block(ry, metric)
-        pc = paired_contrast(bx, by, seed=SEED0 + hash(name) % 10000)
+        shared = sorted(set(bx) & set(by))
+        if len(shared) != min(len(bx), len(by)):
+            print("warn contrast %s: paired %d of x=%d y=%d blocks "
+                  "(None metric values dropped, never pooled)"
+                  % (name, len(shared), len(bx), len(by)))
+        # Reproducible per-contrast seed: crc32 (PYTHONHASHSEED-proof).
+        # SEED0 stays 20260921.
+        pc = paired_contrast(
+            bx, by, seed=SEED0 + (zlib.crc32(name.encode()) % 10000))
         ref = aggregates.get("%s_L%d_%s_%s" % (
             arm_y, L, (phase_y or {"retain": "reload",
                                    "host_d2h": "reload",
@@ -196,8 +282,17 @@ def main():
                  "host_d2h", "retain", L, "mem_dip_mb")
         contrast("memdip_h2dreload-retain_L%d" % L,
                  "host_h2d_direct", "retain", L, "mem_dip_mb")
-        contrast("emcrate_host_d2h-retain_L%d" % L,
-                 "host_d2h", "retain", L, "emc_rate_mean")
+        # EMC RATE CONTRASTS DEPRECATED (Axis 2.2): emc_rate_mean is a
+        # decaying 20ms avg-activity utilization proxy (emc_hz==204M
+        # floor), not a bandwidth claim. Raw aggregates stay for audit
+        # (see emc_note); claim tables use the mc_all timeline +
+        # bg_gap_max instead. No emcrate_* contrasts are generated.
+        contrast("joules_host_d2h-retain_L%d" % L,
+                 "host_d2h", "retain", L, "joules_window_j")
+        contrast("joules_recompute-retain_L%d" % L,
+                 "recompute", "retain", L, "joules_window_j")
+        contrast("joules_h2dreload-retain_L%d" % L,
+                 "host_h2d_direct", "retain", L, "joules_window_j")
 
     # ---------------- 3. DISCREPANCY: cold-vs-hit arrival ----------------
     # phase1: bgonly base vs cold-arrival loaded (bg4, ~6K)
@@ -341,8 +436,14 @@ def main():
 
     # ---------------- 5. CROSSOVER ----------------
     # OLS fits over meas block points (15 pts/arm): ttft vs prompt tokens.
-    # prompt tokens: arrival.prompt_tokens not stored in recs; use nominal
-    # mapping 2048->2053, 4096->4105, 6011->6011 observed cached+1.
+    # TOK: observed arrival.prompt_tokens on gated reload/recompute/spill
+    # cells (== cached_tokens + 1): nominal 2048 -> 2053, 4096 -> 4105,
+    # 6011 -> 6011. Source: matrix-v1 arrival.prompt_tokens (retain reload
+    # meas: 2053/4105/6011 with cached 2052/4104/6010). Fill-phase arrivals
+    # carry longer prompts (L2048 fills 2072, L4096 fills 4124) and are NOT
+    # in this fit (reload/recompute only). sweepA points below use the
+    # sweep's nominal c["length"] (raw-length mix: 2048/4096/6011 nominal,
+    # prompt_tokens 2053/4105/6011) -- see ttft-crossover.csv header note.
     TOK = {2048: 2053, 4096: 4105, 6011: 6011}
     pts_resume, pts_recomp, pts_h2d = [], [], []
     for L in LENGTHS:
@@ -364,15 +465,31 @@ def main():
     def crossing(f1, f2):
         if f1["b"] is None or f2["b"] is None or f1["b"] == f2["b"]:
             return None
-        return (f2["a"] - f1["a"]) / (f1["b"] - f2["b"])
+        cross = (f2["a"] - f1["a"]) / (f1["b"] - f2["b"])
+        # A negative crossing token count is physically meaningless
+        # (lines diverge over the measured range): report as no-crossover.
+        if cross is not None and cross < 0:
+            return None
+        return cross
 
+    cross_resume = crossing(fit_resume, fit_recomp)
+    cross_h2d = crossing(fit_h2d, fit_recomp)
     crossover = {
         "fit_resume_retain": fit_resume,
         "fit_recompute": fit_recomp,
         "fit_host_restore_direct": fit_h2d,
         "slope_units": "s_per_token",
-        "cross_resume_vs_recompute_tok": crossing(fit_resume, fit_recomp),
-        "cross_hostrestore_vs_recompute_tok": crossing(fit_h2d, fit_recomp),
+        "cross_resume_vs_recompute_tok": cross_resume,
+        "cross_hostrestore_vs_recompute_tok": cross_h2d,
+        "cross_hostrestore_vs_recompute_note":
+            "no-crossover (OLS crossing at negative tokens): host-restore "
+            "TTFT lies above recompute over the whole measured 2048..6011 "
+            "range; reported as None, never as a negative token count.",
+        "cross_resume_vs_recompute_note":
+            "426-tok crossing is a BACKWARD extrapolation below the "
+            "measured range (min fitted x = 2053 tokens): resume and "
+            "recompute are not measured there; do not project NVMe or "
+            "short-prefix crossovers from it.",
         "sweepA_points": [{"length": l, "rep": rp, "spill_ttft": s,
                            "resume_ttft": r, "recompute_ttft": c}
                           for l, rp, s, r, c in sweepA_pts],
@@ -406,14 +523,51 @@ def main():
                           "n": a.get("n")})
 
     summary = {
+        # Provenance rev written here at creation time (rev 1 = frozen
+        # matrix). Additive follow-ons (sharegpt) bump idempotently;
+        # never post-hoc mutate an already-written summary.
+        "rev": 1,
         "frozen_contract": {
             "reps": "blocks (n=5 per arm x length)",
             "ci": "paired-block 95pct percentile bootstrap, B=10000, seed=%d"
                   % SEED0,
             "margin": "10% of reference mean",
             "warmups": "excluded from all stats",
+            "gating": "aggregates+contrasts require matrix_pass and "
+                      "arrival_ok (arrival http 200, completion_tokens==64); "
+                      "None metric values dropped per block with warn, "
+                      "never pooled",
         },
         "coverage": coverage_pct,
+        "fill_accounting": {
+            "included_in_claim_aggregates": [
+                "retain/host_d2h reload", "recompute recompute",
+                "host_h2d_direct spill+fill0+reload"],
+            "excluded_characterization_only": {
+                "host_h2d_direct_L2048_meas_fill1_fill2_fill3": "n=5 each",
+                "host_h2d_direct_L4096_meas_fill1": "n=5 "
+                "(no fill2/fill3 at this length)",
+                "note": "fill1-3 are intermediate eviction-path sub-phases; "
+                        "eviction depth varies by length (L2048 4 fills, "
+                        "L4096 2 fills, L6011 1 fill), so they are listed "
+                        "in coverage (meas_entries 30/20/15) but excluded "
+                        "from claim aggregates; spill+fill0+reload carry "
+                        "the eviction-path characterization.",
+            },
+        },
+        "emc_note": "emc_rate_mean/emc_rate_max aggregates are raw audit "
+                    "values only (UTILIZATION proxy: decaying 20ms "
+                    "avg-activity d(mc_all)/dt, emc_hz==204M floor; units "
+                    "are counts/s, never GB/s). Deprecated as claim "
+                    "contrasts; primary interference evidence is the raw "
+                    "mc_all timeline (emc-timeline-sample.csv, Mcounts) + "
+                    "bg_gap_max (h2d 13.8-14.9s vs retain 0.087s).",
+        "joules_note": "joules_window_j = integrated rails power "
+                       "(VDD_GPU_SOC+VDD_CPU_CV+VIN_SYS_5V0 V*I from "
+                       "rails_temps @~1Hz, piecewise-linear p(t)) over "
+                       "t0..t1 per cell; None with reason when unbracketed "
+                       "or gapped (never invented). Aggregates + paired "
+                       "contrasts per arm x length; see joules-windows.csv.",
         "claim_scope": {
             "may_claim": "meas phases of retain/host_d2h/host_h2d_direct/"
                          "recompute (60/60 arm x length x block meas cells "
@@ -479,6 +633,16 @@ def main():
     # ttft-crossover: per-length means (matrix) + sweepA reps (flagged)
     with open(os.path.join(FIGURES, "ttft-crossover.csv"), "w",
               newline="") as f:
+        f.write("# TOK source: observed arrival.prompt_tokens on gated "
+                "reload/recompute/spill cells (== cached+1): "
+                "{2048:2053,4096:4105,6011:6011}. Fill arrivals differ "
+                "(L2048 fills 2072, L4096 fills 4124) and are not fitted.\n")
+        f.write("# sweepA rows use the sweep nominal c[length] "
+                "(raw-length mix: nominal 2048/4096/6011, prompt_tokens "
+                "2053/4105/6011, hierarchical OFF, no bg load) -- not TOK.\n")
+        f.write("# crossover: cross<0 reported as no-crossover (None) in "
+                "summary.json; 426-tok resume-vs-recompute crossing is a "
+                "backward extrapolation below measured range.\n")
         w = csv.writer(f)
         w.writerow(["source", "arm", "length", "tokens", "mean_ttft_s",
                     "lo_s", "hi_s", "n", "cached_note"])
@@ -533,7 +697,47 @@ def main():
         w.writerow(["phase1-loaded", 4, "cold-6K", "host",
                     round(p1["p2-host-r1.json"]["bg_tpot_mean"], 6),
                     "gapmax=%.3f" % p1["p2-host-r1.json"]["bg_gap_max"]])
-    print("wrote summary.json + coverage.json + 4 figure CSVs")
+    # joules-windows: window energy per arm x length (+ h2d spill/fill rows)
+    with open(os.path.join(FIGURES, "joules-windows.csv"), "w",
+              newline="") as f:
+        f.write("# joules_window_j: integrated rails power "
+                "(VDD_GPU_SOC+VDD_CPU_CV+VIN_SYS_5V0 V*I, rails_temps @~1Hz, "
+                "piecewise-linear p(t)) over t0..t1 per cell; paired-block "
+                "95% bootstrap CI; None/empty where unbracketed or gapped.\n")
+        w = csv.writer(f)
+        w.writerow(["arm", "length", "phase", "mean_joules", "lo_j",
+                    "hi_j", "n", "mean_window_s", "mean_power_w", "files"])
+        for arm in ["retain", "host_d2h", "recompute", "host_h2d_direct"]:
+            for L in LENGTHS:
+                ph = {"retain": "reload", "host_d2h": "reload",
+                      "recompute": "recompute",
+                      "host_h2d_direct": "reload"}[arm]
+                a = aggregates["%s_L%d_%s_joules_window_j" % (arm, L, ph)]
+                rows = sel(arm, L, ph)
+                ws = [r["joules_window_s"] for r in rows
+                      if r.get("joules_window_s") is not None]
+                ps = [r["joules_mean_power_w"] for r in rows
+                      if r.get("joules_mean_power_w") is not None]
+                w.writerow([arm, L, ph, _r(a.get("mean")), _r(a.get("lo")),
+                            _r(a.get("hi")), a.get("n"),
+                            _r(sum(ws) / len(ws)) if ws else None,
+                            _r(sum(ps) / len(ps)) if ps else None,
+                            len(a.get("files", []))])
+        for L in LENGTHS:
+            for ph in ["spill", "fill0"]:
+                a = aggregates["host_h2d_direct_L%d_%s_joules_window_j"
+                               % (L, ph)]
+                rows = sel("host_h2d_direct", L, ph)
+                ws = [r["joules_window_s"] for r in rows
+                      if r.get("joules_window_s") is not None]
+                ps = [r["joules_mean_power_w"] for r in rows
+                      if r.get("joules_mean_power_w") is not None]
+                w.writerow(["host_h2d_direct", L, ph, _r(a.get("mean")),
+                            _r(a.get("lo")), _r(a.get("hi")), a.get("n"),
+                            _r(sum(ws) / len(ws)) if ws else None,
+                            _r(sum(ps) / len(ps)) if ps else None,
+                            len(a.get("files", []))])
+    print("wrote summary.json + coverage.json + 5 figure CSVs")
     print("aggregates=%d contrasts=%d underpowered=%d failed_cells=%d"
           % (len(aggregates), len(contrasts), len(under),
              len(audit["failed"])))

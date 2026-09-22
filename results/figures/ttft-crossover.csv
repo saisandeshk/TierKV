@@ -1,3 +1,6 @@
+# TOK source: observed arrival.prompt_tokens on gated reload/recompute/spill cells (== cached+1): {2048:2053,4096:4105,6011:6011}. Fill arrivals differ (L2048 fills 2072, L4096 fills 4124) and are not fitted.
+# sweepA rows use the sweep nominal c[length] (raw-length mix: nominal 2048/4096/6011, prompt_tokens 2053/4105/6011, hierarchical OFF, no bg load) -- not TOK.
+# crossover: cross<0 reported as no-crossover (None) in summary.json; 426-tok resume-vs-recompute crossing is a backward extrapolation below measured range.
 source,arm,length,tokens,mean_ttft_s,lo_s,hi_s,n,cached_note
 matrix,retain,2048,2053,0.120018,0.116622,0.123817,5,device-hit
 matrix,retain,4096,4105,0.147786,0.145826,0.149574,5,device-hit

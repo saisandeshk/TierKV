@@ -30,8 +30,12 @@ def boot_ci(xs, B=B, seed=SEED):
                 "width": None}
     mean = sum(xs) / n
     if n == 1:
-        return {"mean": mean, "lo": mean, "hi": mean, "n": 1,
-                "width": 0.0}
+        # n=1: single block value is the mean; there is no resampling
+        # distribution, so the 95% CI is undefined (NOT zero-width).
+        # Callers must treat lo/hi/width None as indeterminate and must
+        # never interpret width 0.0 as a precise estimate.
+        return {"mean": mean, "lo": None, "hi": None, "n": 1,
+                "width": None}
     rng = random.Random(seed)
     stats = []
     for _ in range(B):

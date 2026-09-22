@@ -15,6 +15,12 @@ Metric definitions (frozen for this analysis):
   lead = mem rows with t<t0, load = rows with t0<=t<=t1.
 - mem_baseline_MB: lead-mean MemAvailable (server-pool baseline for the cell).
 - emc_rate_mean / emc_rate_max: mean/max of d(mc_all)/dt over load window.
+  UTILIZATION-ONLY diagnostic (decaying 20ms avg-activity proxy,
+  emc_hz==204M floor): kept raw for audit, never a claim contrast.
+  Primary interference evidence is the raw mc_all timeline + bg_gap_max.
+- joules_window_j: integrated rails power (VDD_GPU_SOC+VDD_CPU_CV+
+  VIN_SYS_5V0 V*I from rails_temps @~1Hz) over t0..t1, joules; None
+  with reason when unbracketed/gapped (never invented).
 - cached_dev / cached_host: arrival cached split.
 """
 import json
@@ -155,6 +161,86 @@ def arrival_stats(cell):
     }
 
 
+def joules_stats(cell):
+    """Window energy from rails_temps @~1Hz over t0..t1.
+
+    Power per sample = (VDD_GPU_SOC*I + VDD_CPU_CV*I + VIN_SYS_5V0*I),
+    i.e. (vdd_gpu_mv*vdd_gpu_ma + vdd_cpu_mv*vdd_cpu_ma
+          + vin_mv*vin_ma) / 1e6 watts. Integrated as piecewise-linear
+    p(t) from t0 to t1 (trapezoidal with linear interpolation at the
+    window edges). Returns joules_window_j (float) or None with a
+    reason string -- never invented: unbracketed windows, t1<=t0, or
+    inter-sample gaps >5s inside the window yield None.
+    """
+    rails = cell.get("rails_temps") or []
+    t0, t1 = cell.get("t0"), cell.get("t1")
+    base = {"joules_window_j": None, "joules_window_reason": None,
+            "joules_n_samples": 0, "joules_window_s": None,
+            "joules_mean_power_w": None}
+    if t0 is None or t1 is None or t1 <= t0:
+        base["joules_window_reason"] = "bad_window_t0_t1"
+        return base
+    pts = []
+    for e in rails:
+        t = e.get("t")
+        dd = e.get("d") or {}
+        try:
+            p = (dd["vdd_gpu_mv"] * dd["vdd_gpu_ma"]
+                 + dd["vdd_cpu_mv"] * dd["vdd_cpu_ma"]
+                 + dd["vin_mv"] * dd["vin_ma"]) / 1e6
+        except (KeyError, TypeError):
+            continue
+        if t is None or not isinstance(p, (int, float)):
+            continue
+        pts.append((t, float(p)))
+    pts.sort()
+    if len(pts) < 2:
+        base["joules_window_reason"] = "fewer_than_2_rails_samples"
+        return base
+    if pts[0][0] > t0 or pts[-1][0] < t1:
+        base["joules_window_reason"] = ("rails_do_not_bracket_window: "
+                                        "samples %.3f..%.3f vs t0..t1 "
+                                        "%.3f..%.3f" % (pts[0][0],
+                                                        pts[-1][0], t0, t1))
+        return base
+    # gap check over bracketing samples
+    brack = [p for p in pts if pts[0][0] <= p[0] <= pts[-1][0]]
+    mgap = max((b[0] - a[0] for a, b in zip(brack, brack[1:])),
+               default=0.0)
+    if mgap > 5.0:
+        base["joules_window_reason"] = ("rails_gap_%.1fs_exceeds_5s" % mgap)
+        base["joules_n_samples"] = sum(1 for t, _ in pts if t0 <= t <= t1)
+        base["joules_window_s"] = t1 - t0
+        return base
+
+    def power_at(t):
+        if t <= pts[0][0]:
+            return pts[0][1]
+        if t >= pts[-1][0]:
+            return pts[-1][1]
+        for (ta, pa), (tb, pb) in zip(pts, pts[1:]):
+            if ta <= t <= tb:
+                if tb == ta:
+                    return pa
+                f = (t - ta) / (tb - ta)
+                return pa + f * (pb - pa)
+        return None
+
+    p0, p1 = power_at(t0), power_at(t1)
+    nodes = [(t0, p0)] + [(t, p) for t, p in pts if t0 < t < t1] \
+        + [(t1, p1)]
+    joules = sum((tb - ta) * (pa + pb) / 2.0
+                 for (ta, pa), (tb, pb) in zip(nodes, nodes[1:]))
+    base.update({
+        "joules_window_j": joules,
+        "joules_window_reason": None,
+        "joules_n_samples": sum(1 for t, _ in pts if t0 <= t <= t1),
+        "joules_window_s": t1 - t0,
+        "joules_mean_power_w": joules / (t1 - t0),
+    })
+    return base
+
+
 def cell_metrics(path):
     """Full per-cell metric record (identity + all metrics + pass flag)."""
     cell = load_json(path)
@@ -176,6 +262,7 @@ def cell_metrics(path):
     rec.update(mem_stats(cell))
     rec.update(emc_stats(cell))
     rec.update(arrival_stats(cell))
+    rec.update(joules_stats(cell))
     return rec
 
 

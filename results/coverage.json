@@ -15,7 +15,11 @@
   "retain_L2048": {
    "meas_pass": 5,
    "meas_entries": 5,
+   "expected_meas_entries": 5,
    "expected_meas_per_block": 1,
+   "expected_meas_phases": [
+    "meas"
+   ],
    "blocks": [
     0,
     1,
@@ -27,7 +31,11 @@
   "retain_L4096": {
    "meas_pass": 5,
    "meas_entries": 5,
+   "expected_meas_entries": 5,
    "expected_meas_per_block": 1,
+   "expected_meas_phases": [
+    "meas"
+   ],
    "blocks": [
     0,
     1,
@@ -39,7 +47,11 @@
   "retain_L6011": {
    "meas_pass": 5,
    "meas_entries": 5,
+   "expected_meas_entries": 5,
    "expected_meas_per_block": 1,
+   "expected_meas_phases": [
+    "meas"
+   ],
    "blocks": [
     0,
     1,
@@ -51,7 +63,11 @@
   "host_d2h_L2048": {
    "meas_pass": 5,
    "meas_entries": 5,
+   "expected_meas_entries": 5,
    "expected_meas_per_block": 1,
+   "expected_meas_phases": [
+    "meas"
+   ],
    "blocks": [
     0,
     1,
@@ -63,7 +79,11 @@
   "host_d2h_L4096": {
    "meas_pass": 5,
    "meas_entries": 5,
+   "expected_meas_entries": 5,
    "expected_meas_per_block": 1,
+   "expected_meas_phases": [
+    "meas"
+   ],
    "blocks": [
     0,
     1,
@@ -75,7 +95,11 @@
   "host_d2h_L6011": {
    "meas_pass": 5,
    "meas_entries": 5,
+   "expected_meas_entries": 5,
    "expected_meas_per_block": 1,
+   "expected_meas_phases": [
+    "meas"
+   ],
    "blocks": [
     0,
     1,
@@ -87,7 +111,16 @@
   "host_h2d_direct_L2048": {
    "meas_pass": 30,
    "meas_entries": 30,
-   "expected_meas_per_block": 1,
+   "expected_meas_entries": 30,
+   "expected_meas_per_block": 6,
+   "expected_meas_phases": [
+    "meas/fill0",
+    "meas/fill1",
+    "meas/fill2",
+    "meas/fill3",
+    "meas/reload",
+    "meas/spill"
+   ],
    "blocks": [
     0,
     1,
@@ -99,7 +132,14 @@
   "host_h2d_direct_L4096": {
    "meas_pass": 20,
    "meas_entries": 20,
-   "expected_meas_per_block": 1,
+   "expected_meas_entries": 20,
+   "expected_meas_per_block": 4,
+   "expected_meas_phases": [
+    "meas/fill0",
+    "meas/fill1",
+    "meas/reload",
+    "meas/spill"
+   ],
    "blocks": [
     0,
     1,
@@ -111,7 +151,13 @@
   "host_h2d_direct_L6011": {
    "meas_pass": 15,
    "meas_entries": 15,
-   "expected_meas_per_block": 1,
+   "expected_meas_entries": 15,
+   "expected_meas_per_block": 3,
+   "expected_meas_phases": [
+    "meas/fill0",
+    "meas/reload",
+    "meas/spill"
+   ],
    "blocks": [
     0,
     1,
@@ -123,7 +169,11 @@
   "recompute_L2048": {
    "meas_pass": 5,
    "meas_entries": 5,
+   "expected_meas_entries": 5,
    "expected_meas_per_block": 1,
+   "expected_meas_phases": [
+    "meas"
+   ],
    "blocks": [
     0,
     1,
@@ -135,7 +185,11 @@
   "recompute_L4096": {
    "meas_pass": 5,
    "meas_entries": 5,
+   "expected_meas_entries": 5,
    "expected_meas_per_block": 1,
+   "expected_meas_phases": [
+    "meas"
+   ],
    "blocks": [
     0,
     1,
@@ -147,7 +201,11 @@
   "recompute_L6011": {
    "meas_pass": 5,
    "meas_entries": 5,
+   "expected_meas_entries": 5,
    "expected_meas_per_block": 1,
+   "expected_meas_phases": [
+    "meas"
+   ],
    "blocks": [
     0,
     1,
@@ -159,7 +217,9 @@
   "nvme_spill_L2048": {
    "meas_pass": 0,
    "meas_entries": 0,
+   "expected_meas_entries": 0,
    "expected_meas_per_block": 0,
+   "expected_meas_phases": [],
    "blocks": [
     0,
     1,
@@ -171,7 +231,9 @@
   "nvme_spill_L4096": {
    "meas_pass": 0,
    "meas_entries": 0,
+   "expected_meas_entries": 0,
    "expected_meas_per_block": 0,
+   "expected_meas_phases": [],
    "blocks": [
     0,
     1,
@@ -183,7 +245,9 @@
   "nvme_spill_L6011": {
    "meas_pass": 0,
    "meas_entries": 0,
+   "expected_meas_entries": 0,
    "expected_meas_per_block": 0,
+   "expected_meas_phases": [],
    "blocks": [
     0,
     1,

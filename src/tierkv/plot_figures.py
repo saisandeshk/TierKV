@@ -4,9 +4,11 @@ Regenerates all figures from results/figures/*.csv (no raw-run access):
   mem-bars.pdf         Delta MemAvailable per arm x length, 95% CI whiskers
   ttft-crossover.pdf   resume flat vs recompute linear + host-restore points
                        + ShareGPT overlay markers at 6011
-  tpot-concurrency.pdf bg TPOT base vs loaded at bg 2/4/8
-  emc-timeline-sample.pdf one representative spill->evict->reload window
-                       (host_h2d_direct L6011 b0 meas reload mc_all series)
+  tpot-concurrency.pdf bg TPOT base vs loaded at bg 2/4/8, host-restore
+                       0.145 s plotted as data (never hidden off-scale)
+  emc-timeline-sample.pdf retain + host_h2d_direct spill->evict->reload
+                       windows (mc_all Mcounts + emc_hz floor note;
+                       utilization-only per PROTOCOL §3, never GB/s)
 
 Style: 3.5in width, all fonts >= 8pt, vector-only, tight bbox.
 Deps: stdlib + numpy + matplotlib only.
@@ -34,7 +36,10 @@ plt.rcParams.update({
 
 def read_csv(name):
     with open(os.path.join(FIG, name)) as f:
-        return list(csv.DictReader(f))
+        # skip '#' provenance/header-note lines (e.g. TOK/sweepA notes
+        # in ttft-crossover.csv, joules method note)
+        rows = [ln for ln in f if not ln.lstrip().startswith("#")]
+    return list(csv.DictReader(rows))
 
 
 def num(s):
@@ -108,15 +113,22 @@ def fig_ttft_crossover():
         ax.scatter([int(r["tokens"]) for r in pts],
                    [float(r["mean_ttft_s"]) for r in pts],
                    s=9, marker=mk, c="gray", alpha=0.6)
-    # ShareGPT overlay markers at 6011 (distinct, black-edged)
+    # ShareGPT overlay markers at 6011 (distinct, black-edged).
+    # n=1 rows have undefined CIs (lo/hi None): plot the marker with no
+    # whiskers, never a zero-width bar.
     for r in sh:
         if r["source"] != "sharegpt":
             continue
         m, lo, hi = float(r["mean_ttft_s"]), num(r["lo_s"]), num(r["hi_s"])
-        ax.errorbar([int(r["tokens"]) + 120], [m], yerr=[[m - lo], [hi - m]],
-                    fmt="D", markersize=5, color="black",
-                    markeredgecolor="black",
-                    capsize=2, elinewidth=0.8)
+        if lo is None or hi is None:
+            ax.scatter([int(r["tokens"]) + 120], [m], s=25, marker="D",
+                       c="black")
+        else:
+            ax.errorbar([int(r["tokens"]) + 120], [m],
+                        yerr=[[m - lo], [hi - m]],
+                        fmt="D", markersize=5, color="black",
+                        markeredgecolor="black",
+                        capsize=2, elinewidth=0.8)
     # single proxy entry for the overlay set
     ax.scatter([], [], s=25, marker="D", c="black",
                label="sharegpt @6011")
@@ -131,8 +143,8 @@ def fig_ttft_crossover():
 
 def fig_tpot_concurrency():
     rows = read_csv("tpot-concurrency.csv")
-    fig, ax = plt.subplots(figsize=(W, 2.6))
-    base, hit, cold = {}, {}, {}
+    fig, ax = plt.subplots(figsize=(W, 2.9))
+    base, hit, cold, restore = {}, {}, {}, {}
     for r in rows:
         bgn, y = int(r["bg_n"]), float(r["mean_tpot_s"])
         src, arr = r["source"], r["arrival"]
@@ -142,42 +154,53 @@ def fig_tpot_concurrency():
             hit.setdefault(bgn, []).append(y)
         elif arr in ("cold-6K",):
             cold.setdefault(bgn, []).append(y)
-        # host-restore-6K handled as off-scale annotation below
+        elif arr in ("host-restore-6K",):
+            # matrix host_h2d_direct reload @6K, bg4: real data point
+            # (mean 0.145s, n=5), plotted -- never hidden off-scale.
+            restore.setdefault(bgn, []).append(y)
     for d, mk, ls, lab in [(base, "o", "-", "base (no arrival)"),
                            (hit, "s", "--", "loaded device-hit"),
-                           (cold, "^", "--", "loaded cold prefill")]:
+                           (cold, "^", "--", "loaded cold prefill"),
+                           (restore, "v", "--",
+                            "loaded host-restore (h2d)")]:
         xs = sorted(d)
         ax.errorbar(xs, [np.mean(d[x]) for x in xs], fmt=mk + ls,
                     markersize=4, capsize=2, elinewidth=0.8, label=lab)
     ax.set_xticks([2, 4, 8])
     ax.set_xlabel("background streams (bg_n)")
     ax.set_ylabel("bg TPOT (s)")
-    ax.set_ylim(0.028, 0.046)
-    ax.annotate("host-restore 0.145 s (off scale; gapmax 14.6 s)",
-                xy=(4, 0.0445), xytext=(0.98, 0.96),
-                textcoords="axes fraction", fontsize=8, ha="right",
-                va="top", bbox=dict(fc="white", ec="none", pad=1),
-                arrowprops=dict(arrowstyle="->", lw=0.8))
-    ax.legend(loc="center right")
+    ax.text(0.02, 0.98, "h2d gapmax 14.6 s vs retain 0.087 s",
+            transform=ax.transAxes, fontsize=8, va="top", ha="left",
+            bbox=dict(fc="white", ec="none", pad=1))
+    ax.legend(loc="upper left")
     fig.tight_layout()
     save(fig, "tpot-concurrency.pdf")
 
 
 def fig_emc_timeline():
     rows = read_csv("emc-timeline-sample.csv")
-    h2d = [(float(r["t_rel_s"]), float(r["mc_all"])) for r in rows
-           if r["arm"] == "host_h2d_direct"]
-    h2d.sort()
     fig, ax = plt.subplots(figsize=(W, 2.6))
-    t = np.array([p[0] for p in h2d])
-    v = np.array([p[1] for p in h2d])
-    ax.plot(t, v / 1e6, lw=1.0, label="host_h2d_direct L6011 b0 reload")
+    for arm, lab in [("retain", "retain L6011 b0 reload"),
+                     ("host_h2d_direct",
+                      "host_h2d_direct L6011 b0 reload")]:
+        pts = sorted([(float(r["t_rel_s"]), float(r["mc_all"]))
+                      for r in rows if r["arm"] == arm])
+        if not pts:
+            continue
+        t = np.array([p[0] for p in pts])
+        v = np.array([p[1] for p in pts])
+        ax.plot(t, v / 1e6, lw=1.0, label=lab)
     ax.axvline(0.0, color="black", lw=0.8, ls="--")
     ax.text(0.6, 1.9, "t0 (arrival)", fontsize=8, va="top")
     ax.text(7.0, 0.35, "evict window", fontsize=8, ha="center")
     ax.text(16.2, 1.55, "host restore", fontsize=8, ha="center")
     ax.set_xlabel("t - t0 (s)")
+    # Utilization-only units (PROTOCOL §3): raw counts + clock note,
+    # never GB/s.
     ax.set_ylabel("mc_all (Mcounts)")
+    ax.text(0.98, 0.04, "emc_hz floor 204 MHz; utilization-only, not GB/s",
+            transform=ax.transAxes, fontsize=8, ha="right", va="bottom",
+            bbox=dict(fc="white", ec="none", pad=1))
     ax.legend(loc="upper left")
     fig.tight_layout()
     save(fig, "emc-timeline-sample.pdf")

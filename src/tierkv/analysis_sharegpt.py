@@ -21,7 +21,8 @@ import json
 import os
 
 from tierkv.analysis_cells import (
-    bg_stats, mem_stats, emc_stats, arrival_stats, load_json,
+    bg_stats, mem_stats, emc_stats, arrival_stats, joules_stats,
+    load_json,
 )
 from tierkv.analysis_stats import boot_ci
 
@@ -76,7 +77,8 @@ EXCLUDED = {
 }
 
 METRICS = ["arrival_ttft_s", "bg_tpot_mean", "bg_gap_p95_mean", "bg_gap_max",
-           "mem_dip_mb", "mem_baseline_mb", "emc_rate_mean", "emc_rate_max"]
+           "mem_dip_mb", "mem_baseline_mb", "emc_rate_mean", "emc_rate_max",
+           "joules_window_j"]
 
 
 def cell_record(phase, block, fname):
@@ -87,6 +89,7 @@ def cell_record(phase, block, fname):
     rec.update(mem_stats(d))
     rec.update(emc_stats(d))
     rec.update(arrival_stats(d))
+    rec.update(joules_stats(d))
     return rec
 
 
@@ -113,17 +116,25 @@ def main():
 
     per_arm, comparison = {}, {}
     seed = SEED0
+    # Joules uses a dedicated seed stream (never consumes `seed`) so all
+    # pre-existing per-arm CIs keep their exact historical seeds.
+    jseed = SEED0 + 100000
     for arm, rows in recs.items():
         per_arm[arm] = {"blocks": sorted(r["block"] for r in rows),
                         "files": [r["file"] for r in rows]}
         for m in METRICS:
-            seed += 1
+            if m == "joules_window_j":
+                jseed += 1
+                mseeds = jseed
+            else:
+                seed += 1
+                mseeds = seed
             # h2d spill/fill0 rows only feed their own phase keys below
             if arm == "host_h2d_direct":
                 rs = [r for r in rows if r["phase"] == "reload"]
             else:
                 rs = rows
-            per_arm[arm][m] = agg(rs, m, "sharegpt %s %s" % (arm, m), seed)
+            per_arm[arm][m] = agg(rs, m, "sharegpt %s %s" % (arm, m), mseeds)
         per_arm[arm]["cached"] = {
             "dev": [r["cached_device"] for r in rows
                     if r["phase"] == ("reload" if arm != "recompute"
@@ -160,6 +171,15 @@ def main():
                 continue
             d = gm - sm
             pct = d / abs(sm) * 100.0 if sm != 0 else None
+            # n=1 CIs are undefined (lo/hi None): never treat zero-width
+            # as precise. Mark overlap indeterminate in that case.
+            if g.get("lo") is None or g.get("hi") is None:
+                in_ci = None
+                ci_flag = ("indeterminate_n1"
+                           if g.get("n") == 1 else "indeterminate_ci_None")
+            else:
+                in_ci = (g["lo"] <= sm <= g["hi"])
+                ci_flag = "ok"
             # arm-ordering direction check uses TTFT/cache semantics;
             # here: does sharegpt preserve the synthetic sign of
             # (arm minus retain)? computed for ttft only at the end.
@@ -171,9 +191,8 @@ def main():
                 "sharegpt_n": g.get("n"),
                 "delta_sharegpt_minus_synthetic": d,
                 "delta_pct": pct,
-                "synthetic_mean_in_sharegpt_ci":
-                    (g.get("lo") is not None and g.get("lo") <= sm
-                     <= g.get("hi")),
+                "synthetic_mean_in_sharegpt_ci": in_ci,
+                "ci_overlap_flag": ci_flag,
             }
     # ordering preserved? synthetic @6K: retain~=host_d2h (device-hit ~0.15s)
     # < recompute (cold ~1.33s) < h2d host-restore (~14.7s). Same in sharegpt?
@@ -194,8 +213,12 @@ def main():
 
     ci_note = ("n=2 per arm (n=1 host_h2d_direct reload: b0 crashed, valid "
                "retest is orch b1). Bootstrap 95% CIs over blocks are "
-               "honestly wide by construction; no 10%-margin equivalence or "
-               "superiority claims are made from ShareGPT alone.")
+               "honestly wide by construction; n=1 CIs are undefined "
+               "(lo/hi/width None, overlap indeterminate -- never read as "
+               "zero-width precise); no 10%-margin equivalence or "
+               "superiority claims are made from ShareGPT alone. "
+               "emc_rate_* values are utilization-only audit raw "
+               "(see matrix emc_note), not claim contrasts.")
     caveats = [
         "recompute b0 mem_dip_mb is negative (-56.4MB: load-min above "
         "lead-mean) with lead baseline 13726MB vs clean-b1 17810MB; b0 ran "
@@ -244,8 +267,14 @@ def main():
     }
 
     # ---- additive summary.json update ----
+    # Idempotent rev: bump only when first adding the sharegpt section;
+    # reruns keep rev so diffs stay limited to fixed fields. (matrix
+    # analysis_main.py writes rev=1 at creation; this is rev 2+.)
     new = dict(prev)
-    new["rev"] = prev.get("rev", 1) + 1 if "rev" in prev else 2
+    if "sharegpt" in prev:
+        new["rev"] = prev.get("rev", 2)
+    else:
+        new["rev"] = prev.get("rev", 1) + 1 if "rev" in prev else 2
     new["sharegpt"] = sharegpt
     with open(os.path.join(RESULTS, "summary.json"), "w") as f:
         json.dump(new, f, indent=1)
