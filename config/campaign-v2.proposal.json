@@ -1,0 +1,71 @@
+{
+  "_comment": "PROPOSAL ONLY — campaign-v2 draft 2026-09-22. Does NOT supersede frozen config/campaign-v1.json. Freeze a copy with code+config hashes before any claim run.",
+  "status": "PROPOSED",
+  "parent": "config/campaign-v1.json (FROZEN 2026-09-21; untouched)",
+  "platform": "orin-32gb",
+  "model": "openbmb/MiniCPM5-2B rev 12a3808a, BF16, ctx 8192, mfs 0.50, mrr 6, mtt 8192, skip-warmup (inherit v1 verbatim; tracker sglang_flags mfs 0.8 records pilot window — resolve + freeze exact launch flags before claim runs)",
+  "power": "MAXN, no clock changes (tracker PROPOSED; freeze nvpmodel -q dump per cell)",
+
+  "sglang_flags_base": {
+    "mem_fraction_static": "inherit v1 frozen launch (0.50 per v1 string; confirm vs tracker 0.8 pilot note at freeze)",
+    "max_running_requests": ">=5 on interference cells so 5th arrival overlaps instead of queues (T1.1 check-2: rr=4 queues)",
+    "max_total_tokens": 8192,
+    "enable_thinking": false,
+    "sampling": "greedy, ignore_eos=true, verify actual completion_tokens"
+  },
+
+  "strand_A_nvme_direct": {
+    "goal": "NVMe-direct blocked replication: prove file-tier (storage) restore repeats under paired-block design",
+    "prefix_lengths_tokens": [2048, 4096, 6011],
+    "blocks": 5,
+    "randomize_within_block": true,
+    "warmups_per_cell": 1,
+    "repeats_per_cell": 1,
+    "arm": "nvme_direct = host flags (--enable-hierarchical-cache + --hicache-ratio, RAM backend default) + --hicache-storage-backend file + --hicache-io-backend direct + SGLANG_HICACHE_FILE_BACKEND_STORAGE_DIR on NVMe",
+    "storage_dir": "/media/ssd/saisandesh/TierKV/runs/campaign-v2/hicache-file (PROPOSED; must be under /media/ssd, O_DIRECT; record df + dir listing per cell)",
+    "workload_match": "paused_out_tokens 64 + 4x bg decodes x 128 out, arrival_offset_ms 500 (match v1 matrix overlap)",
+    "prefix_policy": "fixed synthetic prefixes with SHA256 recorded per length (zero-reuse leading tokens, same generator seed as v1); store prefix SHA in each cell json",
+    "background": "file-tier proven reference 2026-09-22: 758MB KV overflows 0.70GB host pool; restore serves cached 3456 = dev 6 + host 2042 + storage 1408, TTFT 16.41s, no crash under bg load",
+    "exclusion_carried": "kernel/page_first H2D-eviction cells stay excluded (3/3 fatal); this strand runs ONLY direct backend"
+  },
+
+  "strand_B_file_overflow_replication": {
+    "goal": "replicate file-overflow spill+restore >=5 matched cells ( Quiet vs Loaded ) with fixed prefix SHAs",
+    "reps": ">=5 blocks, paired quiet/loaded per block",
+    "workload_match": "64-out foreground + 4x bg x 128-out overlap, arrival_offset_ms 500 (same as strand A / v1)",
+    "prefix_policy": "fixed prefixes C/D/E + extensions, SHA256 recorded (runs/imported/file-overflow/prefix_fo_{C,D,E}.txt as reference set)",
+    "cells": ["fo-quiet (spill + cold resume baseline)", "fo-loaded (spill + bg-loaded restore; expect storage>0 cached split)"],
+    "accept": "storage-tier tokens > 0 on restore with TTFT recorded; crash/miss indexed not pooled"
+  },
+
+  "strand_C_sharegpt_expand": {
+    "goal": "ShareGPT sensitivity expansion (additive; never pooled with synthetic)",
+    "slice": "ShareGPT_Vicuna_unfiltered rev 192ab218, 6011-tok prefix, slice_sha256 recorded (see runs/imported/sharegpt/SHA256SUMS)",
+    "current": "b0+b1 x 4 arms COMPLETE-sealed-imported-verified (nvme skipped by design); direction matches synthetic on every arm",
+    "plan": "extend to b0..b4 x 4 arms (retain/host_d2h/host_h2d_direct/recompute) + pilot nvme_direct b0..b1 at 6011 only (direct backend required); direction-vs-synthetic contrast per arm+phase+metric, same gating",
+    "scope_rule": "superiority claims never from ShareGPT alone (analysis_sharegpt.py order-gate)"
+  },
+
+  "thermal_admission": {
+    "policy": "admit cell only if thermally settled; record clocks/temp/slope per cell (PROTOCOL system-validity)",
+    "gates_PROPOSED": ["MAXN fixed, no clock changes during campaign", "tegrastats thermal snapshot pre/post cell (record; thresholds frozen at pilot)", "cooldown wait if post-cell temp slope rising; log wait_s", "swap-delta + storage-state recorded per cell"],
+    "forbidden": ["drop_caches", "reboot", "clock changes", "manual evictions"]
+  },
+
+  "failure_index": {
+    "rule": "failures/OOMs/crashes indexed per cell, never pooled into aggregates (analysis_main.py enforced)",
+    "arrival_gating": "matrix_pass + arrival_ok required (arrival http 200, completion_tokens==64); None metric values dropped per block with warn",
+    "warmups": "excluded from every aggregate (warm=True listed only, e.g. nvme warm-spill reference)",
+    "nvme_rule": "nvme meas 0/15 crash-documented in v1 stays listed; v2 nvme_direct cells counted separately, must_exclude-from-v1-claims preserved"
+  },
+
+  "seal_policy": {
+    "method": "find . -type f -not -name SHA256SUMS -exec sha256sum {} + sorted by path, verified with sha256sum -c (per runs/imported/SEAL.json 2026-09-21 precedent)",
+    "scope": "per-strand dirs under runs/campaign-v2/{nvme-direct,file-overflow,sharegpt-expand} + imported read-only mirror",
+    "gate": "mismatches==0 per dir before analysis import; analysis writes results/ only (summary.json rev bump, coverage.json, figures/)",
+    "stats": "paired-block 95% percentile bootstrap B=10000 seed=20260921; 10% practical margin; boards reported separately, never pooled"
+  },
+
+  "primary_metrics": ["mem_delta_d2h_mb", "mem_delta_h2d_mb", "peak_dup_mb", "emc_rate (utilization only, counts/s)", "bg_tpot_base_s", "bg_tpot_loaded_s", "resume_ttft_s", "cached_split_dev_host_storage", "oom_count", "joules_window_j"],
+  "device_run_readiness": "PENDING human approval: Orin / at 0-avail (100%) — no new writes to root; /media/ssd 23G avail (90%); sglang-orin Up; GPU window + disk clearance required before any strand launches"
+}
