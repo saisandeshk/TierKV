@@ -1,0 +1,27 @@
+# campaign-v2 TTFT + cached split per block. Strand B: fo prefixes C/D/E (~6K tok); Strand A: synthetic prefixes (2048/4096/6011). Rows are block reps; strands never pooled.
+strand,arm_phase,length,block,ttft_s,cached_total,cached_device,cached_host,cached_storage,prompt_tokens,completion_tokens,gated,file
+B,file_overflow_loaded_reload,,0,16.813781,5993,1,0,5992,5994,64,True,/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b0_loaded_reload.json
+B,file_overflow_loaded_reload,,1,15.884836,5993,1,0,5992,5994,64,True,/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b1_loaded_reload.json
+B,file_overflow_loaded_reload,,2,15.321689,5993,1,0,5992,5994,64,True,/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b2_loaded_reload.json
+B,file_overflow_loaded_reload,,3,15.274188,5993,1,0,5992,5994,64,True,/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b3_loaded_reload.json
+B,file_overflow_loaded_reload,,4,15.566517,5993,1,0,5992,5994,64,True,/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b4_loaded_reload.json
+B,file_overflow_quiet_reload,,0,18.082419,3687,6,2042,1639,5994,64,True,/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b0_quiet_reload.json
+B,file_overflow_quiet_reload,,1,17.023993,3857,6,2042,1809,5994,64,True,/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b1_quiet_reload.json
+B,file_overflow_quiet_reload,,2,16.439893,3840,6,2042,1792,5994,64,True,/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b2_quiet_reload.json
+B,file_overflow_quiet_reload,,3,16.544719,3855,6,2042,1807,5994,64,True,/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b3_quiet_reload.json
+B,file_overflow_quiet_reload,,4,16.906914,3968,6,2042,1920,5994,64,True,/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b4_quiet_reload.json
+A,nvme_direct_meas_reload,2048,0,0.117851,2052,2052,0,0,2053,64,True,/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L2048_b0_meas_reload.json
+A,nvme_direct_meas_reload,2048,1,0.11804,2052,2052,0,0,2053,64,True,/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L2048_b1_meas_reload.json
+A,nvme_direct_meas_reload,2048,2,0.116582,2052,2052,0,0,2053,64,True,/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L2048_b2_meas_reload.json
+A,nvme_direct_meas_reload,2048,3,0.118297,2052,2052,0,0,2053,64,True,/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L2048_b3_meas_reload.json
+A,nvme_direct_meas_reload,2048,4,0.116479,2052,2052,0,0,2053,64,True,/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L2048_b4_meas_reload.json
+A,nvme_direct_meas_reload,4096,0,0.148271,4104,4104,0,0,4105,64,True,/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L4096_b0_meas_reload.json
+A,nvme_direct_meas_reload,4096,1,0.145208,4104,4104,0,0,4105,64,True,/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L4096_b1_meas_reload.json
+A,nvme_direct_meas_reload,4096,2,0.146206,4104,4104,0,0,4105,64,True,/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L4096_b2_meas_reload.json
+A,nvme_direct_meas_reload,4096,3,0.147431,4104,4104,0,0,4105,64,True,/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L4096_b3_meas_reload.json
+A,nvme_direct_meas_reload,4096,4,0.146309,4104,4104,0,0,4105,64,True,/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L4096_b4_meas_reload.json
+A,nvme_direct_meas_reload,6011,0,0.145918,6010,6010,0,0,6011,64,True,/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L6011_b0_meas_reload.json
+A,nvme_direct_meas_reload,6011,1,0.145227,6010,6010,0,0,6011,64,True,/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L6011_b1_meas_reload.json
+A,nvme_direct_meas_reload,6011,2,0.147597,6010,6010,0,0,6011,64,True,/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L6011_b2_meas_reload.json
+A,nvme_direct_meas_reload,6011,3,0.14913,6010,6010,0,0,6011,64,True,/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L6011_b3_meas_reload.json
+A,nvme_direct_meas_reload,6011,4,0.147405,6010,6010,0,0,6011,64,True,/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L6011_b4_meas_reload.json

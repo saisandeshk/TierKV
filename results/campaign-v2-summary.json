@@ -1,0 +1,532 @@
+{
+ "rev": 1,
+ "frozen_contract": {
+  "reps": "blocks (n=5 per strand arm x phase)",
+  "ci": "paired-block 95pct percentile bootstrap, B=10000, seed=20260921",
+  "margin": "10% of reference mean (not tested cross-strand)",
+  "warmups": "excluded from all stats (15 Strand A warm_spill files listed, never pooled)",
+  "gating": "aggregates+contrasts require matrix_pass and arrival_ok (arrival http 200, completion_tokens==64); loaded bg streams http 200 + completion_tokens==128; quiet bg null by design; None metric values dropped per block with warn, never pooled",
+  "strand_rule": "Strand A vs Strand B is descriptive only (different arms/prefixes); no pooled statistic crosses strands"
+ },
+ "import": {
+  "nvme_direct_files": 53,
+  "nvme_direct_seal": "PASS (Orin + workstation sha256sum -c)",
+  "file_overflow_files": 49,
+  "file_overflow_seal": "PASS (Orin + workstation sha256sum -c)",
+  "file_overflow_storage_shards": "via storage_manifest.json: 5 blocks x 20012 files x 860676096 bytes/blk (~863MB du); shards not in seal, not copied (copy-out of sealed files only, no raw mutation)",
+  "nvme_direct_storage": "empty dirs (0 files): device-hit path leaves nothing on disk, as expected"
+ },
+ "gating": {
+  "strand_b_cells": 10,
+  "strand_b_gated": 10,
+  "strand_a_meas_cells": 15,
+  "strand_a_gated": 15,
+  "strand_a_warm_excluded": 15,
+  "bg_notes": [
+   "bg0 n_chunks=127 (comp still 128);bg1 n_chunks=127 (comp still 128);bg2 n_chunks=127 (comp still 128);bg3 n_chunks=127 (comp still 128)",
+   "no-load-by-design"
+  ]
+ },
+ "aggregates": {
+  "file_overflow_quiet_reload_ttft_s": {
+   "mean": 16.999587856745347,
+   "lo": 16.57522792094387,
+   "hi": 17.54222884690389,
+   "n": 5,
+   "width": 0.9670009259600185,
+   "label": "file_overflow quiet_reload ttft_s",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b0_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b1_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b2_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b3_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b4_quiet_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "file_overflow_quiet_reload_cached_storage": {
+   "mean": 1793.4,
+   "lo": 1706.6,
+   "hi": 1872.2,
+   "n": 5,
+   "width": 165.60000000000014,
+   "label": "file_overflow quiet_reload cached_storage",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b0_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b1_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b2_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b3_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b4_quiet_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "file_overflow_quiet_reload_cached_tokens": {
+   "mean": 3841.4,
+   "lo": 3754.2,
+   "hi": 3919.8,
+   "n": 5,
+   "width": 165.60000000000036,
+   "label": "file_overflow quiet_reload cached_tokens",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b0_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b1_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b2_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b3_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b4_quiet_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "file_overflow_quiet_reload_cached_host": {
+   "mean": 2042.0,
+   "lo": 2042.0,
+   "hi": 2042.0,
+   "n": 5,
+   "width": 0.0,
+   "label": "file_overflow quiet_reload cached_host",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b0_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b1_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b2_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b3_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b4_quiet_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "file_overflow_quiet_reload_cached_device": {
+   "mean": 6.0,
+   "lo": 6.0,
+   "hi": 6.0,
+   "n": 5,
+   "width": 0.0,
+   "label": "file_overflow quiet_reload cached_device",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b0_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b1_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b2_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b3_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b4_quiet_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "file_overflow_loaded_reload_ttft_s": {
+   "mean": 15.772202076623216,
+   "lo": 15.351653947401791,
+   "hi": 16.329573754500597,
+   "n": 5,
+   "width": 0.9779198070988055,
+   "label": "file_overflow loaded_reload ttft_s",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b0_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b1_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b2_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b3_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b4_loaded_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "file_overflow_loaded_reload_cached_storage": {
+   "mean": 5992.0,
+   "lo": 5992.0,
+   "hi": 5992.0,
+   "n": 5,
+   "width": 0.0,
+   "label": "file_overflow loaded_reload cached_storage",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b0_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b1_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b2_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b3_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b4_loaded_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "file_overflow_loaded_reload_cached_tokens": {
+   "mean": 5993.0,
+   "lo": 5993.0,
+   "hi": 5993.0,
+   "n": 5,
+   "width": 0.0,
+   "label": "file_overflow loaded_reload cached_tokens",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b0_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b1_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b2_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b3_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b4_loaded_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "file_overflow_loaded_reload_cached_host": {
+   "mean": 0.0,
+   "lo": 0.0,
+   "hi": 0.0,
+   "n": 5,
+   "width": 0.0,
+   "label": "file_overflow loaded_reload cached_host",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b0_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b1_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b2_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b3_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b4_loaded_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "file_overflow_loaded_reload_cached_device": {
+   "mean": 1.0,
+   "lo": 1.0,
+   "hi": 1.0,
+   "n": 5,
+   "width": 0.0,
+   "label": "file_overflow loaded_reload cached_device",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b0_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b1_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b2_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b3_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b4_loaded_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "nvme_direct_L2048_meas_ttft_s": {
+   "mean": 0.11744997701607644,
+   "lo": 0.11679491964168846,
+   "hi": 0.11810503439046442,
+   "n": 5,
+   "width": 0.001310114748775959,
+   "label": "nvme_direct L2048 meas ttft_s",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "nvme_direct_L2048_meas_cached_tokens": {
+   "mean": 2052.0,
+   "lo": 2052.0,
+   "hi": 2052.0,
+   "n": 5,
+   "width": 0.0,
+   "label": "nvme_direct L2048 meas cached_tokens",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L2048_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L2048_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L2048_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L2048_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L2048_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "nvme_direct_L4096_meas_ttft_s": {
+   "mean": 0.14668495082296432,
+   "lo": 0.14582722280174493,
+   "hi": 0.14769021356478335,
+   "n": 5,
+   "width": 0.001862990763038419,
+   "label": "nvme_direct L4096 meas ttft_s",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "nvme_direct_L4096_meas_cached_tokens": {
+   "mean": 4104.0,
+   "lo": 4104.0,
+   "hi": 4104.0,
+   "n": 5,
+   "width": 0.0,
+   "label": "nvme_direct L4096 meas cached_tokens",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L4096_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L4096_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L4096_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L4096_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L4096_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "nvme_direct_L6011_meas_ttft_s": {
+   "mean": 0.14705518232658504,
+   "lo": 0.14583895937539637,
+   "hi": 0.14818067410960795,
+   "n": 5,
+   "width": 0.002341714734211575,
+   "label": "nvme_direct L6011 meas ttft_s",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "nvme_direct_L6011_meas_cached_tokens": {
+   "mean": 6010.0,
+   "lo": 6010.0,
+   "hi": 6010.0,
+   "n": 5,
+   "width": 0.0,
+   "label": "nvme_direct L6011 meas cached_tokens",
+   "files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L6011_b0_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L6011_b1_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L6011_b2_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L6011_b3_meas_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L6011_b4_meas_reload.json"
+   ],
+   "blocks": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  }
+ },
+ "contrasts": {
+  "quiet_vs_loaded_ttft_s": {
+   "x": "file_overflow quiet_reload",
+   "y": "file_overflow loaded_reload",
+   "metric": "ttft_s",
+   "paired_diff_quiet_minus_loaded": {
+    "mean": 1.227385780122131,
+    "lo": 1.1528605485334993,
+    "hi": 1.2980992051307112,
+    "n": 5,
+    "width": 0.1452386565972119,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b0_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b1_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b2_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b3_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b4_quiet_reload.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b0_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b1_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b2_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b3_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b4_loaded_reload.json"
+   ]
+  },
+  "quiet_vs_loaded_cached_storage": {
+   "x": "file_overflow quiet_reload",
+   "y": "file_overflow loaded_reload",
+   "metric": "cached_storage",
+   "paired_diff_quiet_minus_loaded": {
+    "mean": -4198.6,
+    "lo": -4285.8,
+    "hi": -4120.2,
+    "n": 5,
+    "width": 165.60000000000036,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b0_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b1_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b2_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b3_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b4_quiet_reload.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b0_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b1_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b2_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b3_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b4_loaded_reload.json"
+   ]
+  },
+  "quiet_vs_loaded_cached_tokens": {
+   "x": "file_overflow quiet_reload",
+   "y": "file_overflow loaded_reload",
+   "metric": "cached_tokens",
+   "paired_diff_quiet_minus_loaded": {
+    "mean": -2151.6,
+    "lo": -2238.8,
+    "hi": -2072.8,
+    "n": 5,
+    "width": 166.0,
+    "blocks": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "n_blocks": 5
+   },
+   "x_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b0_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b1_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b2_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b3_quiet_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b4_quiet_reload.json"
+   ],
+   "y_files": [
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b0_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b1_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b2_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b3_loaded_reload.json",
+    "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/file-overflow/cells/fo_b4_loaded_reload.json"
+   ]
+  }
+ },
+ "descriptive_cross_strand": {
+  "nvme_vs_file_L2048": {
+   "nvme_direct_meas_ttft_mean_s": 0.11744997701607644,
+   "file_quiet_ttft_mean_s": 16.999587856745347,
+   "file_loaded_ttft_mean_s": 15.772202076623216,
+   "ratio_quiet_over_nvme": 144.73896282175056,
+   "ratio_loaded_over_nvme": 134.28867742106354,
+   "method": "ratio of per-strand block means; strands never pooled, no cross-strand CI (different prefixes, different lengths/arms)."
+  },
+  "nvme_vs_file_L4096": {
+   "nvme_direct_meas_ttft_mean_s": 0.14668495082296432,
+   "file_quiet_ttft_mean_s": 16.999587856745347,
+   "file_loaded_ttft_mean_s": 15.772202076623216,
+   "ratio_quiet_over_nvme": 115.89183322058946,
+   "ratio_loaded_over_nvme": 107.52433694209613,
+   "method": "ratio of per-strand block means; strands never pooled, no cross-strand CI (different prefixes, different lengths/arms)."
+  },
+  "nvme_vs_file_L6011": {
+   "nvme_direct_meas_ttft_mean_s": 0.14705518232658504,
+   "file_quiet_ttft_mean_s": 16.999587856745347,
+   "file_loaded_ttft_mean_s": 15.772202076623216,
+   "ratio_quiet_over_nvme": 115.60005970406468,
+   "ratio_loaded_over_nvme": 107.25362974013241,
+   "method": "ratio of per-strand block means; strands never pooled, no cross-strand CI (different prefixes, different lengths/arms)."
+  }
+ },
+ "failures_indexed": [],
+ "warm_excluded_files": [
+  "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L2048_b0_warm_spill.json",
+  "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L2048_b1_warm_spill.json",
+  "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L2048_b2_warm_spill.json",
+  "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L2048_b3_warm_spill.json",
+  "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L2048_b4_warm_spill.json",
+  "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L4096_b0_warm_spill.json",
+  "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L4096_b1_warm_spill.json",
+  "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L4096_b2_warm_spill.json",
+  "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L4096_b3_warm_spill.json",
+  "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L4096_b4_warm_spill.json",
+  "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L6011_b0_warm_spill.json",
+  "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L6011_b1_warm_spill.json",
+  "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L6011_b2_warm_spill.json",
+  "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L6011_b3_warm_spill.json",
+  "/home/saisandeshk/Study/ISP/TierKV/runs/imported/campaign-v2/nvme-direct/cells/nvme_direct_L6011_b4_warm_spill.json"
+ ]
+}
